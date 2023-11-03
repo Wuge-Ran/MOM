@@ -9,8 +9,8 @@ export const login = function () {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           const data = { code: res.code, };
           request.post("/v1/wxuser", data, {}, /* chekLogin = */ false).then(resp=>{
-              console.log("login:",resp);
               globalData.login.token=resp.data.user_token;
+              console.log("token:",resp.data.user_token);
               resolve(resp);
           }).catch(err=>{
               reject(err);

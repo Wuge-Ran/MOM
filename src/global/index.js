@@ -5,31 +5,27 @@ export default {
     maxRetries: 3,
   },
   login: {
+    _token:"",
+    _failtures:0,
     //用户token
-    token: {
-      get() {
-        if (this.token) return this.token;
+    get token(){
+        if (this._token) return this._token;
         const token = wx.getStorageSync("token");
-        if (!token) throw Error("token is not found, check login state");
-
-        this.token = token;
+        // if (!token) throw Error("token is not found, check login state");
+        this._token = token;
         return token;
       },
-
-      set(val) {
-        if (this.token !== val) {
-          this.token = val;
-          wx.setStorageSync("token", this.token);
-          console.log(`token updated:`, this.token);
+    set token(val) {
+          console.log("val",val);
+        if (this._token !== val) {
+          this._token = val;
+          wx.setStorageSync("token", `${this._token}`);
+          console.log(`token updated:`, this._token);
         }
       },
-    },
-
     //连续登录失败次数
-    failtures: {
-      set(val) {
-        this.failtures = val;
+    set failtures(val)  {
+        this._failtures = val;
       },
-    },
   },
 };
