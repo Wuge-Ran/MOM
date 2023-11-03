@@ -10,7 +10,7 @@ export const login = function () {
           const data = { code: res.code, };
           request.post("/v1/wxuser", data, {}, /* chekLogin = */ false).then(resp=>{
               console.log("login:",resp);
-              globalData.login.token=resp.user_token;
+              globalData.login.token=resp.data.user_token;
               resolve(resp);
           }).catch(err=>{
               reject(err);
