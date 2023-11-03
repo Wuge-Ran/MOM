@@ -5,12 +5,12 @@
         </t-swiper>
     </view>
     <view class="userinfo">
-        <view class="userinfo-login" >
+        <view class="userinfo-login">
             <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button>
         </view>
     </view>
-    <!-- <view class="usermotto">
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-  </view> -->
+    <view class="usermotto">
+    </view>
 </view>

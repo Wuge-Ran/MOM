@@ -20,6 +20,7 @@ const swiperList = [
     ariaLabel: '图片2',
   },
 ];
+import {updatePhone} from "../../src/api/user";
 Page({
     
   data: {
@@ -61,18 +62,13 @@ Page({
         })
       }
     })
+    console.log(121)
   },
   getPhoneNumber (e) {
-    console.log(e.detail.code)  // 动态令牌
-    console.log(e.detail.errMsg) // 回调信息（成功失败都会返回）
-    console.log(e.detail.errno)  // 错误码（失败时返回）
-  },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    console.log(e.detail) 
+    updatePhone(e.detail.encryptedData,e.detail.iv).then(res=>{
+        console.log('===res',res)
+    }) 
+    // this.login()
   }
 })
