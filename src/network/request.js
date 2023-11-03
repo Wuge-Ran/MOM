@@ -1,4 +1,4 @@
-import globalData from "../global";
+import globalData from "../global/index";
 
 // 服务器地址
 const baseUrl = "https://api.catchyrime.com";
@@ -10,10 +10,7 @@ export const login = function () {
       success: (res) => {
         console.log(res);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-
-        const data = {
-          code: res.code,
-        };
+        const data = { code: res.code, };
         request.post("/v1/wxuser", data, {}, /* chekLogin = */ false).then(resp=>{
             console.log("login:",resp);
             globalData.login.token=resp.user_token;
@@ -50,11 +47,12 @@ const request = function (url, data, options = {}, chekLogin = true) {
         user_token: userToken,
       },
       success: (res) => {
-        if (res.data.code === 200) {
+
+        if (res.statusCode === 200) {
             resolve(res);
         }
         //假定401是没有登录或登录过期，则先登录再调用接口
-        else if(res.data.code === 401){
+        else if(res.statusCode === 401){
             if(chekLogin&& globalData.login.failtures<=globalData.request.maxRetries){
                 this.login().then(()=>{
                     // 间隔一定时间并调用有限次数，防止死锁
