@@ -1,4 +1,4 @@
-import request  from "./src/network/request";
+import request  from "../network/request";
 import globalData from "../global/index";
 // 登录
 export const login = function () {

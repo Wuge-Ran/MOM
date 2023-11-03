@@ -1,5 +1,5 @@
 import globalData from "../global/index";
-
+import {login} from "../network/request";
 /**
  *
  * @param {*} url  api地址
@@ -12,7 +12,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
     // 自定义的token 优先级更高
     const userToken = token || globalData.login.token;
     wx.request({
-      url: `${baseUrl}${url}`,
+      url: `${globalData.request.baseUrl}${url}`,
       method,
       data,
       // header这里根据业务情况自行选择需要还是不需要
@@ -27,7 +27,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
         //假定401是没有登录或登录过期，则先登录再调用接口
         else if(res.statusCode === 401){
             if(chekLogin&& globalData.login.failtures<=globalData.request.maxRetries){
-                this.login().then(()=>{
+                login().then(()=>{
                     // 间隔一定时间并调用有限次数，防止死锁
                     globalData.login.failtures=0;
                     setTimeout(()=>{
