@@ -1,5 +1,5 @@
 // app.js
-import request,{login} from "./src/network/request";
+import {login} from "./src/api/login";
 App({
   onLaunch() {
     login();
