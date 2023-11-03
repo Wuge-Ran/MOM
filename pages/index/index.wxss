@@ -1,0 +1,51 @@
+/**index.wxss**/
+.container{
+    /* background: url('./img/bg.png'); */
+    position: relative;
+}
+.t-swiper-host {
+    width: 100vw;
+}
+.t-swiper-nav{
+    top: 20%;
+    --td-swiper-radius: 0;
+    --td-swiper-item-padding: 0 12rpx;
+    --td-swiper-nav-dot-active-color: #0052d9;
+}
+
+
+.userinfo {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(174, 202, 217, 0.61);
+  border-radius: 8px;
+  width: 700rpx;
+  height: 588rpx;
+  bottom: 180rpx;
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.userinfo-login{
+    display: flex;
+    align-items: center;
+}
+
+.userinfo-avatar{
+    width: 39px;
+    height: 39px;
+}

@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="swiper-box">
+        <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
+        </t-swiper>
+    </view>
+    <view class="userinfo">
+        <view class="userinfo-login" >
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
+    </view>
+    <!-- <view class="usermotto">
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+  </view> -->
+</view>
