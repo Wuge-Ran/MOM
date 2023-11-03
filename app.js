@@ -1,5 +1,5 @@
 // app.js
-import {login} from "./src/api/login";
+import {login} from "./src/api/user";
 App({
   onLaunch() {
     login();
