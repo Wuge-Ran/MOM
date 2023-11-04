@@ -1,16 +1,50 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
-  },
-  "sitemapLocation": "sitemap.json",
-  "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button"
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/personal",
+        "pages/card/index",
+        "pages/contracted/index",
+        "pages/course/index",
+        "pages/personal/index",
+        "custom-tab-bar/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "usingComponents": {
+        "t-button": "tdesign-miniprogram/button/button"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#AEAEAB",
+        "selectedColor": "#282826",
+        "backgroundColor": "#FFFFFF",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/course/index",
+                "text": "约课"
+            },
+            {
+                "pagePath": "pages/contracted/index",
+                "text": "已约"
+            },
+            {
+                "pagePath": "pages/card/index",
+                "text": "会员卡"
+            },
+            {
+                "pagePath": "pages/personal/index",
+                "text": "我的"
+            }
+        ]
+    }
 }

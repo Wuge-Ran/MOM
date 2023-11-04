@@ -1,0 +1,13 @@
+/* custom-tab-bar/index.wxss */
+
+.tabar-warper {
+    --td-tab-bar-bg-color: #FFF;
+    --td-tab-bar-active-color: #282826;
+    --td-tab-bar-color: #AEAEAB;
+    --td-tab-bar-active-bg: #FFF;
+    
+}
+
+.tabar-warper .t-icon-base{
+        color: #1111;
+}

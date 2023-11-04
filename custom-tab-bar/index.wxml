@@ -1,0 +1,13 @@
+<!--custom-tab-bar/index.wxml-->
+<view class="tabar-warper">
+    <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+        <t-tab-bar-item
+        wx:for="{{list}}" 
+        wx:key="index" 
+        value="{{item.value}}" 
+        icon="{{value===item.value?item.activeIcon:item.icon}}"
+        >
+            {{item.label}}
+        </t-tab-bar-item>
+    </t-tab-bar>
+</view>
