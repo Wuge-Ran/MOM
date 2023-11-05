@@ -20,7 +20,7 @@
         <view class="dialog-content-container">
           <span>为了更好地为您提供服务，需要授权获取您的手机号进行绑定</span>
           <radio class="checkbox-protocol-prompt" bind:tap="onPrivacyRadioChange" checked="{{privacyRadioStatus}}">同意
-            <span class="privacy" bind:tap="onPrivacy">获取您的手机号进行绑定</span>
+            <span class="privacy" bind:tap="onPhonePrivacy">获取您的手机号进行绑定</span>
           </radio>
         </view>
       </view>
