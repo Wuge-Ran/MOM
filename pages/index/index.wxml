@@ -1,15 +1,32 @@
 <!--index.wxml-->
 <view class="container">
     <view class="swiper-box">
-        <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
+        <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots-bar' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
         </t-swiper>
     </view>
-    <view class="userinfo">
-        <view class="userinfo-login" bindtap="bindInfoTap">
-            <image  class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
-            <text class="userinfo-nickname">{{userInfo.nickName||'您好请登录'}}</text>
-            <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
+    <view class="userinfo" bindtap="bindInfoTap">
+        <view class="userinfo-logo">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName||'您好，请登录'}}</text>
         </view>
+        <view class="userinfo-content">
+            <view class="userinfo-content-item"  mode="cover">
+            <image src="./img/course.png" />
+                <button>立刻约课</button>
+            </view>
+            <view class="userinfo-content-item">
+                <image src="./img/card.png"   mode="cover"/>
+                <button>立即购卡</button>
+            </view>
+        </view>
+        <view class="userinfo-aboutUs">
+            <image class="userinfo-aboutUs-img" src="./img/about-us.png"   mode="cover"/>
+            <view class="userinfo-aboutUs-text">关于我们</view>
+            <image class="userinfo-aboutUs-btn" src="./img/about-us-btn.png"   mode="cover"/>
+        </view>
+
+        <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
+
     </view>
     <view class="usermotto">
     </view>

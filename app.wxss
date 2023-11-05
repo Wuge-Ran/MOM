@@ -8,3 +8,7 @@ width: 100vw;
   justify-content: space-between;
   box-sizing: border-box;
 } 
+
+button{
+    background-color:#C8D67A
+}
