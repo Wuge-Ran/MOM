@@ -34,7 +34,8 @@
 }
 
 .t-toast__content--row {
-  padding: 16rpx 68rpx !important;
+  padding-top: 16rpx!important;
+  padding-bottom: 16rpx!important;
 }
 
 .login .bottom {
