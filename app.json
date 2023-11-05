@@ -1,8 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/login/index"
   ],
+  "__usePrivacyCheck__": true,
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
@@ -11,6 +13,7 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button"
+    "t-button": "tdesign-miniprogram/button/button",
+    "privacy-popup": "component/privacyPopup/privacyPopup"
   }
 }

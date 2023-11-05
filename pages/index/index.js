@@ -30,25 +30,26 @@ Page({
     swiperList
   },
   // 事件处理函数
-  bindViewTap() {
+  bindInfoTap() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '/pages/login/index'
     })
-  },
-  login(){
-    wx.login({
-        success(res){
-            console.log('====res',res)
-        }
-    })
-    this.getUserProfile()
   },
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
+    if (wx.requirePrivacyAuthorize) {
+        wx.requirePrivacyAuthorize({
+          success: res => {
+            console.log('用户同意了隐私协议 或 无需用户同意隐私协议')
+            // 用户同意隐私协议后给昵称input聚焦
+          },
+          fail: res => {
+            console.log('用户拒绝了隐私协议')
+            wx.reLaunch({
+                url: "/pages/index/index"
+            });
+          }
+        })
+      }
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

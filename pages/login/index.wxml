@@ -1,0 +1,6 @@
+<!--logs.wxml-->
+<view class="login">
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称"/>
+    <button id="agree-btn1" open-type="getPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">授权手机号</button> 
+    <view>当前手机号：{{phoneNumber}}</view>
+</view>
