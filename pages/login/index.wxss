@@ -1,13 +1,136 @@
-.log-list {
+.login {
   display: flex;
   flex-direction: column;
-  padding: 40rpx;
+  align-items: center;
+  color: var(--light-color);
+  font-size: 32rpx;
+  --td-toast-radius: 16rpx;
+  --td-toast-bg-color: rgba(0, 0, 0, 0.72);
+  --td-popup-border-radius: 24rpx;
+  --td-dialog-width: 520rpx;
+  --td-button-border-radius: 44rpx;
+  --td-button-light-color: var(--black-color);
+  --td-button-primary-color: var(--black-color);
+  --td-button-primary-bg-color: var(--theme-color);
+  --td-brand-color-light: var(--light-color);
 }
-.log-item {
-  margin: 10rpx;
+
+
+.login .logo {
+  margin-top: 41%;
+  width: 418rpx;
+  height: 96rpx;
 }
-.nickname-input{
-    border: 1px solid red;
-    min-height: 2rem;
-    margin-bottom: 40rpx;
+
+/* .login .protocol-prompt {
+  margin-top: 28rpx;
+  padding: 16rpx 68rpx;
+  border-radius: 16rpx;
+  background: rgba(0, 0, 0, 0.72);
+
+} */
+.t-toast {
+  top: 40% !important;
+}
+
+.t-toast__content--row {
+  padding: 16rpx 68rpx !important;
+}
+
+.login .bottom {
+  position: absolute;
+  bottom: 214rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login button::after {
+  border: none;
+}
+
+.login .auth {
+  line-height: 48rpx;
+  padding: 16px 84px;
+  gap: 10px;
+  border-radius: 124px;
+  margin-bottom: 72rpx;
+}
+
+.auth-active {
+  background: var(--theme-color);
+  color: var(--black-color);
+}
+
+.auth-disabled {
+  color: var(--light-color);
+  background: var(--neutral-color3);
+}
+
+.checkbox-protocol-prompt {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: var(--black-color);
+}
+
+.login .privacy {
+  color: var(--sub-color1);
+}
+
+.login .t-popup .t-button--light {
+  border: 1px solid var(--neutral-color2);
+}
+
+.login .phone-btn-disabled {
+  --td-button-primary-color: var(--light-color);
+  --td-button-primary-bg-color: var(--neutral-color3);
+}
+
+.dialog-content-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48rpx;
+  font-size: 28rpx;
+}
+
+.dialog-content-container span {
+  color: var(--neutral-color4);
+  text-align: center;
+}
+
+.dialog-content-container radio {
+  margin-top: 32rpx;
+}
+
+radio .wx-radio-input {
+  width: 32rpx;
+  height: 32rpx;
+  border-color: #DCDCDC !important;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border-color: var(--theme-color) !important;
+  background: var(--theme-color) !important;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  width: 32rpx;
+
+  height: 32rpx;
+
+  line-height: 32rpx;
+
+  text-align: center;
+
+  font-size: 10px;
+
+  color: var(--light-color);
+
+  background: transparent;
+
+  transform: translate(-50%, -50%) scale(1);
+
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }

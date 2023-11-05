@@ -1,5 +1,10 @@
 
 {
-  "navigationBarTitleText": "查看启动日志",
-  "usingComponents": {}
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "t-radio": "tdesign-miniprogram/radio/radio",
+    "t-image": "tdesign-miniprogram/image/image",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  }
 }

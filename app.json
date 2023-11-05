@@ -19,6 +19,12 @@
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button"
     },
+
+    "resolveAlias": {
+        "@utils/*": "utils/*",
+        "@src/*": "src/*"
+    },
+
     "tabBar": {
         "custom": true,
         "color": "#AEAEAB",

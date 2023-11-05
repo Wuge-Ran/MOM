@@ -1,6 +1,29 @@
 <!--logs.wxml-->
-<view class="login">
+<!-- <view class="login">
     <input type="nickname" class="nickname-input" placeholder="请输入昵称"/>
     <button id="agree-btn1" open-type="getPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">授权手机号</button> 
     <view>当前手机号：{{phoneNumber}}</view>
+</view> -->
+<view class="login">
+  <image class="logo" src="/assets/images/logo.png" />
+  <!-- <view class="protocol-prompt">请先阅读并勾选协议</view> -->
+  <view class="bottom">
+    <button class="auth {{authBtnDisabled?'auth-disabled': 'auth-active'}}" bind:tap="onAuth">一键登录</button>
+    <radio class="checkbox-protocol-prompt" bind:tap="onRadioChange" checked="{{radioStatus}}">我已阅读并同意
+      <span class="privacy" bind:tap="onPrivacy">《协议条款》</span>
+    </radio>
+  </view>
+  <t-toast id="t-toast" />
+  <view class="dialog {{getPhoneBtnDisabled?'phone-btn-disabled': 'phone-btn-active'}}">
+    <t-dialog visible="{{showDialogConfirm}}" title="授权绑定手机号" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消" bind:confirm="onDialogconfirm" bind:cancel="closeDialog">
+      <view slot="content">
+        <view class="dialog-content-container">
+          <span>为了更好地为您提供服务，需要授权获取您的手机号进行绑定</span>
+          <radio class="checkbox-protocol-prompt" bind:tap="onPrivacyRadioChange" checked="{{privacyRadioStatus}}">同意
+            <span class="privacy" bind:tap="onPrivacy">获取您的手机号进行绑定</span>
+          </radio>
+        </view>
+      </view>
+    </t-dialog>
+  </view>
 </view>

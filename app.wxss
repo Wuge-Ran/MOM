@@ -1,6 +1,6 @@
 /**app.wxss**/
 .container {
-width: 100vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,18 @@ width: 100vw;
 
 button{
     background-color:#C8D67A
+}
+
+page {
+  font-family: PingFang SC;
+  --light-color: #FFFFFF;
+  --black-color: #282825;
+  --theme-color: #C8D67A;
+  --sub-color1: #FF7F52;
+  --sub-color2: #7D8E64;
+  --neutral-color1: #F9F6F2;
+  --neutral-color2: #DBD9D8;
+  --neutral-color3: #AEAEAB;
+  --neutral-color4: #71716F;
+  --neutral-color5: #3C3C3C;
 }
