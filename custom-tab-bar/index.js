@@ -1,6 +1,7 @@
 Component({
   data: {
     value: "home",
+    // activeValue:"home",
     list: [
       {
         value: "home",
@@ -35,7 +36,7 @@ Component({
         label: "我的",
         icon: "/assets/icons/personal.png",
         activeIcon: "/assets/icons/personal.png",
-        path: "/pages/course/index",
+        path: "/pages/personal/index",
       },
     ],
   },
@@ -43,6 +44,7 @@ Component({
   methods: {
     onChange(e) {
       const activeValue = e.detail.value;
+    //   this.activeValue=activeValue;
       const item = this.data.list.find((item) => item.value == activeValue);
       this.setData({
         value: e.detail.value,
@@ -51,5 +53,15 @@ Component({
         url: item.path,
       });
     },
+
+    show() {
+        const page = getCurrentPages().pop();
+        const item = this.data.list.find((item) => item.path ===`/${page.route}`);
+        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+          this.getTabBar().setData({
+            value: item.value,
+          })
+        }
+      },
   },
 });

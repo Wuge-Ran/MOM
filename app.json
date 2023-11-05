@@ -2,7 +2,6 @@
     "pages": [
         "pages/index/index",
         "pages/logs/logs",
-        "pages/personal",
         "pages/card/index",
         "pages/contracted/index",
         "pages/course/index",

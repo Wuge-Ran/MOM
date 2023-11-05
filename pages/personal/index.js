@@ -26,13 +26,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-            const page = getCurrentPages().pop();
-            this.getTabBar().setData({
-              value: '/' + page.route
-            })
-          }
-       console.log(1231312);
+        this.getTabBar().show();
     },
 
     /**
