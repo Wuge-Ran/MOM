@@ -7,6 +7,7 @@ export default {
   login: {
     _token:"",
     _failtures:0,
+    _phoneNumber:'',
     //用户token
     get token(){
         if (this._token) return this._token;
@@ -23,6 +24,22 @@ export default {
           console.log(`token updated:`, this._token);
         }
       },
+    //用户token
+    get phoneNumber(){
+        if (this._phoneNumber) return this._phoneNumber;
+        const phoneNumber = wx.getStorageSync("phoneNumber");
+        // if (!token) throw Error("token is not found, check login state");
+        this._phoneNumber = phoneNumber;
+        return phoneNumber;
+      },
+    set phoneNumber(val) {
+          console.log("val",val);
+        if (this._phoneNumber !== val) {
+          this._phoneNumber = val;
+          wx.setStorageSync("phoneNumber", `${this._phoneNumber}`);
+          console.log(`phoneNumber updated:`, this._phoneNumber);
+        }
+      },  
     //连续登录失败次数
     set failtures(val)  {
         this._failtures = val;

@@ -4,10 +4,33 @@
         <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots-bar' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
         </t-swiper>
     </view>
-    <view class="userinfo" bindtap="bindInfoTap">
+    <view class="userinfo"  wx:if="{{isLogin}}">
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
-            <text class="userinfo-nickname">{{userInfo.nickName||'您好，请登录'}}</text>
+            <text class="userinfo-nickname">{{ 'Hello '+phoneNumber+'!'}}</text>
+        </view>
+        <view class="userinfo-description">
+            <view class="description-item border-right">
+                <view class="description-item-title">已到店</view>
+                <view class="description-item-content">
+                    <view class="description-item-number">35</view>
+                    <view class="description-item-unit">次</view>
+                </view>
+            </view>
+            <view class="description-item">
+                <view class="description-item-title">会员卡</view>
+                <view class="description-item-content">
+                    <view class="description-item-number">2</view>
+                    <view class="description-item-unit"> 张</view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <view class="userinfo" bindtap="bindInfoTap" wx:else>
+        <view class="userinfo-logo">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{phoneNumber||'您好，请登录'}}</text>
         </view>
         <view class="userinfo-content">
             <view class="userinfo-content-item"  mode="cover">
@@ -27,7 +50,5 @@
 
         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
 
-    </view>
-    <view class="usermotto">
     </view>
 </view>

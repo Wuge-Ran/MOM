@@ -2,6 +2,7 @@
 .container{
     /* background: url('./img/bg.png'); */
     position: relative;
+    font-size: 28rpx;
 }
 .t-swiper-host {
     width: 100vw;
@@ -60,6 +61,7 @@
 .userinfo-content button{
     width: 296rpx;
     line-height: 72rpx;
+    font-size: 28rpx;
 }
 
 .userinfo-content image{
@@ -98,4 +100,38 @@
 .userinfo-aboutUs-text{
     margin-right: 32rpx;
     /* margin-left: auto; */
+}
+
+.userinfo-description{
+    background-color: #ffffff;
+    border-radius: 24rpx;
+    display: flex;
+    padding: 24rpx 0 ;
+    margin-top: 32rpx;
+}
+.border-right{
+  border-right: 1px solid #DBD9D8;
+}
+
+.description-item{
+    width: 50%;
+}
+
+.description-item-title{
+    margin-left: 40rpx;
+}
+
+.description-item-number{
+    color: #B4CC2B;
+    font-size: 80rpx;
+}
+.description-item-content{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.description-item-unit{
+    color: #AEAEAB;
+    margin-left: 4rpx;
+    font-size: 24rpx;
 }

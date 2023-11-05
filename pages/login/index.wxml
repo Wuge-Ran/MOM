@@ -15,7 +15,7 @@
   </view>
   <t-toast id="t-toast" />
   <view class="dialog {{getPhoneBtnDisabled?'phone-btn-disabled': 'phone-btn-active'}}">
-    <t-dialog visible="{{showDialogConfirm}}" title="授权绑定手机号" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消" bind:confirm="onDialogconfirm" bind:cancel="closeDialog">
+    <t-dialog visible="{{showDialogConfirm}}" title="授权绑定手机号" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消"  bind:confirm="handleGetPhoneNumber" bind:cancel="closeDialog">
       <view slot="content">
         <view class="dialog-content-container">
           <span>为了更好地为您提供服务，需要授权获取您的手机号进行绑定</span>

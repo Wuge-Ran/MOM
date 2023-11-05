@@ -5,6 +5,7 @@ App({
     // login();
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    
   }
 })
