@@ -14,6 +14,7 @@
   --td-button-primary-bg-color: var(--theme-color);
   --td-brand-color-light: var(--light-color);
   --td-overlay-bg-color:rgba(0, 0, 0, 0.72);
+
 }
 
 
@@ -86,6 +87,8 @@
 .login .phone-btn-disabled {
   --td-button-primary-color: var(--light-color);
   --td-button-primary-bg-color: var(--neutral-color3);
+  --td-button-primary-disabled-color:var(--light-color) ;
+  --td-button-primary-disabled-bg:var(--neutral-color3);
 }
 
 .dialog-content-container {
