@@ -14,11 +14,11 @@ const swiperList = [
   },
   {
     value: `${imageCdn}/swiper1.png`,
-    ariaLabel: '图片1',
+    ariaLabel: '图片3',
   },
   {
     value: `${imageCdn}/swiper1.png`,
-    ariaLabel: '图片2',
+    ariaLabel: '图片4',
   },
 ];
 Page({
