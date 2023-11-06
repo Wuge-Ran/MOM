@@ -54,6 +54,7 @@ Page({
       }
   },
   onShow(){
+    this.getTabBar().show();
     console.log('===首页 onShow 触发',!!globalData.login.phoneNumber&&!!globalData.login.token)
     if(globalData.login.phoneNumber&&globalData.login.token){
         this.setData({
