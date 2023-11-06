@@ -13,6 +13,7 @@
   --td-button-primary-color: var(--black-color);
   --td-button-primary-bg-color: var(--theme-color);
   --td-brand-color-light: var(--light-color);
+  --td-overlay-bg-color:rgba(0, 0, 0, 0.72);
 }
 
 
