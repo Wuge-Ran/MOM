@@ -6,9 +6,10 @@
 }
 .t-swiper-host {
     width: 100vw;
+    border-radius: 0 !important;
 }
 .t-swiper-nav{
-    top: 40%;
+    top: 32%;
     --td-swiper-radius: 0;
     --td-swiper-item-padding: 0 12rpx;
     --td-swiper-nav-dot-active-color: #C8D67A;
@@ -78,7 +79,7 @@
 
 .userinfo-aboutUs{
     height: 120rpx;
-    background-color: #ffffff;
+    background-color: #F9F6F2;
     display: flex;
     align-items: center;
     border-radius: 24rpx;
@@ -103,7 +104,7 @@
 }
 
 .userinfo-description{
-    background-color: #ffffff;
+    background-color: #F9F6F2;
     border-radius: 24rpx;
     display: flex;
     padding: 24rpx 0 ;
@@ -134,4 +135,30 @@
     color: #AEAEAB;
     margin-left: 4rpx;
     font-size: 24rpx;
+}
+
+.my-course{
+    margin-top: 32rpx;
+}
+
+.my-course-title{
+    color: #ffffff;
+    margin-bottom: 24rpx;
+}
+
+.my-course-content{
+    background-color: #F9F6F2;
+    border-radius: 24rpx;
+    display: flex;
+    padding: 24rpx 32rpx ;
+}
+
+.course-avatar{
+    width: 140rpx;
+    height: 140rpx;
+    margin-right: 32rpx;
+}
+
+.my-course-content-title{
+    font-weight: 500;
 }

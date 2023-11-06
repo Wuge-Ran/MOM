@@ -2,22 +2,21 @@ import globalData from "../../src/global/index";
 // index.js
 // 获取应用实例
 const app = getApp()
-const imageCdn = 'https://tdesign.gtimg.com/miniprogram/images';
 const swiperList = [
   {
-    value: `${imageCdn}/swiper1.png`,
+    value: `https://api.catchyrime.com/static/background.jpeg`,
     ariaLabel: '图片1',
   },
   {
-    value: `${imageCdn}/swiper1.png`,
+    value: `https://api.catchyrime.com/static/background.jpeg`,
     ariaLabel: '图片2',
   },
   {
-    value: `${imageCdn}/swiper1.png`,
+    value: `https://api.catchyrime.com/static/background.jpeg`,
     ariaLabel: '图片3',
   },
   {
-    value: `${imageCdn}/swiper1.png`,
+    value: `https://api.catchyrime.com/static/background.jpeg`,
     ariaLabel: '图片4',
   },
 ];
