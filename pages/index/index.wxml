@@ -1,10 +1,23 @@
 <!--index.wxml-->
 <view class="container">
     <view class="swiper-box">
-        <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots-bar' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
-        </t-swiper>
+        <swiper class="swiper-img" indicator-dots="{{true}}"
+        autoplay="{{autoplay}}" interval="{{10000}}" circular="{{true}}" duration="{{500}}" bindchange="swpierChange">
+        <block wx:for="{{swiperList}}" wx:key="index">
+          <swiper-item>
+            <view class="swiper-item">
+                <image src="{{item.value}}" mode="cover"/>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+        <!-- <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots-bar' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
+        </t-swiper> -->
     </view>
     <view class="userinfo" wx:if="{{isLogin}}">
+        <view class="my-dot-list">
+         <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="index"></view>
+        </view>
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
             <text class="userinfo-nickname">{{ 'Hello '+phoneNumber+'!'}}</text>
@@ -13,15 +26,17 @@
             <view class="description-item border-right">
                 <view class="description-item-title">已到店</view>
                 <view class="description-item-content">
-                    <view class="description-item-number">35</view>
+                    <view class="description-item-number {{userInfo.checkin_times?'':'gray'}}">{{userInfo.checkin_times}}</view>
                     <view class="description-item-unit">次</view>
+                    
                 </view>
             </view>
             <view class="description-item">
                 <view class="description-item-title">会员卡</view>
                 <view class="description-item-content">
-                    <view class="description-item-number">2</view>
+                    <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards}}</view>
                     <view class="description-item-unit"> 张</view>
+                    <image wx:if="{{!userInfo.available_cards}}" class="description-item-buy" src="./img/buy-card.png" mode=""/>
                 </view>
             </view>
         </view>
@@ -32,13 +47,23 @@
                 <view class="my-course-content-info">
                     <view class="my-course-content-title">初级团课</view>
                     <view class="my-course-content-message">
-
+                        <view class="my-course-content-message-item">
+                            <image src="./img/course-time.png" alt=""/>
+                            <view class="course-text">10/14 (周六) 13:00-14:00</view>
+                        </view>
+                        <view class="my-course-content-message-item course-coach">
+                            <image src="./img/course-coach.png" alt=""/>
+                            <view class="course-text">Leo</view>
+                        </view>
                     </view>
                 </view>
             </view>
         </view>
     </view>
     <view class="userinfo" bindtap="bindInfoTap" wx:else>
+        <view class="my-dot-list">
+         <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="*this"></view>
+        </view>
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
             <text class="userinfo-nickname">{{phoneNumber||'您好，请登录'}}</text>

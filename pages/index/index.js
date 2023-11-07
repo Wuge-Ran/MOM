@@ -1,7 +1,11 @@
 import globalData from "../../src/global/index";
+import {
+    getUserData
+} from "@src/api/user";
+
 // index.js
 // 获取应用实例
-const app = getApp()
+const app = getApp();
 const swiperList = [
   {
     value: `https://api.catchyrime.com/static/background.jpeg`,
@@ -27,12 +31,20 @@ Page({
     hasUserInfo: false,
     swiperList,
     isLogin:false,
-    phoneNumber:null
+    phoneNumber:null,
+    autoplay:true,
+    currentIndex:0,
   },
   // 事件处理函数
   bindInfoTap() {
     wx.navigateTo({
       url: '/pages/login/index'
+    })
+  },
+  swpierChange(event){
+    const {detail} = event;
+    this.setData({
+        currentIndex:detail.current
     })
   },
   onLoad() {
@@ -54,31 +66,31 @@ Page({
   },
   onShow(){
     this.getTabBar().show();
-    console.log('===首页 onShow 触发',!!globalData.login.phoneNumber&&!!globalData.login.token)
-    if(globalData.login.phoneNumber&&globalData.login.token){
+    console.log('===首页 onShow 触发',!!globalData.login.phoneNumber&&!!globalData.login.token);
+    setTimeout(()=>{
+        let query = wx.createSelectorQuery();
+    query.select('.userinfo').boundingClientRect(rect=>{
+    let height = rect.height;
+    console.log('boundingClientRect',height);
+    }).exec();
+    })
+
+    if(globalData.login.phoneNumber && globalData.login.token){
         this.setData({
             isLogin:true,
             phoneNumber:globalData.login.phoneNumber
+        })
+        getUserData().then(res=>{
+            console.log('===getUserData',res)
+            this.setData({
+                userInfo:res.data
+            })
         })
     }else{
         this.setData({
             isLogin:false
         })
     }
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-    console.log(121)
   },
 
 
