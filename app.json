@@ -5,6 +5,7 @@
         "pages/card/index",
         "pages/contracted/index",
         "pages/course/index",
+        "pages/course/coach-detail/index",
         "pages/personal/index",
         "custom-tab-bar/index",
         "pages/login/index"
@@ -17,7 +18,8 @@
     },
     "sitemapLocation": "sitemap.json",
     "usingComponents": {
-        "t-button": "tdesign-miniprogram/button/button"
+        "t-button": "tdesign-miniprogram/button/button",
+        "date-piker":"component/date-piker/index"
     },
 
     "resolveAlias": {

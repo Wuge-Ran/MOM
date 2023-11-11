@@ -10,7 +10,7 @@
 } 
 
 button{
-    background-color:#C8D67A
+    background-color:--theme-color;
 }
 
 page {

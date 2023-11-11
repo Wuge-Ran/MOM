@@ -1,0 +1,117 @@
+/* pages/course/index.wxss */
+.container {
+    background-color: #F9F6F2;
+    padding: 40rpx 32rpx 0;
+    justify-content: start;
+    font-size: 28rpx;
+    --td-button-light-color: var(--black-color);
+    --td-button-primary-color: var(--black-color);
+    --td-button-primary-bg-color: var(--theme-color);
+    --td-button-primary-border-color: var(--theme-color);
+    --td-button-primary-disabled-bg:var(--neutral-color3);
+    --td-button-primary-disabled-border-color:var(--neutral-color3);
+    --td-button-font-weight:500;
+    --td-button-medium-font-size:28rpx
+}
+
+.coach-intro {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 24rpx;
+    padding: 40rpx 32rpx;
+    box-sizing: border-box;
+    margin-bottom: 32rpx;
+}
+
+.coach-course-item {
+    padding: 0 24rpx;
+}
+
+.coach-course-item-time {
+    color: #7D8E64;
+    font-size: 32rpx;
+    margin-bottom: 40rpx;
+    font-weight: 600;
+}
+
+.coach-course {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 24rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.coach-intro-head {
+    width: 144rpx;
+    height: 144rpx;
+    margin-right: 32rpx;
+    border-radius: 50%;
+
+}
+
+.coach-intro-content {
+    flex: 1;
+}
+
+.coach-course-item-content {
+    display: flex;
+    margin-bottom: 56rpx;
+}
+
+.coach-course-item-content-img {
+    width: 236rpx;
+    height: 236rpx;
+    border-radius: 24rpx;
+}
+
+.type-tabs {
+    width: 100%;
+}
+
+.type-tabs {
+    --td-tab-item-active-color: #B4CC2B;
+    --td-tab-track-color: #B4CC2B;
+}
+
+.coach-course-item-content-describe {
+    margin-left: 32rpx;
+    flex: 1;
+}
+
+.coach-course-item-content-describe-title {
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-bottom: 12rpx;
+}
+
+.coach-course-item-content-describe-text {
+      /*! autoprefixer: off */  
+      display: -webkit-box;
+      word-break: break-all;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+}
+
+.container .t-button{
+    width: 148rpx;
+    height: 72rpx;
+    margin-right: 0;
+}
+
+.coach-course-item-content-describe-reserve{
+    display: flex;
+    margin-top: 24rpx;
+}
+
+.coach-course-scroll{
+    display: flex;
+    flex: 1;
+    padding-bottom: 112rpx;
+    height: 100rpx;
+}
