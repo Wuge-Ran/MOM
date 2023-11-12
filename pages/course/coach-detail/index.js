@@ -10,6 +10,7 @@ Page({
      */
     data: {
         dateList: [],
+        isLike:false
     },
 
     /**
@@ -51,6 +52,17 @@ Page({
             })
         })
 
+    },
+
+    onIconTap(){
+        const isLike = !this.data.isLike
+        wx.showToast({
+          title: isLike?'收藏成功':'已取消收藏',
+          icon:'none'
+        })
+        this.setData({
+            isLike
+        })
     },
 
     /**

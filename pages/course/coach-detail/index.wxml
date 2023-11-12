@@ -3,7 +3,10 @@
     <view class="coach-intro">
         <image class="coach-intro-head" src="./img/coach-demo.png" mode="" />
         <view class="coach-intro-content">
-            <view class="coach-intro-content-title">Leo</view>
+            <view class="coach-intro-content-title">
+                <view>Leo</view>
+                <image class="like-icon" src="{{isLike?'./img/like.png':'./img/dislike.png'}}" mode="aspectFill" bind:tap="onIconTap"/>
+            </view>
             <view class="coach-intro-content-intro">每一次训练都是和身体的对话，用心感受、关注、聆听身体的声音。</view>
         </view>
     </view>
@@ -13,77 +16,77 @@
             <t-tab-panel label="私教" value="1" />
         </t-tabs>
         <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
-        <scroll-view class="coach-course-scroll" scroll-y="{{true}}" >
+        <scroll-view class="coach-course-scroll" scroll-y="{{true}}">
             <view class="coach-course-item">
-            <view class="coach-course-item-time">13:00-14:00</view>
-            <view class="coach-course-item-content">
-                <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
-                <view class="coach-course-item-content-describe">
-                    <view class="coach-course-item-content-describe-title">
-                        初级私教
-                    </view>
-                    <view class="coach-course-item-content-describe-text">无难度区分 新手友好
-                        无难度区分 新手友好新手友好 新手友好新手友好</view>
+                <view class="coach-course-item-time">13:00-14:00</view>
+                <view class="coach-course-item-content">
+                    <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
+                    <view class="coach-course-item-content-describe">
+                        <view class="coach-course-item-content-describe-title">
+                            初级私教
+                        </view>
+                        <view class="coach-course-item-content-describe-text">无难度区分 新手友好
+                            无难度区分 新手友好新手友好 新手友好新手友好</view>
                         <view class="coach-course-item-content-describe-reserve">
                             <t-button theme="primary" hover-class="none">预约</t-button>
                         </view>
-                    
+
+                    </view>
                 </view>
             </view>
-        </view>
-        <view class="coach-course-item">
-            <view class="coach-course-item-time">13:00-14:00</view>
-            <view class="coach-course-item-content">
-                <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
-                <view class="coach-course-item-content-describe">
-                    <view class="coach-course-item-content-describe-title">
-                        初级私教
-                    </view>
-                    <view class="coach-course-item-content-describe-text">无难度区分 新手友好
-                        无难度区分 新手友好新手友好 新手友好新手友好</view>
+            <view class="coach-course-item">
+                <view class="coach-course-item-time">13:00-14:00</view>
+                <view class="coach-course-item-content">
+                    <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
+                    <view class="coach-course-item-content-describe">
+                        <view class="coach-course-item-content-describe-title">
+                            初级私教
+                        </view>
+                        <view class="coach-course-item-content-describe-text">无难度区分 新手友好
+                            无难度区分 新手友好新手友好 新手友好新手友好</view>
                         <view class="coach-course-item-content-describe-reserve">
                             <t-button theme="primary" hover-class="none">预约</t-button>
                         </view>
-                    
+
+                    </view>
                 </view>
             </view>
-        </view>
-        <view class="coach-course-item">
-            <view class="coach-course-item-time">13:00-14:00</view>
-            <view class="coach-course-item-content">
-                <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
-                <view class="coach-course-item-content-describe">
-                    <view class="coach-course-item-content-describe-title">
-                        初级私教
-                    </view>
-                    <view class="coach-course-item-content-describe-text">无难度区分 新手友好
-                        无难度区分 新手友好新手友好 新手友好新手友好</view>
+            <view class="coach-course-item">
+                <view class="coach-course-item-time">13:00-14:00</view>
+                <view class="coach-course-item-content">
+                    <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
+                    <view class="coach-course-item-content-describe">
+                        <view class="coach-course-item-content-describe-title">
+                            初级私教
+                        </view>
+                        <view class="coach-course-item-content-describe-text">无难度区分 新手友好
+                            无难度区分 新手友好新手友好 新手友好新手友好</view>
                         <view class="coach-course-item-content-describe-reserve">
                             <t-button theme="primary" hover-class="none">预约</t-button>
                         </view>
-                    
+
+                    </view>
                 </view>
             </view>
-        </view>
-        <view class="coach-course-item">
-            <view class="coach-course-item-time">13:00-14:00</view>
-            <view class="coach-course-item-content">
-                <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
-                <view class="coach-course-item-content-describe">
-                    <view class="coach-course-item-content-describe-title">
-                        初级私教
-                    </view>
-                    <view class="coach-course-item-content-describe-text">无难度区分 新手友好
-                        无难度区分 新手友好新手友好 新手友好新手友好</view>
+            <view class="coach-course-item">
+                <view class="coach-course-item-time">13:00-14:00</view>
+                <view class="coach-course-item-content">
+                    <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
+                    <view class="coach-course-item-content-describe">
+                        <view class="coach-course-item-content-describe-title">
+                            初级私教
+                        </view>
+                        <view class="coach-course-item-content-describe-text">无难度区分 新手友好
+                            无难度区分 新手友好新手友好 新手友好新手友好</view>
                         <view class="coach-course-item-content-describe-reserve">
                             <t-button theme="primary" hover-class="none">预约</t-button>
                         </view>
-                    
+
+                    </view>
                 </view>
             </view>
-        </view>
         </scroll-view>
-        
+
     </view>
 
 </view>

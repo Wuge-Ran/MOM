@@ -19,7 +19,8 @@
     "sitemapLocation": "sitemap.json",
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button",
-        "date-piker":"component/date-piker/index"
+        "date-piker":"component/date-piker/index",
+        "t-icon": "tdesign-miniprogram/icon/icon"
     },
 
     "resolveAlias": {

@@ -8,10 +8,10 @@
     --td-button-primary-color: var(--black-color);
     --td-button-primary-bg-color: var(--theme-color);
     --td-button-primary-border-color: var(--theme-color);
-    --td-button-primary-disabled-bg:var(--neutral-color3);
-    --td-button-primary-disabled-border-color:var(--neutral-color3);
-    --td-button-font-weight:500;
-    --td-button-medium-font-size:28rpx
+    --td-button-primary-disabled-bg: var(--neutral-color3);
+    --td-button-primary-disabled-border-color: var(--neutral-color3);
+    --td-button-font-weight: 500;
+    --td-button-medium-font-size: 28rpx
 }
 
 .coach-intro {
@@ -57,6 +57,14 @@
     flex: 1;
 }
 
+.coach-intro-content-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-bottom: 12rpx;
+}
+
 .coach-course-item-content {
     display: flex;
     margin-bottom: 56rpx;
@@ -89,29 +97,39 @@
 }
 
 .coach-course-item-content-describe-text {
-      /*! autoprefixer: off */  
-      display: -webkit-box;
-      word-break: break-all;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    /*! autoprefixer: off */
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.container .t-button{
+.container .t-button {
     width: 148rpx;
     height: 72rpx;
     margin-right: 0;
 }
 
-.coach-course-item-content-describe-reserve{
+.coach-course-item-content-describe-reserve {
     display: flex;
     margin-top: 24rpx;
 }
 
-.coach-course-scroll{
+.coach-course-scroll {
     display: flex;
     flex: 1;
     padding-bottom: 112rpx;
     height: 100rpx;
+    padding-top: 16rpx;
+}
+
+.type-tabs {
+    margin-bottom: 16rpx;
+}
+
+.like-icon{
+    width: 32rpx;
+    height: 32rpx;
 }
