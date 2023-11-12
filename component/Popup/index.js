@@ -21,28 +21,23 @@ Component({
 },{
   name:'Leo',
   id:2,
-  image:"/assets/images/avatar.png",
-  select:false
+  image:"/assets/images/avatar.png"
 },{
   name:'Leo',
   id:3,
-  image:"/assets/images/avatar.png",
-  select:false
+  image:"/assets/images/avatar.png"
 },{
   name:'Leo',
   id:4,
-  image:"/assets/images/avatar.png",
-  select:false
+  image:"/assets/images/avatar.png"
 },{
-  name:'Leo',
+  name:'MESSI',
   id:5,
-  image:"/assets/images/avatar.png",
-  select:false
+  image:"/assets/images/avatar.png"
 },{
-  name:'Leo',
+  name:'DEFDWEFFED',
   id:6,
-  image:"/assets/images/avatar.png",
-  select:false
+  image:"/assets/images/avatar.png"
 },{
   name:'Leo',
   id:7,

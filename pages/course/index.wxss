@@ -15,7 +15,7 @@
     /* height: 300rpx; */
 }
 .selection-bar {
-    padding: 32rpx;
+    padding: 32rpx 32rpx 0 ;
     display: flex;
     flex-direction: row-reverse;
 }

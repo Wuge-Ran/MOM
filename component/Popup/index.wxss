@@ -13,15 +13,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-    /* justify-content: space-between; */
 }
 .popup-avatar-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 32rpx;
-    margin-right: 40rpx;
+    
 }
+.popup-avatar-wrap:not(:nth-child(5n)) {
+    margin-right: 40rpx;
+  }
 .popup-avatar-circle {
     position: relative;
 }
