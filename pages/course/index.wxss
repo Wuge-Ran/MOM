@@ -29,6 +29,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 24rpx;
+    line-height: 50rpx;
 }
 
 .calendar-bar {

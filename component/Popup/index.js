@@ -16,7 +16,6 @@ Component({
     name:'Leo',
     id:1,
     image:"/assets/images/avatar.png",
-    select:false,
     like:true
 },{
   name:'Leo',

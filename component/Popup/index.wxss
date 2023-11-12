@@ -37,7 +37,9 @@
 }
 .popup-name {
     width: 104rpx;
+    font-size: 24rpx;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -65,4 +67,5 @@
 }
 .pop-up .ok-button{
     background-color: var(--theme-color);
+    --td-button-default-border-color:var(--theme-color);
 }
