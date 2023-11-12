@@ -1,1 +1,38 @@
 /* component/date-piker/index.wxss */
+.date-piker{
+    white-space: nowrap;
+    padding: 16rpx 0;
+}
+
+
+
+.date-item{
+    width: 60rpx;
+    margin-right: 33rpx;
+    display: inline-block;
+}
+
+.date-item:first-child{
+    margin-left: 32rpx;
+}
+
+.date-number{
+ width: 60rpx;
+ height: 60rpx;
+ border-radius: 50%;
+ text-align: center;
+ line-height: 60rpx;
+}
+
+.date-weekday{
+    text-align: center;
+    font-size: 24rpx;
+    line-height: 36rpx;
+}
+
+.no-course{
+    color: #AEAEAB;
+}
+.active-number{
+    background-color: #C8D67A;
+}

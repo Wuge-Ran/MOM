@@ -12,6 +12,7 @@
             <t-tab-panel label="团课" value="0" />
             <t-tab-panel label="私教" value="1" />
         </t-tabs>
+        <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
         <scroll-view class="coach-course-scroll" scroll-y="{{true}}" >
             <view class="coach-course-item">
             <view class="coach-course-item-time">13:00-14:00</view>

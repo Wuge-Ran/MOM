@@ -1,4 +1,15 @@
 <!--custom-tab-bar/index.wxml-->
-<view class="date-piker">
-    1231
-</view>
+<scroll-view scroll-x="{{true}}" class="date-piker">
+    <view class="date-item {{ item.hasCourse? '':'no-course' }}" wx:for="{{list}}" bind:tap="onDateClick" data-date="{{item.date}}" data-index="{{index}}"wx:key="date">
+        <view class="date-number {{curIndex===index?'active-number':''}}">{{ foo.dataSplit(item.date)}}</view>
+        <view class="date-weekday">{{item.weekday}}</view>
+    </view>
+</scroll-view>
+<wxs module="foo">
+    function dataSplit(date){
+      return date.split('-')[2]||'';
+    }
+    module.exports = {
+        dataSplit: dataSplit,
+    }
+  </wxs>
