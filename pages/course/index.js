@@ -87,6 +87,8 @@ Page({
         waiting_attenders: 0
       },
     ],
+    visible:false,
+    selectDetail:'',
   },
 
   /**
@@ -153,8 +155,21 @@ Page({
   /**
    * 下拉菜单被触发
    */
-  onRefresh() {
-
-  }
-
+  onRefresh(){
+    
+  },
+  onBarIconClick(){
+    this.setData({
+        visible:true
+    })
+  },
+  onOk(event){
+      const {detail}=event;
+      console.log(detail);
+      this.setData({
+        visible:false ,
+        selectDetail:detail.map(item=>item.name).join('，')
+      })
+  },
+  
 });

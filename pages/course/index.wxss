@@ -15,7 +15,14 @@
     /* height: 300rpx; */
 }
 .selection-bar {
-    height: 64rpx;
+    padding: 32rpx;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.selection-bar-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 16rpx;
 }
 
 .calendar-bar {

@@ -2,6 +2,7 @@
     "navigationBarTitleText": "约课",
     "usingComponents": {
         "course-item":"/component/course-item/index",
-        "date-picker":"/component/date-piker/index"
+        "date-picker":"/component/date-piker/index",
+        "pop-up":"../../component/Popup"
     }
 }

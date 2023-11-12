@@ -2,6 +2,12 @@
 <view class="course-contaioner">
   <view class="header">
     <view class="selection-bar">
+        <view bind:tap="onBarIconClick">
+    <image class ="selection-bar-icon" src="./images/select-icon.jpg" wx:if="{{!selectDetail}}"/>
+    <image class ="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else/>
+</view>
+    <text >{{selectDetail}}</text>
+    <pop-up  visible="{{visible}}" bind:onOk="onOk"/>
     </view>
     <view class="calendar-bar">
       <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
