@@ -71,11 +71,11 @@
         <view class="userinfo-content">
             <view class="userinfo-content-item border-right" mode="cover">
                 <image src="./img/course.png" />
-                <button>立刻约课</button>
+                <t-button hover-class="none">立刻约课</t-button>
             </view>
             <view class="userinfo-content-item">
                 <image src="./img/card.png" mode="cover" />
-                <button>立即购卡</button>
+                <t-button hover-class="none">立即购卡</t-button>
             </view>
         </view>
         <view class="userinfo-aboutUs">
@@ -87,4 +87,19 @@
         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
 
     </view>
+    <t-popup
+    class="check-success"
+  visible="{{checkSuccessVisible}}"
+  bind:visible-change="onVisibleChange"
+  placement="center"
+>
+  <view class="popup-header">
+  <image class="popup-header-img" src="./img/success.png" mode="aspectFill"/>
+  <view class="popup-header-text">签到成功</view>
+  </view>
+  <view class="popup-content">
+    <view class="popup-content-text">您于YYYY-MM-DD HH:MM:SS使用{卡名占位}成功签到1次</view>
+    <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
+  </view>
+</t-popup>
 </view>

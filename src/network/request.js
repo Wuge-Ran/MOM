@@ -18,6 +18,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
       // header这里根据业务情况自行选择需要还是不需要
       header: {
         'user-token': userToken,
+        ...data
       },
       success: (res) => {
 
@@ -47,7 +48,11 @@ const request = function (url, data, options = {}, chekLogin = true) {
         }
       },
       fail: (err) => {
-        console.error(err);
+          console.error('fail:',err)
+        wx.showToast({
+          title: '网络异常',
+          icon:'error'
+        })
         reject(err);
       },
     });

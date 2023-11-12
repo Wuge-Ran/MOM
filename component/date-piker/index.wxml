@@ -1,6 +1,6 @@
 <!--custom-tab-bar/index.wxml-->
-<scroll-view scroll-x="{{true}}" class="date-piker">
-    <view class="date-item {{ item.hasCourse? '':'no-course' }}" wx:for="{{list}}" bind:tap="onDateClick" data-date="{{item.date}}" data-index="{{index}}"wx:key="date">
+<scroll-view scroll-x="{{true}}" enhanced show-scrollbar="{{false}}"  class="date-piker">
+    <view class="date-item {{ item.hasCourse? '':'no-course' }}" wx:for="{{list}}" bind:tap="onDateClick" data-date="{{item.date}}"data-index="{{index}}" wx:key="date">
         <view class="date-number {{curIndex===index?'active-number':''}}">{{ foo.dataSplit(item.date)}}</view>
         <view class="date-weekday">{{item.weekday}}</view>
     </view>

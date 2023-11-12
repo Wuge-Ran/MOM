@@ -1,6 +1,7 @@
 // pages/course/index.js
 import {
-    getCourseByDate
+    getCourseByDate,
+    getCourseList
 } from '@src/api/course'
 
 Page({
@@ -10,7 +11,8 @@ Page({
      */
     data: {
         dateList: [],
-        isLike:false
+        isLike:false,
+        courseList:[]
     },
 
     /**
@@ -32,7 +34,6 @@ Page({
      */
     onShow() {
         const dateList = []
-
         // this.getTabBar().show();
         getCourseByDate().then(({
             data
@@ -50,7 +51,21 @@ Page({
             this.setData({
                 dateList
             })
+            return data.today;
+        }).then(curDay=>{
+            getCourseList({
+                'from-date':curDay,
+                'to-date':curDay,
+                'fields':"course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
+            }).then(res=>{
+                console.log('===getCourseList',res)
+                this.setData({
+                    courseList:res.data.courses
+                })
+            })
         })
+
+        
 
     },
 
@@ -65,11 +80,25 @@ Page({
         })
     },
 
+    onTabsClick(){
+
+    },
+
     /**
      * 生命周期函数--监听页面隐藏
      */
     onDateChange(value){
         console.log('====onDateChange',value.detail)
+        getCourseList({
+            'from-date':value.detail,
+            'to-date':value.detail,
+            'fields':"course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
+        }).then(res=>{
+            console.log('===getCourseList',res)
+            this.setData({
+                courseList:res.data.courses
+            })
+        })
     },
 
     /**

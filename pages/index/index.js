@@ -34,6 +34,7 @@ Page({
     phoneNumber:null,
     autoplay:true,
     currentIndex:0,
+    checkSuccessVisible:true
   },
   // 事件处理函数
   bindInfoTap() {
@@ -45,6 +46,11 @@ Page({
     const {detail} = event;
     this.setData({
         currentIndex:detail.current
+    })
+  },
+  oncheckSuccessTap(){
+    this.setData({
+        checkSuccessVisible:false
     })
   },
   onLoad() {

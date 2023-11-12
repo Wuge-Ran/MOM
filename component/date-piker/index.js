@@ -12,8 +12,8 @@ Component({
 
   methods: {
     onDateClick(e){
-        console.log('====e',e)
         const {date,index} = e.currentTarget.dataset;
+        if(this.data.curIndex === index) return;
         this.setData({
             curDate:date,
             curIndex:index

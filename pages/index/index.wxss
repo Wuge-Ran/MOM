@@ -3,6 +3,10 @@
     /* background: url('./img/bg.png'); */
     position: relative;
     font-size: 28rpx;
+    --td-button-border-radius: 44rpx;
+    --td-button-default-bg-color: var(--theme-color);
+    --td-button-font-weight:400;
+    --td-button-default-border-color:var(--theme-color);
 }
 .t-swiper-host {
     width: 100vw;
@@ -75,6 +79,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    --td-button-border-radius: 16rpx;
 }
 
 .userinfo-aboutUs{
@@ -222,4 +227,41 @@
     top: 50%;
     transform: translate(0,-50%); 
     right: 40rpx;
+}
+
+/** 弹窗样式 **/
+
+.popup-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32rpx;
+}
+
+.popup-header-img{
+    width: 128rpx;
+    height: 128rpx;
+}
+
+.popup-header-text{
+    font-size: 32rpx;
+    font-weight: 600;
+    text-align: center;
+}
+
+.check-success{
+    padding: 48rpx 32rpx;
+}
+
+.check-success{
+    width: 560rpx;
+}
+
+.t-button{
+ border-radius: 8rpx;
+}
+
+.popup-content-text{
+    margin-bottom: 48rpx;
+    text-align: center;
 }

@@ -85,6 +85,16 @@
     --td-tab-track-color: #B4CC2B;
 }
 
+.coach-course-none{
+    height: 40vh;
+}
+
+.coach-course-none-text{
+    color: #71716F;
+    text-align: center;
+    margin-top: 15vh;
+}
+
 .coach-course-item-content-describe {
     margin-left: 32rpx;
     flex: 1;
@@ -123,6 +133,7 @@
     padding-bottom: 112rpx;
     height: 100rpx;
     padding-top: 16rpx;
+    flex-direction: column;
 }
 
 .type-tabs {
@@ -133,3 +144,4 @@
     width: 32rpx;
     height: 32rpx;
 }
+

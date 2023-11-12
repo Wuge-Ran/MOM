@@ -72,7 +72,12 @@ Component({
       console.log("calcExpired",dayjs().isBefore(startDate));
       return startDate.isBefore(dayjs());
     },
-
+    navToDetail(){
+        console.log(12321)
+        wx.navigateTo({
+          url: '/pages/course/coach-detail/index',
+        })
+    },
     // 是否可以预定
     calcCanBook(){
       const {current_attenders=0,max_attenders=0} =this.data.props;
