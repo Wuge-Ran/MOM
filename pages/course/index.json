@@ -1,3 +1,6 @@
 {
-    "usingComponents": {}
+    "navigationBarTitleText": "约课",
+    "usingComponents": {
+        "course-item":"./component/course-item"
+    }
 }

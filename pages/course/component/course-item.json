@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-link": "tdesign-miniprogram/link/link",
+    "t-image": "tdesign-miniprogram/image/image"
+  }
+}
