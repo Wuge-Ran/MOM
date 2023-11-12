@@ -1,1 +1,28 @@
 /* pages/course/index.wxss */
+.selection-bar{
+    height: 64rpx;
+}
+.calendar-bar{
+    height: 134rpx;
+}
+.notification{
+    background: var(--black-color);
+    padding: 8rpx 32rpx;
+    font-size:24rpx;
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+}
+.message{
+    color:var(--light-color);
+    text-overflow: ellipsis;
+white-space: nowrap;
+    line-height: 40rpx;
+}
+.notification-icon{
+    width: 40rpx;
+    height: 40rpx;
+}
+.notification-btn{
+    color:var(--theme-color);
+}

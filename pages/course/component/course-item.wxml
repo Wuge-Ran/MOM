@@ -1,0 +1,17 @@
+<view class="course-item-container flex-row">
+ <view class="course-coach flex-row">
+  <view class="coach-info flex-col">
+    <image class="coach-avatar" src="{{props.coach_avatar}}" shape="round"></image>
+    <span class="coach-name">{{props.coach_nickname}}</span>
+  </view>
+  <view class="course-info flex-col">
+    <span class="course-name">{{props.display_name}}</span>
+    <span class="course-time" >{{timeRangeStr}}</span>
+  </view>
+ </view>
+  <view class="course-status flex-col">
+    <button class="btn btn-borde-rnone {{expired?'btn-disabled':''}}" disabled="{{expired}}">{{status.btnStr}}</button>
+    <span class="book-str">{{bookStr}}</span>
+  </view>
+</view>
+<image class="course-status-icon" disabled="{{expired}}" if="{{status.icon}}" src="{{status.icon}}" />

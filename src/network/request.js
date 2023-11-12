@@ -17,7 +17,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
       data,
       // header这里根据业务情况自行选择需要还是不需要
       header: {
-        user_token: userToken,
+        'user-token': userToken,
       },
       success: (res) => {
 
