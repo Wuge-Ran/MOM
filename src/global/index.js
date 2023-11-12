@@ -45,4 +45,11 @@ export default {
         this._failtures = val;
       },
   },
+
+  system:{
+    _containerHeight: 0,
+    get containerHeight(){
+      return _containerHeight;
+    }
+  }
 };

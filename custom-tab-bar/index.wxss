@@ -5,7 +5,7 @@
     --td-tab-bar-active-color: #282826;
     --td-tab-bar-color: #AEAEAB;
     --td-tab-bar-active-bg: #FFF;
-    
+    --td-tab-bar-height:116rpx;
 }
 
 .tabar-warper .t-icon-base{

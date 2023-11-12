@@ -1,23 +1,21 @@
 <!--pages/course/index.wxml-->
 <view class="course-contaioner">
-  <view class ="selection-bar">
+  <view class="header">
+    <view class="selection-bar">
+    </view>
+    <view class="calendar-bar">
+      <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
+    </view>
+    <view class="notification" wx:if="{{message}}">
+      <image class="notification-icon" src="/assets/icons/message.png" />
+      <span class="message">this is a nootification message</span>
+      <span class="notification-btn">立即查看</span>
+    </view>
   </view>
-  <view class = "calendar-bar">
-  </view>
-  <view class = "notification">
-  <image class="notification-icon" src="/assets/icons/message.png"/>
-  <span class="message">this is a nootification message</span>
-  <span class="notification-btn">立即查看</span>
-  </view>
-  <scroll-view 
-  scroll-y="fasle" 
-  show-scrollbar="false"
-  enable-passive="true"
-  refresher-enabled="true"
-  bindrefresherrefresh="onRefresh"
-  >
-  <view class="course-item" wx:for="{{courseList}}">
-    <course-item props="{{item}}" />
-  </view>
+
+  <scroll-view class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh">
+    <view class="course-item" wx:for="{{courseList}}">
+      <course-item props="{{item}}" />
+    </view>
   </scroll-view>
 </view>
