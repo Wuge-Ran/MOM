@@ -9,7 +9,9 @@
     display: flex;
     justify-content: center;
 }
-
+.container{
+  position: relative;
+}
 .course-item-container {
     /* position: relative; */
     justify-content: space-between;
@@ -17,9 +19,8 @@
     font-size: 32rpx;
     font-weight: 500;
     color: var(--black-color);
-    padding-top: 24rpx;
-    padding-bottom: 24rpx;
-    border-top: 1px solid var(--neutral-color1);
+    padding: 24rpx 32rpx ;
+    border-bottom: 1px solid var(--neutral-color1);
 }
 
 .course-coach {
@@ -77,7 +78,6 @@
 .course-status {
     margin-top: -40rpx;
     align-items: center;
-    margin-right: 32rpx;
 }
 
 .btn {
@@ -113,7 +113,7 @@
     position: absolute;
     width: 64rpx;
     height: 64rpx;
-    /* top:0; */
+    top:0;
     right: 0;
     z-index: 1;
 }

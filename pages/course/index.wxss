@@ -1,28 +1,58 @@
 /* pages/course/index.wxss */
-.selection-bar{
-    height: 64rpx;
+.course-contaioner {
+    display: flex;
+    flex-direction:column;
+    height:calc(100vh - (140rpx));
+    overflow:hidden;
 }
-.calendar-bar{
+.header {
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--neutral-color1);
+}
+.course-list {
+    flex: 1;
+    height: 1px;
+    /* height: 300rpx; */
+}
+.selection-bar {
+    padding: 32rpx;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.selection-bar-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 16rpx;
+}
+
+.calendar-bar {
+    display: flex;
     height: 134rpx;
+    align-items: center;
 }
-.notification{
+
+.notification {
     background: var(--black-color);
     padding: 8rpx 32rpx;
-    font-size:24rpx;
+    font-size: 24rpx;
     display: flex;
     align-items: center;
     flex: 1 1 0;
 }
-.message{
-    color:var(--light-color);
+
+.message {
+    color: var(--light-color);
     text-overflow: ellipsis;
-white-space: nowrap;
+    white-space: nowrap;
     line-height: 40rpx;
+    margin-left: 16rpx;
 }
-.notification-icon{
+
+.notification-icon {
     width: 40rpx;
     height: 40rpx;
 }
-.notification-btn{
-    color:var(--theme-color);
+
+.notification-btn {
+    color: var(--theme-color);
 }

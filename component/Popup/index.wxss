@@ -1,0 +1,60 @@
+.pop-up{
+    --td-button-border-radius:0;
+}
+.popup-content {
+    padding: 32rpx 32rpx 0 32rpx;
+}
+.popup-title {
+    line-height: 20px;
+    margin-bottom: 16rpx;
+    color:var(--neutral-color4);
+}
+.popup-coach {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    /* justify-content: space-between; */
+}
+.popup-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32rpx;
+    margin-right: 40rpx;
+}
+.popup-avatar-circle {
+    position: relative;
+}
+.popup-avatar-default {
+    box-sizing:border-box;
+    width: 104rpx;
+    height: 104rpx;
+    border:4rpx solid transparent;
+    border-radius: 50%;
+    overflow: hidden; 
+}
+.popup-avatar-image{
+    width: 100%;
+    height: 100%;
+}
+.pop-up-active { 
+    border-color: var(--theme-color);
+}
+.popup-up-active-image{
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    right: 2rpx;
+    bottom: 2rpx;
+    z-index: 1;
+}
+.popup-up-like {
+    width: 24rpx;
+    height: 32rpx;
+    position: absolute;
+    right: 2rpx;
+    top: 2rpx;
+}
+.pop-up .ok-button{
+    background-color: var(--theme-color);
+}
