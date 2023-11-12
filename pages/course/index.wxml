@@ -6,7 +6,7 @@
     <image class ="selection-bar-icon" src="./images/select-icon.jpg" wx:if="{{!selectDetail}}"/>
     <image class ="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else/>
 </view>
-    <text >{{selectDetail}}</text>
+    <text class="selection-bar-text">{{selectDetail}}</text>
     <pop-up  visible="{{visible}}" bind:onOk="onOk"/>
     </view>
     <view class="calendar-bar">

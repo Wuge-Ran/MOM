@@ -24,6 +24,12 @@
     height: 40rpx;
     margin-left: 16rpx;
 }
+.selection-bar-text{
+    flex-grow: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .calendar-bar {
     display: flex;
