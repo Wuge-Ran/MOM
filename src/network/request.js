@@ -1,5 +1,5 @@
 import globalData from "../global/index";
-import {login} from "../network/request";
+import {login} from "../api/user";
 /**
  *
  * @param {*} url  api地址
@@ -8,7 +8,7 @@ import {login} from "../network/request";
  */
 const request = function (url, data, options = {}, chekLogin = true) {
   return new Promise((resolve, reject) => {
-    const { method, token } = options;
+    const { method, token,header } = options;
     // 自定义的token 优先级更高
     const userToken = token || globalData.login.token;
     wx.request({
@@ -17,6 +17,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
       data,
       // header这里根据业务情况自行选择需要还是不需要
       header: {
+        ...header ,
         'user-token': userToken,
         ...data
       },

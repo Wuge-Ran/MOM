@@ -1,6 +1,7 @@
 // pages/course/index.js
-import { getCourseByDate } from '@src/api/course';
-import {getNextDay,getDayOfWeek} from "@utils/util";
+import { getCourseByDate, getCoursesByAllFields } from "@src/api/course";
+import { getNextDay, getDayOfWeek } from "@utils/util";
+
 Page({
   /**
    * 页面的初始数据
@@ -8,109 +9,117 @@ Page({
   data: {
     dateList: [],
     message: "",
-    curDate:"",
-    courseList: [{
-        coach_nickname: "Leo",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-12 08:00:00",
-        status: 0,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 3,
-        waiting_attenders: 0
-      },
-      {
-        coach_nickname: "Leo",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-13 08:00:00",
-        status: 0,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 3,
-        waiting_attenders: 0
-      },
-      {
-        coach_nickname: "Leo",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-13 08:00:00",
-        status: 1,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 3,
-        waiting_attenders: 0
-      },
-      {
-        coach_nickname: "Leo1",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-13 08:00:00",
-        status: -2,
-        duration_minutes: 60,
-        max_attenders: 15,
-        current_attenders: 15,
-        waiting_attenders: 2
-      },
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: -1,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 5,
-        waiting_attenders: 0
-      },
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: -1,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 5,
-        waiting_attenders: 0
-      },
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: -1,
-        duration_minutes: 60,
-        max_attenders: 5,
-        current_attenders: 5,
-        waiting_attenders: 0
-      },
-    ],
+    curDay: "",
+    triggered: false,
+    courses: [],
     visible:false,
     selectDetail:'',
+    // courses: [{
+    //     coach_nickname: "Leo",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-12 08:00:00",
+    //     status: 0,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 3,
+    //     waiting_attenders: 0
+    //   },
+    //   {
+    //     coach_nickname: "Leo",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-13 08:00:00",
+    //     status: 0,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 3,
+    //     waiting_attenders: 0
+    //   },
+    //   {
+    //     coach_nickname: "Leo",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-13 08:00:00",
+    //     status: 1,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 3,
+    //     waiting_attenders: 0
+    //   },
+    //   {
+    //     coach_nickname: "Leo1",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-13 08:00:00",
+    //     status: -2,
+    //     duration_minutes: 60,
+    //     max_attenders: 15,
+    //     current_attenders: 15,
+    //     waiting_attenders: 2
+    //   },
+    //   {
+    //     coach_nickname: "Leo3",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-14 08:00:00",
+    //     status: -1,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 5,
+    //     waiting_attenders: 0
+    //   },
+    //   {
+    //     coach_nickname: "Leo3",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-14 08:00:00",
+    //     status: -1,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 5,
+    //     waiting_attenders: 0
+    //   },
+    //   {
+    //     coach_nickname: "Leo3",
+    //     coach_avatar: "/assets/images/avatar.png",
+    //     display_name: "初级团课",
+    //     start_time: "2023-11-14 08:00:00",
+    //     status: -1,
+    //     duration_minutes: 60,
+    //     max_attenders: 5,
+    //     current_attenders: 5,
+    //     waiting_attenders: 0
+    //   },
+    // ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    const dateList = []
+  async onLoad(options) {
+    await this.getCalendar();
+    this.updateCourse();
+  },
 
-        getCourseByDate().then(({ data }) => {
-            let curDay = data.today;
-            this.setData({curDay})
-            data.future_courses.forEach(item => {
-                dateList.push({
-                    date: curDay,
-                    weekday: getDayOfWeek(curDay),
-                    hasCourse: item !== 0
-                })
-                curDay = getNextDay(curDay)
-            })
-            console.log('=dateList', dateList)
-            this.setData({ dateList })
-        })
+  /**
+   *获取日历
+   */
+  async getCalendar() {
+    const dateList = [];
+    const { data } = await getCourseByDate();
+    let curDay = data.today;
+    // 设置当前日期
+    this.setData({ curDay });
+    data.future_courses.forEach((item) => {
+      dateList.push({
+        date: curDay,
+        weekday: getDayOfWeek(curDay),
+        hasCourse: item !== 0,
+      });
+      curDay = getNextDay(curDay);
+    });
+    this.setData({ dateList });
   },
 
   /**
@@ -118,6 +127,8 @@ Page({
    */
   onDateChange(value) {
     console.log("====onDateChange", value.detail);
+    this.setData({ curDay: value.detail });
+    this.updateCourse();
   },
 
   /**
@@ -152,12 +163,6 @@ Page({
    */
   onReachBottom() {},
 
-  /**
-   * 下拉菜单被触发
-   */
-  onRefresh(){
-    
-  },
   onBarIconClick(){
     this.setData({
         visible:true
@@ -172,4 +177,18 @@ Page({
       })
   },
   
+  onRefresh() {
+    this.updateCourse();
+  },
+
+  async updateCourse() {
+    const curDay="2023-11-12";
+    // const curDay=this.data.curDay;
+
+    this.setData({ triggered: true });
+    const resp = await getCoursesByAllFields(curDay, curDay);
+    const courses=resp?.data?.courses ||[];
+    console.log('updateCourse:',resp,courses);
+    this.setData({ triggered: false,courses });
+  },
 });

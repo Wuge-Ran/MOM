@@ -1,17 +1,17 @@
 <view class="container">
 <view class="course-item-container flex-row">
  <view class="course-coach flex-row">
-  <view class="coach-info flex-col" bind:tap="navToDetail">
-    <image class="coach-avatar"  src="{{props.coach_avatar}}" shape="round"></image>
+  <view class="coach-info flex-col" bind:tap="onCoachTap">
+    <image class="coach-avatar" src="{{props.coach_avatar||avatarUrl}}" shape="round"></image>
     <span class="coach-name">{{props.coach_nickname}}</span>
   </view>
-  <view class="course-info flex-col">
+  <view class="course-info flex-col" bind:tap="onCourseTap" >
     <span class="course-name">{{props.display_name}}</span>
     <span class="course-time" >{{timeRangeStr}}</span>
   </view>
  </view>
   <view class="course-status flex-col">
-    <button class="btn btn-borde-rnone {{expired?'btn-disabled':''}}" disabled="{{expired}}">{{status.btnStr}}</button>
+    <button class="btn btn-borde-rnone {{expired?'btn-disabled':''}}" disabled="{{expired}}" bind:tap="onStatusBtnTap" >{{status.btnStr}}</button>
     <span class="book-str">{{bookStr}}</span>
   </view>
 </view>

@@ -5,7 +5,7 @@ export const login = function () {
     return new Promise((resolve, reject) => {
       wx.login({
         success: (res) => {
-          console.log(res);
+          console.log("wx.login",res);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           const data = { code: res.code, };
           request.post("/v1/wxuser", data, {}, /* chekLogin = */ false).then(resp=>{

@@ -19,8 +19,8 @@
     </view>
   </view>
 
-  <scroll-view class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh">
-    <view class="course-item" wx:for="{{courseList}}">
+  <scroll-view class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
+    <view class="course-item" wx:for="{{courses}}">
       <course-item props="{{item}}" />
     </view>
   </scroll-view>

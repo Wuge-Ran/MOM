@@ -14,6 +14,7 @@ Component({
   data: {
     expired:true,
     canBook:false,
+    avatarUrl:"/assets/images/avatar.png",
   },
 
   computed:{
@@ -50,8 +51,6 @@ Component({
      
     },
     attached() {
-      // this.data.expired=this.calcExpired();
-      // this.data.canBook =this.calcCanBook();
       const expired=this.calcExpired();
       const canBook =this.calcCanBook();
       this.setData({...this.data,expired,canBook});
@@ -83,6 +82,23 @@ Component({
       const {current_attenders=0,max_attenders=0} =this.data.props;
       console.log("calcCanBook",current_attenders<max_attenders);
       return current_attenders<max_attenders;
+    },
+
+    onCoachTap(event){
+      wx.redirectTo({
+        url: '/pages/course/coach-detail/index',
+        complete:(res)=>{
+          console.log(8,res);
+        }
+      })
+    },
+
+    onCourseTap(event){
+
+    },
+
+    onStatusBtnTap(event){
+
     },
   },
   observers:{

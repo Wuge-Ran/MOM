@@ -8,7 +8,8 @@
         "pages/course/coach-detail/index",
         "pages/personal/index",
         "custom-tab-bar/index",
-        "pages/login/index"
+        "pages/login/index",
+        "pages/course/book/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -23,12 +24,10 @@
         "t-icon": "tdesign-miniprogram/icon/icon",
         "t-popup": "tdesign-miniprogram/popup/popup"
     },
-
     "resolveAlias": {
         "@utils/*": "utils/*",
         "@src/*": "src/*"
     },
-
     "tabBar": {
         "custom": true,
         "color": "#AEAEAB",

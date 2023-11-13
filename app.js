@@ -1,8 +1,8 @@
 // app.js
-
+import {login} from "@src/api/user";
 App({
   onLaunch() {
-    // login();
+    login();
   },
   globalData: {
     userInfo: null,
