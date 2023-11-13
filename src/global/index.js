@@ -51,5 +51,17 @@ export default {
     get containerHeight(){
       return _containerHeight;
     }
+  },
+
+  course:{
+    _course:[],
+    get course(){
+      return _course;
+    },
+    
+    set course(val){
+      this._course=val;
+    }
   }
+
 };

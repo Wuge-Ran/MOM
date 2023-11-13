@@ -1,5 +1,6 @@
 {
     "navigationBarTitleText": "约课",
+    "navigationBarBackgroundColor": "#F9F6F2",
     "usingComponents": {
         "course-item":"/component/course-item/index",
         "date-picker":"/component/date-piker/index",

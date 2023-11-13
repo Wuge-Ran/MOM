@@ -1,19 +1,36 @@
 // pages/course/book/index.js
+import globalData from "@src/global/index";
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        avatarUrl:"/assets/images/avatar.png",
+        showConfromUI:false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        console.log(globalData);
+        
     },
+    
+    onCancelTap(event){
+      console.log("取消");
+    },
+    
+    onConfirmTap(event){
+        this.setData({showConfromUI:true})
+    },
+
+    onConfromUIVisiableChange(event){
+        this.setData({ showConfromUI: event.detail.visible, });
+    },
+
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
