@@ -23,6 +23,7 @@
 .course-none-text{
     margin-top: 320rpx;
     color: #71716F;
+    font-size: 28rpx;
 }
 .selection-bar {
     padding: 32rpx 32rpx 0 ;
