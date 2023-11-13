@@ -3,7 +3,11 @@ Component({
         list:{
             type:Array,
             value:[]
-        }
+        },
+    marginRight:{
+        type:String,
+        value:''
+    }
     },
   data: {
         curIndex:0,

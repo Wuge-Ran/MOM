@@ -14,6 +14,16 @@
     height: 1px;
     /* height: 300rpx; */
 }
+
+.course-none{
+    flex: 1;
+    height: 1px;
+    text-align: center;
+}
+.course-none-text{
+    margin-top: 320rpx;
+    color: #71716F;
+}
 .selection-bar {
     padding: 32rpx 32rpx 0 ;
     display: flex;

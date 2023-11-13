@@ -182,8 +182,8 @@ Page({
   },
 
   async updateCourse() {
-    const curDay="2023-11-12";
-    // const curDay=this.data.curDay;
+    // const curDay="2023-11-12";
+    const curDay=this.data.curDay;
 
     this.setData({ triggered: true });
     const resp = await getCoursesByAllFields(curDay, curDay);

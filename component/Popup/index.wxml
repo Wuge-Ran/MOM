@@ -14,7 +14,6 @@
                         <image wx:if="{{item.like}}" class="popup-up-like" src="./images/avatar-like.jpg"/>
                     </view>
                  </view>
-                       
                     <text class="popup-name">{{item.name}}</text>
                 </view>
             </view>  

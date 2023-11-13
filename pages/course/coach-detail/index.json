@@ -1,4 +1,5 @@
 {
+    "navigationBarTitleText": "约课",
     "navigationBarBackgroundColor": "#F9F6F2",
     "usingComponents": {
         "t-tabs": "tdesign-miniprogram/tabs/tabs",

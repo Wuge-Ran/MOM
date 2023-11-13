@@ -7,11 +7,10 @@
     <image class ="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else/>
 </view>
     <text class="selection-bar-text">{{selectDetail}}</text>
-    <pop-up  visible="{{visible}}" bind:onOk="onOk"/>
+    <pop-up  visible="{{visible}}" bind:onOk="onOk" />
     </view>
-    <view class="calendar-bar">
-      <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
-    </view>
+    <date-piker bind:dateChange="onDateChange" list="{{dateList}}" marginRight="44rpx"></date-piker>
+    
     <view class="notification" wx:if="{{message}}">
       <image class="notification-icon" src="/assets/icons/message.png" />
       <span class="message">this is a nootification message</span>
@@ -19,9 +18,12 @@
     </view>
   </view>
 
-  <scroll-view class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
+  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
     <view class="course-item" wx:for="{{courses}}">
       <course-item props="{{item}}" />
     </view>
   </scroll-view>
+  <view wx:else class="course-none">
+         <view class="course-none-text">暂无课程</view>
+        </view>
 </view>

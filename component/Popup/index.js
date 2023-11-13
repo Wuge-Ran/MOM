@@ -8,7 +8,7 @@ Component({
     visible:{
         type:Boolean,
         value:false
-    },
+    }
   },
 
   data: {
