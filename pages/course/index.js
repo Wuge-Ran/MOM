@@ -11,87 +11,87 @@ Page({
     message: "",
     curDay: "",
     triggered: false,
-    courses: [],
+    // courses: [],
     visible:false,
     selectDetail:'',
-    // courses: [{
-    //     coach_nickname: "Leo",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-12 08:00:00",
-    //     status: 0,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 3,
-    //     waiting_attenders: 0
-    //   },
-    //   {
-    //     coach_nickname: "Leo",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-13 08:00:00",
-    //     status: 0,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 3,
-    //     waiting_attenders: 0
-    //   },
-    //   {
-    //     coach_nickname: "Leo",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-13 08:00:00",
-    //     status: 1,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 3,
-    //     waiting_attenders: 0
-    //   },
-    //   {
-    //     coach_nickname: "Leo1",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-13 08:00:00",
-    //     status: -2,
-    //     duration_minutes: 60,
-    //     max_attenders: 15,
-    //     current_attenders: 15,
-    //     waiting_attenders: 2
-    //   },
-    //   {
-    //     coach_nickname: "Leo3",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-14 08:00:00",
-    //     status: -1,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 5,
-    //     waiting_attenders: 0
-    //   },
-    //   {
-    //     coach_nickname: "Leo3",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-14 08:00:00",
-    //     status: -1,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 5,
-    //     waiting_attenders: 0
-    //   },
-    //   {
-    //     coach_nickname: "Leo3",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-14 08:00:00",
-    //     status: -1,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 5,
-    //     waiting_attenders: 0
-    //   },
-    // ],
+    courses: [{
+        coach_nickname: "Leo",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-12 08:00:00",
+        status: 0,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 3,
+        waiting_attenders: 0
+      },
+      {
+        coach_nickname: "Leo",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-13 08:00:00",
+        status: 0,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 3,
+        waiting_attenders: 0
+      },
+      {
+        coach_nickname: "Leo",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-13 08:00:00",
+        status: 1,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 3,
+        waiting_attenders: 0
+      },
+      {
+        coach_nickname: "Leo1",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-13 08:00:00",
+        status: -2,
+        duration_minutes: 60,
+        max_attenders: 15,
+        current_attenders: 15,
+        waiting_attenders: 2
+      },
+      {
+        coach_nickname: "Leo3",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-14 08:00:00",
+        status: 1,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 4,
+        waiting_attenders: 0
+      },
+      {
+        coach_nickname: "Leo3",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-14 08:00:00",
+        status: -1,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 5,
+        waiting_attenders: 0
+      },
+      {
+        coach_nickname: "Leo3",
+        coach_avatar: "/assets/images/avatar.png",
+        display_name: "初级团课",
+        start_time: "2023-11-14 08:00:00",
+        status: -1,
+        duration_minutes: 60,
+        max_attenders: 5,
+        current_attenders: 5,
+        waiting_attenders: 0
+      },
+    ],
   },
 
   /**
@@ -99,7 +99,7 @@ Page({
    */
   async onLoad(options) {
     await this.getCalendar();
-    this.updateCourse();
+    // this.updateCourse();
   },
 
   /**
