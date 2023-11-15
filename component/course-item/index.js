@@ -40,7 +40,7 @@ Component({
         statusInfo.btnStr = "候补";
         if (status < 0) statusInfo.icon = "/assets/images/queuing.png";
       }
-      console.log("statusInfo", data, statusInfo);
+      // console.log("statusInfo", data, statusInfo);
       return statusInfo;
     },
   },
@@ -61,7 +61,7 @@ Component({
     calcExpired() {
       const { start_time } = this.data.props;
       const startDate = dayjs(start_time);
-      console.log("calcExpired", dayjs().isBefore(startDate));
+      // console.log("calcExpired", dayjs().isBefore(startDate));
       return startDate.isBefore(dayjs());
     },
     navToDetail() {
@@ -72,7 +72,7 @@ Component({
     // 是否可以预定
     calcCanBook() {
       const { current_attenders = 0, max_attenders = 0 } = this.data.props;
-      console.log("calcCanBook", current_attenders < max_attenders);
+      // console.log("calcCanBook", current_attenders < max_attenders);
       return current_attenders < max_attenders;
     },
 
@@ -81,8 +81,8 @@ Component({
     },
 
     onCourseTap(event) {
-      wx.navigateTo({
-        url: "/pages/course/book/index",
+      wx.redirectTo({
+        url: `/pages/course/book/index?course_id=${this.data.props.course_id}`,
       });
       globalData.course.courses = this.data;
     },
