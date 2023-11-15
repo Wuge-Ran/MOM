@@ -32,6 +32,6 @@ export const login = function () {
 
 
   export const getUserData =()=>{
-    const url =`/v1/wxuser/${globalData.login.token}`;
+    const url =`/v1/wxuser`;
     return request.get(url)
   }

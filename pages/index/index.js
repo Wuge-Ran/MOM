@@ -75,10 +75,10 @@ Page({
     console.log('===首页 onShow 触发',!!globalData.login.phoneNumber&&!!globalData.login.token);
     setTimeout(()=>{
         let query = wx.createSelectorQuery();
-    query.select('.userinfo').boundingClientRect(rect=>{
-    let height = rect.height;
-    console.log('boundingClientRect',height);
-    }).exec();
+        query.select('.userinfo').boundingClientRect(rect=>{
+        let height = rect.height;
+        console.log('boundingClientRect',height);
+        }).exec();
     })
 
     if(globalData.login.phoneNumber && globalData.login.token){

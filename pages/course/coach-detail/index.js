@@ -35,7 +35,9 @@ Page({
     onShow() {
         const dateList = []
         // this.getTabBar().show();
-        getCourseByDate().then(({
+        getCourseByDate({
+            'course-type':'group'
+        }).then(({
             data
         }) => {
             let curDay = data.today;

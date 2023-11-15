@@ -14,12 +14,11 @@ const request = function (url, data, options = {}, chekLogin = true) {
     wx.request({
       url: `${globalData.request.baseUrl}${url}`,
       method,
-      data,
       // header这里根据业务情况自行选择需要还是不需要
       header: {
         ...header ,
+        ...data,
         'user-token': userToken,
-        ...data
       },
       success: (res) => {
 
