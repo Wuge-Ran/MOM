@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 const computedBehavior = require("miniprogram-computed").behavior;
-import globalData from "@src/global/index";
+// import globalData from "@src/global/index";
 
 Component({
   behaviors: [computedBehavior],
@@ -81,13 +81,19 @@ Component({
     },
 
     onCourseTap(event) {
-      wx.redirectTo({
-        url: `/pages/course/book/index?course_id=${this.data.props.course_id}`,
-      });
-      globalData.course.courses = this.data;
+      this.navToCourseDetail();
+      // globalData.course.courses = this.data;
     },
 
-    onStatusBtnTap(event) {},
+    navToCourseDetail(showPurchaseUI=false){
+      const {course_id} =this.data.props;
+      const url=`/pages/course/book/index?courseId=${course_id}&showPurchaseUI=${showPurchaseUI}`;
+      wx.redirectTo({ url });
+    },
+
+    onStatusBtnTap(event) {
+      this.navToCourseDetail(true);
+    },
   },
   observers: {},
 });

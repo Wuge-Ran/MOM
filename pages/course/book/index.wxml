@@ -5,24 +5,24 @@
     <image class="header-bg" src="/assets/images/course-bg.png" />
   </view>
   <view class="course-detail">
-    <span class="title">Dual Texture Drifting</span>
-    <span class="book-info">已约人数 16/15</span>
+    <span class="title">{{course.display_name}}</span>
+    <span class="book-info">{{bookStr}}</span>
     <view class="coach-info" bind:tap="onCoachTap">
-      <image class="coach-avatar" src="{{props.coach_avatar||avatarUrl}}" shape="round"></image>
+      <image class="coach-avatar" src="{{course.coach_avatar_url || avatarUrl}}" shape="round"></image>
       <view class="coach-info-right" bind:tap="onOtherCoachTap">
-        <span class="coach-name">Leo</span>
+        <span class="coach-name">{{course.coach_nickname}}</span>
         <span class="ohter-coach">点击查看教练其他课程</span>
         <image class="arrow-right" src="/assets/icons/arrow-right.png"></image>
       </view>
     </view>
     <view class="time-info flex-row">
       <image class="icon-time icon" src="/assets/icons/clock.png"></image>
-      <span class="time">10/14 (周六) 13:00-14:00</span>
+      <span class="time">{{timeRangeStr}}</span>
     </view>
     <view class="address-info flex-row">
       <view class="flex-row">
         <image class="icon-address icon" src="/assets/icons/address.png"></image>
-        <span class="address">Flow Bouldering</span>
+        <span class="address">{{course.address}}</span>
       </view>
       <view class="map-info flex-row" bind:tap="onMapTap">
         <image class="icon-map icon" src="/assets/icons/address1.png"></image>
@@ -31,18 +31,21 @@
     </view>
     <view class="course-desc">
       <view class="course-desc-title">课程介绍</view>
-      <view class="course-desc-detail">公开课是Flow Bouldering推出的免费课程，这是一段课程介绍。</view>
+      <view class="course-desc-detail">{{course.description}}</view>
     </view>
 
 
   </view>
   <view class="bottom-contaioner display-absolute">
     <button class="btn cancel-btn btn-borde-rnone" bind:tap="onCancelTap">取消预约</button>
+    <button class="btn cancel-btn btn-borde-rnone" bind:tap="onCancelTap">已开课</button>
     <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">立即预约</button>
+    <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">候补</button>
+    <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">继续约课</button>
     <!-- <button class="btn btn-borde-rnone {{expired?'btn-disabled':''}}" disabled="{{expired}}" bind:tap="onStatusBtnTap" >{{status.btnStr}}</button>
     <button class="btn btn-borde-rnone {{expired?'btn-disabled':''}}" disabled="{{expired}}" bind:tap="onStatusBtnTap" >{{status.btnStr}}</button> -->
   </view>
-  <t-popup visible="{{showConfromUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
+  <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
     <view class="reconfrom-container">
       <view class="reconfrom-body">
         <span class="title">Dual Texture Drifting</span>

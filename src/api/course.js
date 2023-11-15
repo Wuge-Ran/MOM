@@ -25,3 +25,11 @@ export const getCoursesByAllFields = (fromDate, toDate) => {
   };
   return request.get(url,{},options);
 };
+
+export const getCourseById = (courseId) => {
+  const url = `/v1/course`;
+  const options = {
+    header: { "course-id": courseId, },
+  };
+  return request.get(url,{},options);
+};
