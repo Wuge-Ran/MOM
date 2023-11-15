@@ -1,1 +1,30 @@
-/* pages/contracted/index.wxss */
+/* pages/course/index.wxss */
+.course-contaioner {
+    display: flex;
+    flex-direction:column;
+    height:calc(100vh - (140rpx));
+    overflow:hidden;
+    --td-tab-item-active-color: #B4CC2B;
+    --td-tab-track-color: #B4CC2B;
+    --td-tab-item-height: 104rpx;
+}
+.header {
+    flex-shrink: 0;
+    border-bottom: 2rpx solid var(--neutral-color1);
+}
+.course-list {
+    flex: 1;
+    height: 1px;
+    /* height: 300rpx; */
+}
+
+.course-none{
+    flex: 1;
+    height: 1px;
+    text-align: center;
+}
+.course-none-text{
+    margin-top: 320rpx;
+    color: #71716F;
+    font-size: 28rpx;
+}

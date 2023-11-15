@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/course/book/index",
         "pages/index/index",
         "pages/logs/logs",
         "pages/card/index",
@@ -8,8 +9,8 @@
         "pages/course/coach-detail/index",
         "pages/personal/index",
         "custom-tab-bar/index",
-        "pages/login/index",
-        "pages/course/book/index"     
+        "pages/login/index"
+            
     ],
     "window": {
         "backgroundTextStyle": "light",

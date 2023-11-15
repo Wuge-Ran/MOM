@@ -9,11 +9,9 @@
     display: flex;
     justify-content: center;
 }
-
-.container {
-    position: relative;
+.container{
+  position: relative;
 }
-
 .course-item-container {
     /* position: relative; */
     justify-content: space-between;
@@ -21,7 +19,7 @@
     font-size: 32rpx;
     font-weight: 500;
     color: var(--black-color);
-    padding: 24rpx 32rpx;
+    padding: 24rpx 32rpx ;
     border-bottom: 1px solid var(--neutral-color1);
 }
 
@@ -66,11 +64,6 @@
     height: 48rpx;
     line-height: 48rpx;
     margin-bottom: 12rpx;
-    max-width: 330rpx;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     /* font-weight: 500; */
 }
 
@@ -95,16 +88,11 @@
     line-height: 72rpx;
     font-weight: 500;
     border-radius: 16rpx;
-    background-color: #C8D67A
+    background-color:#C8D67A
 }
 
 .btn-borde-rnone::after {
     border: none;
-}
-
-.btn-disabled {
-    color: #FFF !important;
-    background-color: #AEAEAB !important;
 }
 
 .book-str {
@@ -114,13 +102,4 @@
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
-}
-
-.course-status-icon {
-    position: absolute;
-    width: 64rpx;
-    height: 64rpx;
-    top: 0;
-    right: 0;
-    z-index: 1;
 }

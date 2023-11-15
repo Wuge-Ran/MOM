@@ -1,2 +1,17 @@
-<!--pages/contracted/index.wxml-->
-<text>pages/contracted/index.wxml</text>
+<!--pages/course/index.wxml-->
+<view class="course-contaioner">
+  <view class="header">
+    <t-tabs defaultValue="{{activeTab}}" space-evenly="{{true}}" bind:change="onTabsChange" bind:click="onTabsClick">
+      <t-tab-panel wx:for="{{tabs}}"  label="{{item.value}}" value="{{item.key}}">
+      </t-tab-panel>
+    </t-tabs>
+  </view>
+  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
+    <view class="course-item" wx:for="{{courses}}">
+      <course-item props="{{item}}"/>
+    </view>
+  </scroll-view>
+  <view wx:else class="course-none">
+    <view class="course-none-text">暂无课程</view>
+  </view>
+</view>
