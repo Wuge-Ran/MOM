@@ -1,11 +1,11 @@
 <view class="container">
 <view class="course-item-container flex-row">
  <view class="course-coach flex-row">
-  <view class="coach-info flex-col" bind:tap="onCoachTap">
+  <view class="coach-info flex-col" bind:tap="onCoachTap" data-id="{{props.coach_id}}">
     <image class="coach-avatar" src="{{props.coach_avatar||avatarUrl}}" shape="round"></image>
     <span class="coach-name">{{props.coach_nickname}}</span>
   </view>
-  <view class="course-info flex-col" bind:tap="onCourseTap" >
+  <view class="course-info flex-col" bind:tap="onCourseTap">
     <span class="course-name">{{props.display_name}}</span>
     <span class="course-time" >{{timeRangeStr}}</span>
   </view>

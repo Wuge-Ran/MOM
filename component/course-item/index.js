@@ -64,9 +64,9 @@ Component({
       // console.log("calcExpired", dayjs().isBefore(startDate));
       return startDate.isBefore(dayjs());
     },
-    navToDetail() {
+    navToDetail(id) {
       wx.navigateTo({
-        url: "/pages/course/coach-detail/index",
+        url: "/pages/course/coach-detail/index?"+"id="+id,
       });
     },
     // 是否可以预定
@@ -77,7 +77,7 @@ Component({
     },
 
     onCoachTap(event) {
-      this.navToDetail();
+      this.navToDetail(event.currentTarget.dataset.id);
     },
 
     onCourseTap(event) {

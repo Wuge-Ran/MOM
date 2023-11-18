@@ -45,11 +45,11 @@
             <view class="my-course-content">
                 <image class="course-avatar" src="{{userInfo.avatarUrl||'./img/course-demo.png'}}" mode="cover"></image>
                 <view class="my-course-content-info">
-                    <view class="my-course-content-title">初级团课</view>
+                    <view class="my-course-content-title">{{userInfo.course.display_name}}</view>
                     <view class="my-course-content-message">
                         <view class="my-course-content-message-item">
                             <image src="./img/course-time.png" alt=""/>
-                            <view class="course-text">10/14 (周六) 13:00-14:00</view>
+                            <view class="course-text">{{timeRangeStr}}</view>
                         </view>
                         <view class="my-course-content-message-item course-coach">
                             <image src="./img/course-coach.png" alt=""/>

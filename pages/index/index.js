@@ -2,6 +2,8 @@ import globalData from "../../src/global/index";
 import {
     getUserData
 } from "@src/api/user";
+import dayjs from "dayjs";
+const computedBehavior = require("miniprogram-computed").behavior;
 
 // index.js
 // 获取应用实例
@@ -25,6 +27,7 @@ const swiperList = [
   },
 ];
 Page({
+    behaviors: [computedBehavior],
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -35,6 +38,15 @@ Page({
     autoplay:true,
     currentIndex:0,
     checkSuccessVisible:true
+  },
+  computed:{
+    timeRangeStr(data) {
+        console.log('===')
+        const { start_time, duration_minutes = 0 } = data.userInfo.course||{ };
+        const s = dayjs(start_time);
+        const endDate = s.add(duration_minutes, "m");
+        return `${s.format("MM/DD（ddd）hh:mm")}-${endDate.format("hh:mm")}`;
+      }
   },
   // 事件处理函数
   bindInfoTap() {
@@ -81,7 +93,7 @@ Page({
         }).exec();
     })
 
-    if(globalData.login.phoneNumber && globalData.login.token){
+    if(globalData.login.phoneNumber){
         this.setData({
             isLogin:true,
             phoneNumber:globalData.login.phoneNumber

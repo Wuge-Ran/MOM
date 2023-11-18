@@ -1,16 +1,13 @@
 import request from "../network/request";
 import globalData from "../global/index";
 
-export const getCourseByDate = (courseType,coachId) => {
+export const getCourseByDate = (courseType,coachIds) => {
   const url = `/v1/course_by_date`;
-  const options = {
-  header: { "course-type": courseType, "coachId": coachId}
- };
-  return request.get(url,{},options);
+  return request.get(url,{ "course-type": courseType, "coach-id": coachIds});
 };
 
 export const getCourseList = (data) => {
-  const url = `/v1/course`;
+  const url = `/v1/course_list`;
   return request.get(url,data)
 }
 
@@ -33,3 +30,21 @@ export const getCourseById = (courseId) => {
   };
   return request.get(url,{},options);
 };
+
+export const getCoachList = ()=>{
+    const url = '/v1/coach_list';
+    return request.get(url);
+}
+
+export const getCoachInfo = (id)=>{
+    const url = '/v1/coach';
+    return request.get(url,{'coach-id':id});
+}
+
+export const likeCoach = (id)=>{
+     return request.post('/v1/like_coach',{'coach-id':id})
+}
+
+export const disLikeCoach = (id)=>{
+    return request.delete('/v1/like_coach',{'coach-id':id})
+}

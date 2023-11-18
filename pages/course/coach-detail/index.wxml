@@ -1,19 +1,19 @@
 <!--pages/course/index.wxml-->
 <view class="container">
     <view class="coach-intro">
-        <image class="coach-intro-head" src="./img/coach-demo.png" mode="" />
+        <image class="coach-intro-head" src="{{coachInfo.avatar_url}}" mode="" />
         <view class="coach-intro-content">
             <view class="coach-intro-content-title">
-                <view>Leo</view>
+                <view>{{coachInfo.nickname}}</view>
                 <image class="like-icon" src="{{isLike?'./img/like.png':'./img/dislike.png'}}" mode="aspectFill" bind:tap="onIconTap" />
             </view>
-            <view class="coach-intro-content-intro">每一次训练都是和身体的对话，用心感受、关注、聆听身体的声音。</view>
+            <view class="coach-intro-content-intro">{{coachInfo.short_description}}</view>
         </view>
     </view>
     <view class="coach-course">
-        <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="type-tabs">
-            <t-tab-panel label="团课" value="0" />
-            <t-tab-panel label="私教" value="1" />
+        <t-tabs defaultValue="{{0}}" bind:change="onTabsChange"  t-class="type-tabs">
+            <t-tab-panel label="团课" value="group" />
+            <t-tab-panel label="私教" value="privite" />
         </t-tabs>
         <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
         <scroll-view enable-flex  enhanced show-scrollbar="{{false}}" class="coach-course-scroll" scroll-y="{{true}}" wx:if="{{courseList.length}}">

@@ -66,5 +66,8 @@ request.get = function (url, data, options = {}, chekLogin = true) {
 request.post = function (url, data, options = {}, chekLogin = true) {
   return request(url, data, { ...options, method: "POST" }, (chekLogin = true));
 };
+request.delete = function (url, data, options = {}, chekLogin = true) {
+    return request(url, data, { ...options, method: "DELETE" }, (chekLogin = true));
+  };
 
 export default request;

@@ -1,7 +1,10 @@
 // pages/course/index.js
 import {
     getCourseByDate,
-    getCourseList
+    getCourseList,
+    getCoachInfo,
+    likeCoach,
+    disLikeCoach
 } from '@src/api/course'
 
 Page({
@@ -11,33 +14,40 @@ Page({
      */
     data: {
         dateList: [],
-        isLike:false,
-        courseList:[]
+        isLike: false,
+        courseList: [],
+        filterCourseList:[],
+        coachInfo: null,
+        coachId: null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        console.log('=options', options)
+        const {
+            id
+        } = options;
+        this.setData({
+            coachId: id
+        })
+        this.getInitInfo(id)
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
+    getInitInfo(id) {
         const dateList = []
+        getCoachInfo(id).then(({
+            data
+        }) => {
+            this.setData({
+                coachInfo: data,
+                isLike: data.liked_by_user
+            })
+        })
+
         // this.getTabBar().show();
-        getCourseByDate({
-            'course-type':'group'
-        }).then(({
+        getCourseByDate('group',this.data.coachId).then(({
             data
         }) => {
             let curDay = data.today;
@@ -54,51 +64,69 @@ Page({
                 dateList
             })
             return data.today;
-        }).then(curDay=>{
-            getCourseList({
-                'from-date':curDay,
-                'to-date':curDay,
-                'fields':"course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
-            }).then(res=>{
-                console.log('===getCourseList',res)
+        }).then(curDay => {
+            this.updateList(curDay)
+        })
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+
+
+    },
+
+    onIconTap() {
+        const isLike = !this.data.isLike
+        if (isLike) {
+            likeCoach(this.data.coachId).then(() => {
+                wx.showToast({
+                    title: isLike ? '收藏成功' : '已取消收藏',
+                    icon: 'none'
+                })
                 this.setData({
-                    courseList:res.data.courses
+                    isLike
                 })
             })
-        })
+        } else {
+            disLikeCoach(this.data.coachId).then(() => {
+                wx.showToast({
+                    title: isLike ? '收藏成功' : '已取消收藏',
+                    icon: 'none'
+                })
+                this.setData({
+                    isLike
+                })
+            })
+        }
 
-        
 
     },
 
-    onIconTap(){
-        const isLike = !this.data.isLike
-        wx.showToast({
-          title: isLike?'收藏成功':'已取消收藏',
-          icon:'none'
-        })
-        this.setData({
-            isLike
-        })
-    },
-
-    onTabsClick(){
-
+    onTabsChange(e) {
+        console.log(e.detail.value)
+        // const filter = this.data.courseList.filter(item=>)
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onDateChange(value){
-        console.log('====onDateChange',value.detail)
+    onDateChange(value) {
+        this.updateList(value.detail);
+    },
+
+    updateList(curDay){
         getCourseList({
-            'from-date':value.detail,
-            'to-date':value.detail,
-            'fields':"course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
-        }).then(res=>{
-            console.log('===getCourseList',res)
+            'from-date': curDay,
+            'to-date': curDay,
+            'fields': "course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
+        }).then(res => {
+            console.log('===getCourseList', res)
+            const courseList = res.data.courses.filter(item=>item.coach_id===this.data.coachId)
             this.setData({
-                courseList:res.data.courses
+                courseList,
+                filterCourseList:courseList
             })
         })
     },
