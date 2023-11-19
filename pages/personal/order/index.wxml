@@ -1,0 +1,21 @@
+<view> 
+        <scroll-view 
+            wx:if="{{orderList.length}}"
+            scroll-y="fasle" 
+            show-scrollbar="false"
+        >
+            <view class="order-list-wrap">
+                <view class="order-list" wx:for="{{orderList}}"  wx:key="id">
+                    <view class="order-list-text"> 
+                        <text class="order-type">{{item.type}}</text>
+                        <text class="order-time">{{item.time}}</text>
+                    </view>
+                    <view class="order-list-text">
+                        <text class="order-status">{{item.status}}</text>
+                        <text class="order-money">¥ {{item.money}}</text>
+                    </view>
+                </view>
+            </view>  
+        </scroll-view> 
+        <view class="no-order" wx:else="">暂无订单记录</view>
+</view>

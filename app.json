@@ -9,7 +9,8 @@
         "pages/course/coach-detail/index",
         "pages/personal/index",
         "custom-tab-bar/index",
-        "pages/login/index"
+        "pages/login/index",
+        "pages/personal/order/index"
             
     ],
     "window": {
