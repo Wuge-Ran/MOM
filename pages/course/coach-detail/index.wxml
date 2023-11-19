@@ -13,11 +13,11 @@
     <view class="coach-course">
         <t-tabs defaultValue="{{0}}" bind:change="onTabsChange"  t-class="type-tabs">
             <t-tab-panel label="团课" value="group" />
-            <t-tab-panel label="私教" value="privite" />
+            <t-tab-panel label="私教" value="private" />
         </t-tabs>
         <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
-        <scroll-view enable-flex  enhanced show-scrollbar="{{false}}" class="coach-course-scroll" scroll-y="{{true}}" wx:if="{{courseList.length}}">
-            <view class="coach-course-item" wx:for="{{courseList}}" >
+        <scroll-view enable-flex  enhanced show-scrollbar="{{false}}" class="coach-course-scroll" scroll-y="{{true}}" wx:if="{{filterCourseList.length}}">
+            <view class="coach-course-item" wx:for="{{filterCourseList}}" wx:key="course_id" data-id="{{item.course_id}}" bind:tap="navgateToBook">
                 <view class="coach-course-item-time">{{time.addMinutesToTime(item.start_time,item.duration_minutes)}}</view>
                 <view class="coach-course-item-content">
                     <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />

@@ -9,7 +9,8 @@
         "pages/course/coach-detail/index",
         "pages/personal/index",
         "custom-tab-bar/index",
-        "pages/login/index"
+        "pages/login/index",
+        "pages/personal/personal-edit/index"
             
     ],
     "window": {
@@ -23,7 +24,8 @@
         "t-button": "tdesign-miniprogram/button/button",
         "date-piker":"component/date-piker/index",
         "t-icon": "tdesign-miniprogram/icon/icon",
-        "t-popup": "tdesign-miniprogram/popup/popup"
+        "t-popup": "tdesign-miniprogram/popup/popup",
+        "t-input": "tdesign-miniprogram/input/input"
     },
     "resolveAlias": {
         "@utils/*": "utils/*",

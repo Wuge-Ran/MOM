@@ -1,0 +1,52 @@
+<!--pages/personal-edit/index.wxml-->
+<view class="container">
+<view class="avatar-name">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{avatarUrl}}"></image>
+    </button>
+    <view class="name">1232</view>
+</view>
+<t-input label="昵称" value="LEO" type="nickname"></t-input>
+<!--性别-->
+<t-cell title="性别" arrow hover data-key="gender" note="{{genderText}}"  bind:click="onPickerTap" />
+<t-picker
+  visible="{{genderVisible}}"
+  value="{{genderValue}}"
+  data-key="gender"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{genders}}"></t-picker-item>
+</t-picker>
+<!--抱石水平--> 
+<t-cell title="抱石水平" arrow hover data-key="boulder" note="{{boulderText}}"  bind:click="onPickerTap" />
+<t-picker
+  visible="{{boulderVisible}}"
+  value="{{boulderValue}}"
+  data-key="boulder"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{boulder}}"></t-picker-item>
+</t-picker>
+<!--大岩壁水平--> 
+<t-cell title="大岩壁水平" arrow hover data-key="rock" note="{{rockText}}"  bind:click="onPickerTap" />
+<t-picker
+  visible="{{rockVisible}}"
+  value="{{rockValue}}"
+  data-key="rock"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{rock}}"></t-picker-item>
+</t-picker>
+</view>

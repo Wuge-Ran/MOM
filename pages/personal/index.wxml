@@ -1,2 +1,41 @@
 <!--pages/personal/index.wxml-->
-<text>pages/personal/index.wxml</text>
+<view class="container personal">
+    <image class="personal-logo" src="./img/personal-logo.png" mode="aspectFit" alt="" />
+    <view class="personal-info" data-link="/pages/personal/personal-edit/index" bind:tap="linkTo">
+        <image class="personal-info-avatar" src="./img/coach-demo.png" />
+        <view>Leo</view>
+    </view>
+    <view class="personal-center">
+        <t-cell title="攀岩报告" hover arrow>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/climbing-report.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+        <t-cell title="会员卡" hover arrow>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/card.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+        <t-cell title="我的订单" hover arrow>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/orders.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+        <t-cell title="个人信息" hover arrow>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/personal-info.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+        <t-cell title="用户协议" hover arrow>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/user.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+        <t-cell title="消息订阅管理" hover arrow bordered="{{false}}"	>
+            <view class="personal-item" slot="left-icon">
+                <image class="personal-item-img" src="./img/message.png" mode="aspectFit" />
+            </view>
+        </t-cell>
+    </view>
+    <view class="personal-bottom"></view>
+</view>

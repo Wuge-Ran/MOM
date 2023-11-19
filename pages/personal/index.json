@@ -1,3 +1,7 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "t-cell": "tdesign-miniprogram/cell/cell"
+    },
+    "navigationBarBackgroundColor":"#C8D67A",
+    "navigationBarTitleText": ""
 }

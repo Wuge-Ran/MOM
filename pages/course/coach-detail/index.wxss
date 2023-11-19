@@ -96,6 +96,8 @@
 }
 
 .coach-course-item-content-describe {
+    display: flex;
+    flex-direction: column;
     margin-left: 32rpx;
     flex: 1;
 }
@@ -124,13 +126,12 @@
 
 .coach-course-item-content-describe-reserve {
     display: flex;
-    margin-top: 24rpx;
+    margin-top: auto;
 }
 
 .coach-course-scroll {
     display: flex;
-    flex: 1;
-    padding-bottom: 112rpx;
+    flex: 1;  
     height: 100rpx;
     padding-top: 16rpx;
     flex-direction: column;

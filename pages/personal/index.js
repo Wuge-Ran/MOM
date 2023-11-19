@@ -57,6 +57,15 @@ Page({
 
     },
 
+    linkTo(e){
+        
+        const link = e.currentTarget.dataset.link;
+        console.log(link)
+        wx.navigateTo({
+          url: link,
+        })
+    },
+
     /**
      * 用户点击右上角分享
      */

@@ -16,9 +16,10 @@ Page({
         dateList: [],
         isLike: false,
         courseList: [],
-        filterCourseList:[],
+        filterCourseList: [],
         coachInfo: null,
-        coachId: null
+        coachId: null,
+        courseType: 'group'
     },
 
     /**
@@ -32,11 +33,11 @@ Page({
         this.setData({
             coachId: id
         })
-        this.getInitInfo(id)
+        this.getInitInfo(id, 'group')
     },
 
-    getInitInfo(id) {
-        const dateList = []
+    getInitInfo(id, type) {
+
         getCoachInfo(id).then(({
             data
         }) => {
@@ -45,9 +46,16 @@ Page({
                 isLike: data.liked_by_user
             })
         })
-
+        this.getCourseDate(type).then(curDay => {
+            this.updateList(curDay)
+        })
         // this.getTabBar().show();
-        getCourseByDate('group',this.data.coachId).then(({
+
+    },
+
+    getCourseDate(type) {
+        const dateList = []
+        return getCourseByDate(type, this.data.coachId).then(({
             data
         }) => {
             let curDay = data.today;
@@ -64,8 +72,6 @@ Page({
                 dateList
             })
             return data.today;
-        }).then(curDay => {
-            this.updateList(curDay)
         })
     },
 
@@ -105,8 +111,16 @@ Page({
     },
 
     onTabsChange(e) {
-        console.log(e.detail.value)
-        // const filter = this.data.courseList.filter(item=>)
+        console.log(e.detail.value, this.data.courseList)
+        const type = e.detail.value;
+        this.setData({
+            courseType: type
+        })
+        this.getCourseDate(type)
+        const filter = this.data.courseList.filter(item => item.type === type);
+        this.setData({
+            filterCourseList: filter
+        })
     },
 
     /**
@@ -116,18 +130,26 @@ Page({
         this.updateList(value.detail);
     },
 
-    updateList(curDay){
+    updateList(curDay) {
         getCourseList({
             'from-date': curDay,
             'to-date': curDay,
-            'fields': "course_id,display_name,description,waiting_attenders,status,coach_id,coach_nickname,start_time,duration_minutes"
+            "fields": "course_id, type, display_name, description, address, start_time, duration_minutes, max_attenders, current_attenders, waiting_attenders, coach_id, coach_nickname, coach_avatar_url, status"
         }).then(res => {
-            console.log('===getCourseList', res)
-            const courseList = res.data.courses.filter(item=>item.coach_id===this.data.coachId)
+            const courseList = res.data.courses.filter(item => item.coach_id === this.data.coachId);
+            console.log('===getCourseList', courseList)
+            const filter = courseList.filter(item => item.type === this.data.courseType)
             this.setData({
                 courseList,
-                filterCourseList:courseList
+                filterCourseList: filter
             })
+        })
+    },
+
+    navgateToBook(e){
+        console.log(e)
+        wx.navigateTo({
+          url: `/pages/course/book/index?courseId=${e.currentTarget.dataset.id}`,
         })
     },
 

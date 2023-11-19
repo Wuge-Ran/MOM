@@ -1,1 +1,53 @@
 /* pages/personal/index.wxss */
+.personal{
+    background: linear-gradient(180deg, #C8D67A 0%, #FFFFFF 100%);
+    padding: 0 32rpx ;
+    display: block;
+}
+
+.personal-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 48rpx;
+}
+.personal-edit{
+    width: 72rpx;
+    height: 72rpx;
+}
+
+.personal-logo{
+    width: 100%;
+}
+
+.personal-info-avatar{
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 50%;
+    margin-right: 32rpx;
+    margin-left: 32rpx;
+}
+
+.personal-edit{
+    margin-left: auto;
+}
+.personal-center{
+    border-radius: 24rpx;
+    overflow: hidden;
+    --td-cell-border-right-space:32rpx;
+    --td-cell-right-icon-color:#282825;
+}
+
+.personal-item{
+    display: flex;
+    align-items: center;
+}
+
+.personal-item-img{
+    width: 40rpx;
+    height: 40rpx;
+    
+}
+
+.personal-bottom{
+    height: 160rpx;
+}
