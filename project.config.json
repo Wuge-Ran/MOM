@@ -45,5 +45,7 @@
     "packOptions": {
         "ignore": [],
         "include": []
-    }
+    },
+    "projectname": "MOM",
+    "libVersion": "3.1.4"
 }

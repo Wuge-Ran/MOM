@@ -10,7 +10,8 @@
         "pages/personal/index",
         "custom-tab-bar/index",
         "pages/login/index",
-        "pages/personal/personal-edit/index"
+        "pages/personal/personal-edit/index",
+        "pages/personal/order/index"
             
     ],
     "window": {

@@ -20,6 +20,7 @@ page {
   --theme-color: #C8D67A;
   --sub-color1: #FF7F52;
   --sub-color2: #7D8E64;
+  --sub-color3:#EC5B6C;
   --neutral-color1: #F9F6F2;
   --neutral-color2: #DBD9D8;
   --neutral-color3: #AEAEAB;
