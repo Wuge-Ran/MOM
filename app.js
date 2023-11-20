@@ -13,6 +13,5 @@ App({
   },
   globalData: {
     userInfo: null,
-    
   }
 })

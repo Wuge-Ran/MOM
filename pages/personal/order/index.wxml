@@ -5,7 +5,7 @@
             show-scrollbar="false"
         >
             <view class="order-list-wrap">
-                <view class="order-list" wx:for="{{orderList}}"  wx:key="id">
+                <view class="order-list private-coach" wx:for="{{orderList}}"  wx:key="id">
                     <view class="order-list-text"> 
                         <text class="order-type">{{item.type}}</text>
                         <text class="order-time">{{item.time}}</text>

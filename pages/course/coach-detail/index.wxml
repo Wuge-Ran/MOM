@@ -11,7 +11,7 @@
         </view>
     </view>
     <view class="coach-course">
-        <t-tabs defaultValue="{{0}}" bind:change="onTabsChange"  t-class="type-tabs">
+        <t-tabs defaultValue="group" bind:change="onTabsChange"  t-class="type-tabs">
             <t-tab-panel label="团课" value="group" />
             <t-tab-panel label="私教" value="private" />
         </t-tabs>

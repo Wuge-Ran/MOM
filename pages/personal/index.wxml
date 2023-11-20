@@ -16,12 +16,12 @@
                 <image class="personal-item-img" src="./img/card.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="我的订单" hover arrow>
+        <t-cell title="我的订单" hover arrow data-link="/pages/personal/order/index" bind:tap="linkTo">
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/orders.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="个人信息" hover arrow>
+        <t-cell title="个人信息" hover arrow data-link="/pages/personal/personal-edit/index" bind:tap="linkTo">
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/personal-info.png" mode="aspectFit" />
             </view>
