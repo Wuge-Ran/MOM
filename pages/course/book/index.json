@@ -2,6 +2,8 @@
     "navigationBarTitleText": "课程详情",
     "navigationBarBackgroundColor": "#F9F6F2",
     "usingComponents": {
-        "t-popup": "tdesign-miniprogram/popup/popup"
+        "t-popup": "tdesign-miniprogram/popup/popup",
+        "t-dialog": "tdesign-miniprogram/dialog/dialog",
+        "t-toast": "tdesign-miniprogram/toast/toast"
     }
 }

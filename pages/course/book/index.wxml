@@ -4,10 +4,12 @@
   <view class="header">
     <image class="header-bg" src="/assets/images/course-bg.png" />
   </view>
+
   <view class="notification" wx:if="{{cancelBookDisabledStr}}">
-      <image class="notification-icon" src="/assets/icons/message.png" />
-      <span class="message">{{cancelBookDisabledStr}}</span>
+    <image class="notification-icon" src="/assets/icons/message.png" />
+    <span class="message">{{cancelBookDisabledStr}}</span>
   </view>
+
   <view class="course-detail">
     <span class="title">{{course.display_name}}</span>
     <span class="book-info">{{bookStr}}</span>
@@ -37,14 +39,14 @@
       <view class="course-desc-title">课程介绍</view>
       <view class="course-desc-detail">{{course.description}}</view>
     </view>
-
   </view>
+
   <view class="bottom-contaioner display-absolute">
-    <button class="btn cancel-btn btn-borde-rnone {{status.cancel.disabled?'btn-disabled':''}}" wx:if="{{status.cancel.visible}}" disabled="{{status.cancel.disabled}}" bind:tap="{{status.cancel.onTap}}">{{status.cancel.text}}</button>
-    <button class="btn confirm-btn btn-borde-rnone {{status.confirm.disabled?'btn-disabled':''}}" wx:if="{{status.confirm.visible}}" disabled="{{status.confirm.disabled}}" bind:tap="{{status.confirm.onTap}}">{{status.confirm.text}}</button>
+    <button class="btn cancel-btn btn-borde-rnone {{status.cancel.disabled?'btn-disabled':''}}" wx:if="{{status.cancel.visible}}" disabled="{{status.cancel.disabled}}" bind:tap="onCancelTap">{{status.cancel.text}}</button>
+    <button class="btn confirm-btn btn-borde-rnone {{status.confirm.disabled?'btn-disabled':''}}" wx:if="{{status.confirm.visible}}" disabled="{{status.confirm.disabled}}" bind:tap="onConfirmTap">{{status.confirm.text}}</button>
   </view>
 
-
+  <!-- 购卡或预约底部弹窗 -->
   <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
     <view class="reconfrom-container">
       <view class="reconfrom-body">
@@ -53,7 +55,7 @@
           <image class="icon-time icon" src="/assets/icons/clock.png"></image>
           <span class="time">10/14 (周六) 13:00-14:00</span>
         </view>
-         <view class="flex-row">
+        <view class="flex-row">
           <image class="icon" src="/assets/icons/coach.png"></image>
           <span>Leo</span>
         </view>
@@ -61,12 +63,31 @@
           <image class="icon-address icon" src="/assets/icons/address.png"></image>
           <span class="address">Flow Bouldering</span>
         </view>
-        <span class="no-card">抱歉，您暂无可使用的课程卡，请购卡。</span>
+        <view wx:if="{{hasVipCards}}" class="buy-info">
+          <view class="flex-row">
+          <span>预约人数</span>
+          </view>
+          <view class="flex-row">
+          <span>选择会员卡</span>
+          </view>
+          <view class="flex-row">
+          <span>备注</span>
+          </view>
+        </view>
+        <span wx:else class="no-card">抱歉，您暂无可使用的课程卡，请购卡。</span>
       </view>
       <view class="bottom-contaioner confirm-bottom-contaioner">
-        <!-- <button class="btn cancel-btn btn-borde-rnone" bind:tap="onCancelTap">取消预约</button> -->
         <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">立即购卡</button>
       </view>
     </view>
   </t-popup>
+
+  <!-- 取消候补或取消预约二次确认弹窗 -->
+  <t-dialog class="dialog" visible="{{showDialogConfirm}}" title="{{status.cancel.text}}" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消" bind:confirm="onReconfirmTap" bind:cancel="closeDialog">
+    <view slot="content">
+      <view class="dialog-content-container">
+        <span>取消候补后将释放您的预约名额，课程卡将退回账户</span>
+      </view>
+    </view>
+  </t-dialog>
 </view>

@@ -27,3 +27,4 @@
          <view class="course-none-text">暂无课程</view>
         </view>
 </view>
+<t-toast id="t-toast" />

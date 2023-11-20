@@ -3,6 +3,16 @@
     color: #282825;
     font-size: 28rpx;
     font-weight: 400;
+    --td-toast-radius: 16rpx;
+    --td-toast-bg-color: rgba(0, 0, 0, 0.72);
+    --td-popup-border-radius: 24rpx;
+    --td-dialog-width: 520rpx;
+    --td-button-border-radius: 44rpx;
+    --td-button-light-color: var(--black-color);
+    --td-button-primary-color: var(--black-color);
+    --td-button-primary-bg-color: var(--theme-color);
+    --td-brand-color-light: var(--light-color);
+    --td-overlay-bg-color: rgba(0, 0, 0, 0.72);
 }
 
 .header {
@@ -171,14 +181,15 @@
     font-style: normal;
     line-height: 44rpx;
 }
-.bottom-contaioner{
+
+.bottom-contaioner {
     display: flex;
     padding: 0 32rpx;
     justify-content: space-between;
     width: calc(100% - 64rpx);
 }
 
-.display-absolute{
+.display-absolute {
     position: absolute;
     bottom: 40rpx;
 }
@@ -192,10 +203,10 @@
     line-height: 96rpx;
     font-weight: 500;
     border-radius: 12rpx;
-    
+
 }
 
-.btn:nth-child(even){
+.btn:nth-child(even) {
     margin-left: 32rpx;
 }
 
@@ -203,49 +214,88 @@
     border: none;
 }
 
-.btn-disabled{
+.btn-disabled {
     color: #FFF !important;
     background-color: #AEAEAB !important;
 }
-.cancel-btn{
+
+.cancel-btn {
     border: 1px solid #AEAEAB;
     background: #FFF;
 }
-.confirm-btn{
-    background-color:#C8D67A;
+
+.confirm-btn {
+    background-color: #C8D67A;
 }
 
-.reconfrom-container{
+.reconfrom-container {
     padding: 40rpx 32rpx;
     flex-direction: column;
     border-radius: 32rpx 32rpx 0 0;
     background: #FFF;
 }
 
-.reconfrom-body{
+.reconfrom-body {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
 }
 
 
-.time-info1{
+.time-info1 {
     margin-top: 32rpx;
     margin-bottom: 16rpx;
 }
-.address-info1{
+
+.address-info1 {
     margin-top: 16rpx;
     padding-bottom: 32rpx;
     border-bottom: 2rpx solid #F9F6F2;
 }
 
-.no-card{
+.no-card {
     display: inline-block;
     padding: 32rpx 0;
-    color:#040000;
+    color: #040000;
 }
 
-.confirm-bottom-contaioner{
+.confirm-bottom-contaioner {
     width: 100%;
     padding: 0;
+}
+
+
+.dialog {
+    z-index: 32;
+}
+
+.dialog-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 48rpx;
+    font-size: 28rpx;
+}
+
+.dialog-content-container span {
+    color: var(--neutral-color4);
+    text-align: center;
+}
+
+
+.t-toast {
+    top: 40% !important;
+}
+
+.t-toast__content--row {
+    padding-top: 16rpx !important;
+    padding-bottom: 16rpx !important;
+}
+
+.t-popup .t-button--light {
+    border: 1px solid var(--neutral-color2);
+}
+
+.t-dialog button::after {
+    border: none;
 }

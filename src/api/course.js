@@ -49,3 +49,20 @@ export const likeCoach = (id)=>{
 export const disLikeCoach = (id)=>{
     return request.delete('/v1/like_coach',{'coach-id':id})
 }
+
+
+export const cancelBook = (id)=>{
+  return request.delete('/v1/reserve_course',{'course-id':id})
+}
+
+export const cancelWait = (id)=>{
+  return request.delete('/v1/reserve_course',{'course-id':id})
+}
+
+export const book = (id)=>{
+  return request.delete('/v1/reserve_course',{'course-id':id})
+}
+
+export const wait = (id)=>{
+  return request.delete('/v1/reserve_course',{'course-id':id})
+}
