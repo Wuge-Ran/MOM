@@ -8,7 +8,7 @@ App({
   onLaunch() {
     dayjs.locale(locale, null, true);
     dayjs.locale("zh-cn");
-    login();
+    // login();
     
   },
   globalData: {
