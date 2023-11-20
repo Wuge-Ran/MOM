@@ -10,7 +10,7 @@
     width: 100%;
     flex-shrink: 0;
     background-color: aqua;
-    position: relative;
+    /* position: relative; */
     z-index: 1;
 }
 
@@ -22,6 +22,31 @@
     overflow: hidden;
 }
 
+.notification {
+    position: absolute;
+    background: var(--black-color);
+    padding: 8rpx 32rpx;
+    font-size: 24rpx;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* z-index: 33; */
+    top: 0;
+}
+
+.message {
+    color: var(--light-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 40rpx;
+    margin-left: 16rpx;
+}
+
+.notification-icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
 .course-detail {
     display: flex;
     padding: 40rpx 32rpx;
@@ -30,7 +55,7 @@
     align-items: flex-start;
     border-radius: 32rpx 32rpx 0 0;
     background: #FFF;
-    margin-top: -90rpx;
+    margin-top: -65rpx;
     position: relative;
     z-index: 2;
 }

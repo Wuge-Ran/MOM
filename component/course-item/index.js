@@ -88,7 +88,7 @@ Component({
     navToCourseDetail(showPurchaseUI=false){
       const {course_id} =this.data.props;
       const url=`/pages/course/book/index?courseId=${course_id}&showPurchaseUI=${showPurchaseUI}`;
-      wx.redirectTo({ url });
+      wx.navigateTo({ url });
     },
 
     onStatusBtnTap(event) {
