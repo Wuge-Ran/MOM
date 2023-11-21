@@ -1,2 +1,60 @@
 <!--pages/card/index.wxml-->
-<text>pages/card/index.wxml</text>
+<view>
+  <!-- 卡片列表 -->
+  <view class="cards-container">
+    <view class="title">特惠活动</view>
+    <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/act-card.png"></image>
+        <image class="card-event" src="/assets/images/event.png"></image>
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/act-card.png"></image>
+        <image class="card-event" src="/assets/images/event.png"></image>
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 购卡底部弹窗 -->
+  <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
+    <view class="reconfrom-container">
+      <view class="reconfrom-body flex-cloumn">
+        <view class="buy-title">30天月卡</view>
+        <view class="price">¥680<span class="price-origin">¥1280</span></view>
+        <view class="flex-row">
+          <view>使用期限</view>
+          <view>365 天</view>
+        </view>
+        <view class="flex-row limits">
+          <view>使用规则</view>
+          <view>仅限持卡者本人使用，单日仅限使用1次</view>
+        </view>
+        <view class="privacy" wx:if="{{canBuy}}">
+          <checkbox bind:tap="onPrivacyTap" checked="{{privacyChecked}}">我已阅读并同意<span class="privacy-btn">购卡协议</span>、<span class="privacy-btn">会员卡/课程卡使用须知</span>。</checkbox>
+        </view>
+        <view wx:else class="no-card">很抱歉，您不满足此卡的购买条件，请购买其它卡种。</view>
+      </view>
+      <view class="bottom-contaioner confirm-bottom-contaioner">
+        <button class="btn btn-borde-rnone {{canBuy && privacyChecked?'confirm-btn':'btn-disabled'}}" disabled="{{!canBuy ||!privacyChecked}}" bind:tap="onConfirmTap">立即购卡</button>
+      </view>
+    </view>
+  </t-popup>
+</view>

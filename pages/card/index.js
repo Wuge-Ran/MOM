@@ -5,7 +5,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        showPurchaseUI:false,
+        canBuy:false,
+        privacyChecked:false,
     },
 
     /**
@@ -14,6 +16,23 @@ Page({
     onLoad(options) {
 
     },
+
+    onCardTap(){
+      this.setData({ showPurchaseUI: true });
+    },
+
+    onPrivacyTap(event){
+      const chceked= !this.data.privacyChecked;
+      this.setData({ privacyChecked: chceked });
+    },
+
+    onConfromUIVisiableChange(event) {
+      this.setData({ showPurchaseUI: event.detail.visible });
+    },
+
+
+
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
