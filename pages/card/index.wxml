@@ -33,6 +33,102 @@
     </scroll-view>
   </view>
 
+  <view class="cards-container">
+    <view class="title">次卡</view>
+    <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/place-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/place-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="cards-container">
+    <view class="title">月卡</view>
+    <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/month-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/month-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="cards-container">
+    <view class="title">团课卡</view>
+    <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/group-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+      <view class="card-container" bind:tap="onCardTap">
+        <image class="card-bg" src="/assets/images/group-card.png"></image>
+        <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
+        <view class="card-info">
+          <view class="card-title">通用无限次月卡 (30天)</view>
+          <view class="card-times">100<span class="card-times-sufix">天</span></view>
+          <view class="price-info">
+            <span class="price">￥17400</span>
+            <span class="per-price">￥600/次</span>
+            <span class="pos-limits">支持全部场馆</span>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
   <!-- 购卡底部弹窗 -->
   <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
     <view class="reconfrom-container">

@@ -156,7 +156,7 @@ Page({
     const resp = await getCoursesByAllFields(curDay, curDay);
     const courses=resp?.data?.courses ||[];
     const filterCourses = this.data.coachIds.length?courses.filter(item=>this.data.coachIds.indexOf(item.coach_id)!==-1):courses;
-    console.log('updateCourse:',resp,courses);
+    console.log('updateCourse:',courses,filterCourses);
     this.setData({ triggered: false,courses,filterCourses });
   },
 });

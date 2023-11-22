@@ -65,9 +65,6 @@
         </view>
         <view wx:if="{{hasVipCards}}" class="buy-info">
           <view class="flex-row">
-          <span>预约人数</span>
-          </view>
-          <view class="flex-row">
           <span>选择会员卡</span>
           </view>
           <view class="flex-row">

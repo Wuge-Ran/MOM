@@ -1,0 +1,29 @@
+<!--pages/card/index.wxml-->
+<view class="succ-container">
+  <!-- 成功图标 -->
+  <view class="succ-info">
+    <image class="success-icon" src="/assets/icons/success.png"></image>
+    <view class="succ-title">{{successTitle}}</view>
+  </view>
+  <view class="header">
+    <image class="header-bg" src="/assets/images/course-bg.png" />
+  </view>
+
+  <!-- </view> -->
+  <view class="course-detail">
+    <view class="detail">课程：{{displayName}}</view>
+    <view class="detail">教练：{{coachNickname}}</view>
+    <view class="detail">地点：{{address}}</view>
+    <view class="detail">时间：{{time}}</view>
+    <view class="course-desc">
+      <view class="course-desc-title">温馨提示：</view>
+      <view class="course-desc-detail">开课前5小时内，不允许取消预约</view>
+    </view>
+  </view>
+</view>
+
+<!-- 按钮 -->
+<view class="bottom-contaioner display-absolute">
+    <button class="btn cancel-btn btn-borde-rnone" bind:tap="onContinueTap">继续约课</button>
+    <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">查看我的预约</button>
+  </view>

@@ -38,7 +38,7 @@ Page({
 
     // 候补或预约底部弹窗是否展示
     showPurchaseUI: false,
-    hasVipCards:false,
+    hasVipCards: false,
   },
 
   computed: {
@@ -65,7 +65,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const { courseId = "CMock2110Group", showPurchaseUI = false } = options;
+    const { courseId = "CMock2110Group" } = options;
+    const showPurchaseUI =
+      options.showPurchaseUI === "true"? true : false;
     await this.getCourseDetail(courseId);
     const started = this.calCourseStarted();
     const [cancelBookDisabled, cancelBookDisabledStr] =
@@ -221,7 +223,7 @@ Page({
 
   onContinueTap(event) {
     wx.navigateTo({
-      url: `/pages/index/index`,
+      url: `/pages/course/index`,
     });
   },
 
@@ -276,14 +278,14 @@ Page({
   fecthCancelBook() {
     const courseId = this.data.courseId;
     cancelBook(courseId).then((res) => {
-      Toast({ context: this, selector: "#t-toast", message: "取消成功"});
+      Toast({ context: this, selector: "#t-toast", message: "取消成功" });
       this.getCourseDetail(courseId);
     });
   },
 
   fecthCancelWait() {
     cancelWait(this.data.courseId).then((res) => {
-      Toast({ context: this, selector: "#t-toast", message: "取消成功"});
+      Toast({ context: this, selector: "#t-toast", message: "取消成功" });
       this.getCourseDetail(courseId);
     });
   },
