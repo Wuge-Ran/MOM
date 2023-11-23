@@ -33,12 +33,14 @@ Component({
       let statusInfo = { btnStr: "", icon: "" };
       if (data.expired) {
         statusInfo.btnStr = "已截止";
-      } else if (data.canBook) {
-        statusInfo.btnStr = "预约";
+      } else{
+        if (data.canBook) {
+          statusInfo.btnStr = "预约";
+        } else {
+          statusInfo.btnStr = "候补";
+        }
         if (status > 0) statusInfo.icon = "/assets/images/booked.png";
-      } else {
-        statusInfo.btnStr = "候补";
-        if (status < 0) statusInfo.icon = "/assets/images/queuing.png";
+        else if (status < 0) statusInfo.icon = "/assets/images/queuing.png";
       }
       // console.log("statusInfo", data, statusInfo);
       return statusInfo;
@@ -92,7 +94,9 @@ Component({
     },
 
     onStatusBtnTap(event) {
-      this.navToCourseDetail(true);
+      const {status} =this.data.props;
+      const showPurchaseUI= status===0;
+      this.navToCourseDetail(showPurchaseUI);
     },
   },
   observers: {},

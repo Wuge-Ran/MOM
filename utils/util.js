@@ -63,5 +63,14 @@ export function getNextDay(dateString) {
   return `${year}-${month}-${day}`;
 }
 
-const format =String.prototype.format;
+export function queryString(param) {
+  return (
+    "?" +
+    Object.keys(param)
+      .map((key) => `${key}=${param[key]}`)
+      .join("&")
+  );
+}
+
+const format = String.prototype.format;
 export default format;

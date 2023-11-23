@@ -13,6 +13,9 @@
     --td-button-primary-bg-color: var(--theme-color);
     --td-brand-color-light: var(--light-color);
     --td-overlay-bg-color: rgba(0, 0, 0, 0.72);
+    --td-picker-confirm-color:#C8D67A;
+    --td-button-primary-bg-color:#C8D67A;
+    --td-font-size-m:28rpx;
 }
 
 .header {
@@ -251,6 +254,29 @@
     margin-top: 16rpx;
     padding-bottom: 32rpx;
     border-bottom: 2rpx solid #F9F6F2;
+}
+.buy-info{
+    margin:32rpx 0;
+}
+
+.buy-info .flex-row{
+    line-height: 56rpx;
+    justify-content: space-between;
+}
+.bottom-arrow{
+    margin-right: 56rpx;
+}
+
+.bottom-arrow::after{
+    content: '';
+    position: absolute;
+    margin-top: 18rpx;
+    margin-left: 24rpx;
+    height: 14rpx;
+    width: 14rpx;
+    border-bottom: 2rpx solid #444746;
+    border-right: 2rpx solid #444746;
+    transform: rotate(45deg);
 }
 
 .no-card {

@@ -1,5 +1,5 @@
 // pages/course/index.js
-import { getCoursesByAllFields } from "@src/api/course";
+import { getCourseRecord } from "@src/api/course";
 
 Page({
   /**
@@ -76,9 +76,9 @@ Page({
     // const curDay="2023-11-12";
     const curDay = this.data.curDay;
     this.setData({ triggered: true });
-    // const resp = await getCoursesByAllFields(curDay, curDay);
-    // const courses = resp?.data?.courses || this.data.allCourses;
-    const courses = this.data.allCourses;
+    const resp = await getCourseRecord();
+    const courses = resp?.data?.courses || [];
+    // const courses = this.data.allCourses;
 
     let bookedNum = 0;
     let standbyNum = 0;
