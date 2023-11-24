@@ -16,7 +16,6 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
   const url = `/v1/course_list`;
   const options = {
     header: {
-      "from-date": fromDate,
       "to-date": toDate,
       "status":status,
       fields:
@@ -24,6 +23,8 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
       //,address_lat,address_long
     },
   };
+  if(fromDate)options.header["from-date"]=fromDate;
+  if(status)options.header["status"]=status;
   return request.get(url, {}, options);
 };
 
@@ -78,6 +79,6 @@ export const getCourseCards = (courseId) => {
   return request.get(url, {}, options);
 };
 
-export const getCourseRecord = () => {
-  return getCoursesByAllFields("",dayjs().format("YYYY-MM-DD"))
+export const getCourseRecord = (status) => {
+  return getCoursesByAllFields(undefined,dayjs().format("YYYY-MM-DD"),status)
 };

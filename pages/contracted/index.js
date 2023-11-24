@@ -14,32 +14,6 @@ Page({
       { key: 0, value: "共{0}节已完成" },
     ],
     courses: [{}],
-    allCourses: [
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: 0,
-        duration_minutes: 60,
-      },
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: 1,
-        duration_minutes: 60,
-      },
-      {
-        coach_nickname: "Leo3",
-        coach_avatar: "/assets/images/avatar.png",
-        display_name: "初级团课",
-        start_time: "2023-11-14 08:00:00",
-        status: -1,
-        duration_minutes: 60,
-      },
-    ],
   },
 
   /**
@@ -73,12 +47,10 @@ Page({
   onTabsClick(event) {},
 
   async updateBooked() {
-    // const curDay="2023-11-12";
-    const curDay = this.data.curDay;
+
     this.setData({ triggered: true });
-    const resp = await getCourseRecord();
+    const resp = await getCourseRecord("reserved,waiting,checkedin");
     const courses = resp?.data?.courses || [];
-    // const courses = this.data.allCourses;
 
     let bookedNum = 0;
     let standbyNum = 0;
@@ -87,11 +59,13 @@ Page({
 
     for (const course of courses) {
       // 分类统计数量
-      if (course.status === 0) doneNum++; //已完成课数
-      else if (course.status === 1) bookedNum++; //已预定课数
+      
+      if (course.status === 1) bookedNum++; //已预定课数
       else if (course.status === -1) standbyNum++; //候补课数
+      else doneNum++; //已完成课数
 
       //active tab 下具体列表内容
+      // if(this.data.activeTab==)
       if (course.status === this.data.activeTab) {
         typedCourses.push(course);
       }
