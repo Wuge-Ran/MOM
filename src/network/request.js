@@ -7,12 +7,12 @@ import { login } from "../api/user";
  * @param {*} options 参数
  * @returns
  */
-const request = function (url, data, options = {}, chekLogin = true) {
+const request = function (url, data, options = {},showLoading=true, chekLogin = true) {
   return new Promise((resolve, reject) => {
     const { method, token, header } = options;
     // 自定义的token 优先级更高
     const userToken = token || globalData.login.token;
-    wx.showLoading({ title: "", mask: true }); //接口请loading...
+   if(showLoading)wx.showLoading({ title: "", mask: true }); //接口请loading...
     wx.request({
       url: `${globalData.request.baseUrl}${url}`,
       method,
@@ -23,7 +23,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
         "user-token": userToken,
       },
       success: (res) => {
-        wx.hideLoading(); //关闭loading
+        if(showLoading)wx.hideLoading(); //关闭loading
         if (res.statusCode === 200) {
           resolve(res);
         }
@@ -53,7 +53,7 @@ const request = function (url, data, options = {}, chekLogin = true) {
         }
       },
       fail: (err) => {
-        wx.hideLoading(); //关闭loading
+        if(showLoading)wx.hideLoading(); //关闭loading
         console.error("fail:", err);
         wx.showToast({ title: "网络异常", icon: "error", });
         reject(err);

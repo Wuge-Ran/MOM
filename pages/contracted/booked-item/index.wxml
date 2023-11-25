@@ -11,7 +11,7 @@
   </view>
  </view>
   <view class="course-status flex-col">
-    <button class="btn btn-borde-rnone" bind:tap="onStatusBtnTap" >查看</button>
+    <button class="btn btn-borde-rnone {{status.statusBtnClass}}" disabled="{{props.isComplete===1}}" bind:tap="onStatusBtnTap" >{{status.statusBtnStr}}</button>
   </view>
 </view>
 </view>
