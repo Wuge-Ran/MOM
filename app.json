@@ -13,7 +13,8 @@
         "pages/personal/personal-edit/index",
         "pages/personal/order/index",
         "pages/card/success/index",
-        "pages/course/book/success/index"
+        "pages/course/book/success/index",
+        "pages/course/coach-info/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

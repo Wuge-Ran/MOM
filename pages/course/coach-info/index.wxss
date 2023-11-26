@@ -1,0 +1,33 @@
+.coach-info {
+  padding: 40rpx 32rpx;
+}
+
+.coach-info-avatar {
+  display: flex;
+  align-item: center;
+}
+.coach-info-avatar image {
+  height: 64rpx;
+  width: 64rpx;
+  border-radius: 50%;
+  margin-right: 32rpx;
+}
+.coach-info-name {
+  font-size: 32rpx;
+  line-height: 64rpx;
+  color: var(--black-color);
+}
+
+.coach-info-detail {
+  margin: 64rpx 0 16rpx;
+  color: var(--black-color);
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 48rpx;
+}
+
+.coach-info-description {
+  color: #040000;
+  font-size: 28rpx;
+  line-height: 44rpx;
+}

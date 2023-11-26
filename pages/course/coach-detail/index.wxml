@@ -1,7 +1,7 @@
 <!--pages/course/index.wxml-->
 <view class="container">
     <view class="coach-intro">
-        <image class="coach-intro-head" src="{{coachInfo.avatar_url}}" mode="" />
+        <image class="coach-intro-head" src="{{coachInfo.avatar_url}}" mode=""  bind:tap="onCheckCoachInfo" />
         <view class="coach-intro-content">
             <view class="coach-intro-content-title">
                 <view>{{coachInfo.nickname}}</view>

@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "教练详情",
+    "usingComponents": {
+        "t-swiper": "tdesign-miniprogram/swiper/swiper"
+       
+
+    }
+}
