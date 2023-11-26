@@ -1,20 +1,24 @@
 .coach-info {
+    --td-swiper-radius:0;
+    --td-swiper-nav-dot-active-color:var(--theme-color);
+    --td-swiper-nav-dot-color:rgba(255, 255, 255, 0.50);
+}
+.coach-info-bottom {
   padding: 40rpx 32rpx;
 }
 
 .coach-info-avatar {
   display: flex;
-  align-item: center;
+  align-items: center;
 }
 .coach-info-avatar image {
-  height: 64rpx;
-  width: 64rpx;
+  height: 128rpx;
+  width: 128rpx;
   border-radius: 50%;
   margin-right: 32rpx;
 }
 .coach-info-name {
   font-size: 32rpx;
-  line-height: 64rpx;
   color: var(--black-color);
 }
 
