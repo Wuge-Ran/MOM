@@ -2,7 +2,7 @@
 .course-contaioner {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - (140rpx));
+  height: calc(100vh - 140rpx - env(safe-area-inset-bottom));
   overflow: hidden;
 }
 .header {

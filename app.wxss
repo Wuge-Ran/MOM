@@ -1,7 +1,8 @@
 /**app.wxss**/
 .container {
   width: 100vw;
-  height: 100vh;
+  /* height:  calc(100vh - 140rpx - env(safe-area-inset-bottom)); */
+  height: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -12,6 +13,12 @@ button {
 }
 
 page {
+  /* position: relative; */
+  /*设置tabbar高度+ios安全距离，防止被覆盖 */
+  padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+
+  /* 设置page的最大高度*/
+  /* height:  calc(100vh - 140rpx - env(safe-area-inset-bottom)); */
   font-family: PingFang SC;
   --light-color: #FFFFFF;
   --black-color: #282825;
@@ -29,4 +36,5 @@ page {
   --td-toast-radius: 16rpx;
   --td-toast-bg-color: rgba(0, 0, 0, 0.72);
   --td-popup-border-radius: 24rpx;
+  
 }

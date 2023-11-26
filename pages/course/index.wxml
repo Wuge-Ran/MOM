@@ -2,15 +2,15 @@
 <view class="course-contaioner" wx:if="{{dateList.length}}">
   <view class="header">
     <view class="selection-bar">
-        <view bind:tap="onBarIconClick">
-    <image class ="selection-bar-icon" src="./images/select-icon.jpg" wx:if="{{!selectDetail}}"/>
-    <image class ="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else/>
-</view>
-    <text class="selection-bar-text">{{selectDetail}}</text>
-    <pop-up coachList="{{coachList}}" visible="{{visible}}" bind:onOk="onOk" />
+      <view bind:tap="onBarIconClick">
+        <image class="selection-bar-icon" src="./images/select-icon.jpg" wx:if="{{!selectDetail}}" />
+        <image class="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else />
+      </view>
+      <text class="selection-bar-text">{{selectDetail}}</text>
+      <pop-up coachList="{{coachList}}" visible="{{visible}}" bind:onOk="onOk" />
     </view>
     <date-piker bind:dateChange="onDateChange" list="{{dateList}}" marginRight="44rpx"></date-piker>
-    
+
     <view class="notification" wx:if="{{message}}">
       <image class="notification-icon" src="/assets/icons/message.png" />
       <span class="message">this is a nootification message</span>
@@ -18,14 +18,14 @@
     </view>
   </view>
 
-  <scroll-view wx:if="{{filterCourses.length}}" class="course-list" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enable-passive="true">
+  <scroll-view wx:if="{{filterCourses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true">
     <view class="course-item" wx:for="{{filterCourses}}" wx:key="course_id">
       <course-item props="{{item}}" />
     </view>
   </scroll-view>
   <view wx:else class="course-none">
-         <view class="course-none-text">暂无课程</view>
-        </view>
+    <view class="course-none-text">暂无课程</view>
+  </view>
 </view>
 <view class="no-course" wx:else>
 <view class="no-course-text">新课程即将出炉，敬请期待</view>
