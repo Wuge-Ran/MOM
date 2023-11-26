@@ -10,7 +10,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/personal/index",
+                    "pathName": "pages/card/index",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

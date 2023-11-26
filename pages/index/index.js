@@ -1,6 +1,6 @@
 import globalData from "../../src/global/index";
 import {
-    getUserData
+    getHomeData
 } from "@src/api/user";
 import dayjs from "dayjs";
 const computedBehavior = require("miniprogram-computed").behavior;
@@ -81,6 +81,16 @@ Page({
           }
         })
       }
+      const res = wx.getSystemInfoSync()
+const { screenHeight, safeArea: { bottom } } = res
+
+if (screenHeight && bottom){
+  let safeBottom = screenHeight - bottom
+  console.log('resHeight',safeBottom);
+  this.setData({
+    height: 48 + safeBottom
+  })
+}
   },
   onShow(){
     this.getTabBar().show();
@@ -98,8 +108,8 @@ Page({
             isLogin:true,
             phoneNumber:globalData.login.phoneNumber
         })
-        getUserData().then(res=>{
-            console.log('===getUserData',res)
+        getHomeData().then(res=>{
+            console.log('===getHomeData',res)
             this.setData({
                 userInfo:res.data
             })
@@ -110,6 +120,12 @@ Page({
         })
     }
   },
+  linkToCard(){
+      console.log(212)
+      wx.switchTab({
+        url: '/pages/card/index',
+      })
+  }
 
 
 })

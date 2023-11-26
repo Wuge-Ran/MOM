@@ -44,6 +44,9 @@
     width: 172rpx !important;
     flex: none !important;
 }
+.t-input__wrap--prefix{
+    width: 172rpx !important;
+}
 
 .t-cell__right {
     margin-left: auto !important;

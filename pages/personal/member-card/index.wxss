@@ -1,0 +1,141 @@
+.member-card{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    --td-switch-checked-color: #BDCF57;
+    --td-cell-title-font-size:28rpx;
+    --td-switch-width:78rpx;
+    --td-switch-height:48rpx;
+    --td-cell-border-right-space: 32rpx;
+    --td-cell-vertical-padding:24rpx;
+}
+
+.swiper-view {
+    position: relative;
+}
+
+.swiper-box {
+    /* width: 488rpx; */
+    height: 292rpx;
+}
+
+.swiper-item {
+    width: 488rpx !important;
+}
+
+.swiper-item-view {
+    zoom: 1;
+    box-sizing: border-box;
+    width: 488rpx;
+    position: relative;
+    font-size: 20rpx;
+    text-align: left;
+}
+
+.swiper-item-view:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.swiper-item-view {
+    overflow: hidden;
+    /* height: 170px; */
+    width: 488rpx;
+    height: 292rpx;
+    transition: transform 500ms;
+    transform: scale(0.85, 0.8);
+    /* 缩放处理，产生一种层次感 */
+    border-radius: 16rpx;
+}
+
+.swiper-item-view.active {
+    transform: scale(1, 1);
+}
+
+.swiper-dots-view {
+    /* 水平居中*/
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    left: 0;
+    bottom: -42rpx;
+    height: 18rpx;
+    /* height: 6px; */
+}
+
+.swiper-dot {
+    width: 12rpx;
+    height: 12rpx;
+    margin: 0 6rpx;
+    border-radius: 50%;
+    background-color: #DBD9D8;
+}
+
+.swiper-dot.active {
+
+    background-color: #C8D67A;
+}
+
+.swiper-card-title {
+    position: absolute;
+    width: 300rpx;
+    top: 24rpx;
+    left: 24rpx;
+}
+
+.swiper-card-point {
+    position: absolute;
+    width: 300rpx;
+    bottom: 20rpx;
+    left: 24rpx;
+    display: flex;
+    align-items: baseline;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.swiper-card-point-number {
+    font-size: 100rpx;
+}
+
+.swiper-card-point-unit {
+    line-height: 32rpx;
+}
+
+.swiper-card-date {
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    font-size: 16rpx;
+    text-align: right;
+}
+
+.swiper-card-date-mini {
+    font-size: 12rpx;
+}
+
+.member-card-content {
+    margin-top: 108rpx;
+    font-size: 28rpx;
+    color: #71716F;
+    padding: 0 32rpx;
+}
+
+.member-card-content-course {
+    margin-bottom: 32rpx;
+}
+
+.member-card-cell{
+    margin-top: auto;
+    margin-bottom: 40rpx;
+}
+
+.no-card{
+    text-align: center;
+    font-size: 28rpx;
+    color: #71716F;
+    margin-top: 320rpx;
+}

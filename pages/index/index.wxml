@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
     <view class="swiper-box">
-        <swiper class="swiper-img" indicator-dots="{{true}}"
+        <swiper class="swiper-img" indicator-dots="{{false}}"
         autoplay="{{autoplay}}" interval="{{10000}}" circular="{{true}}" duration="{{500}}" bindchange="swpierChange">
         <block wx:for="{{swiperList}}" wx:key="index">
           <swiper-item>
@@ -20,7 +20,7 @@
         </view>
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
-            <text class="userinfo-nickname">{{ 'Hello '+phoneNumber+'!'}}</text>
+            <text class="userinfo-nickname">{{ 'Hello '+userInfo.nickname+'!'}}</text>
         </view>
         <view class="userinfo-description">
             <view class="description-item border-right">
@@ -36,7 +36,9 @@
                 <view class="description-item-content">
                     <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards}}</view>
                     <view class="description-item-unit"> 张</view>
-                    <image wx:if="{{!userInfo.available_cards}}" class="description-item-buy" src="./img/buy-card.png" mode=""/>
+                    <image wx:if="{{!userInfo.available_cards}}" 
+                    bind:tap="linkToCard"
+                    class="description-item-buy" src="./img/buy-card.png" mode=""/>
                 </view>
             </view>
         </view>

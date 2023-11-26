@@ -1,0 +1,40 @@
+<!-- 轮播 -->
+<view class="container" >
+    <view class="member-card" wx:if="{{!cardinsList.length}}">
+    <view class="swiper-view">
+        <swiper class="swipers swiper-box" circular="{{true}}" previous-margin="{{swiperMargin}}" autoplay="{{autoplay}}" duration="500" bindchange="swiperChange">
+            <block wx:for="{{banner}}" wx:for-item="item" wx:key="id">
+                <swiper-item class="swiper-item" bindtap="toDetail" data-proid="{{item.id}}" style="text-align: center;">
+                    <view class="swiper-item-view {{ swiperCurrent==index?'active':''}}">
+                        <image mode="scaleToFill" style="width: 100%;" class="swiper-image " src="{{item.url}}" alt=""></image>
+                        <view class="swiper-card-title">
+                            <view class="swiper-card-title-content">「嘉里创始 KC FOUNDERS」</view>
+                        </view>
+                        <view class="swiper-card-point">
+                            <view class="swiper-card-point-number">2</view>
+                            <view class="swiper-card-point-unit">次剩余</view>
+                        </view>
+                        <view class="swiper-card-date">
+                            <view class="swiper-card-date-mini">有效期</view>
+                            <view>从2023-09-09</view>
+                            <view>至2024-09-09</view>
+                            <view class="swiper-card-date-mini">支持全部场馆</view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="swiper-dots-view">
+            <view class="swiper-dot {{ swiperCurrent==index ? 'active':''}}" wx:for="{{banner}}" wx:key="id"></view>
+        </view>
+    </view>
+    <view class="member-card-content">
+        <view class="member-card-content-course">支持课程：MEGA Got U Back, MEGA Zero, MEGA Cardio+, MEGA PRo</view>
+        <view class="member-card-content-venues">支持场馆：嘉里中心</view>
+    </view>
+    <view class="member-card-cell">
+        <t-cell title="消费记录" hover arrow bordered="{{false}}"></t-cell>
+    </view>
+</view>
+<view class="no-card" wx:else>暂无会员卡</view>
+</view>

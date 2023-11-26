@@ -1,0 +1,45 @@
+<view class="container">
+    <view class="title">开启通知即可接受相关消息提醒</view>
+    <view class="sub-title">课程相关：</view>
+    <view class="group">
+    <t-cell title="开课提醒">
+        <t-switch bindchange="handleChange" data-key="openCourse" size="small" value="{{openCourseVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="候补开课提醒">
+        <t-switch bindchange="handleChange" data-key="alternateOpenCourse" size="small" value="{{alternateOpenCourseVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="预约成功通知">
+        <t-switch bindchange="handleChange" data-key="bookSuccess" size="small" value="{{bookSuccessVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="预约等位通知">
+        <t-switch bindchange="handleChange" data-key="bookWaiting" size="small" value="{{bookWaitingVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="预约取消通知">
+        <t-switch bindchange="handleChange" data-key="bookCancel" size="small" value="{{bookCancelVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="等位到号通知">
+        <t-switch bindchange="handleChange" data-key="arrival" size="small" value="{{arrivalVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="未到场通知">
+        <t-switch bindchange="handleChange" data-key="missed" size="small" value="{{missedVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="课程变动通知" bordered="{{false}}">
+        <t-switch bindchange="handleChange" data-key="courseChange" size="small" value="{{courseChangeVal}}" slot="note" />
+    </t-cell>
+</view>
+    <view class="sub-title">会员卡相关：</view>
+    <view class="group">
+    <t-cell title="会员购卡通知">
+        <t-switch bindchange="handleChange" data-key="buyCard" size="small" value="{{buyCardVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="会员卡到期提醒">
+        <t-switch bindchange="handleChange" data-key="cardExpired" size="small" value="{{cardExpiredVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="会员卡停卡通知">
+        <t-switch bindchange="handleChange" data-key="cardSuspend" size="small" value="{{cardSuspendVal}}" slot="note" />
+    </t-cell>
+    <t-cell title="优惠券领取通知" bordered="{{false}}">
+        <t-switch bindchange="handleChange" data-key="coupons" size="small" value="{{couponsVal}}" slot="note" />
+    </t-cell>
+</view>
+</view>

@@ -4,9 +4,9 @@
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
         <image class="avatar" src="{{avatarUrl}}"></image>
     </button>
-    <view class="name">1232</view>
+    <view class="name">{{nicknameValue}}</view>
 </view>
-<t-input label="昵称" value="LEO" type="nickname"></t-input>
+<t-input label="昵称" bind:blur="onBlur" value="{{nicknameValue}}" type="nickname"></t-input>
 <!--性别-->
 <t-cell title="性别" arrow hover data-key="gender" note="{{genderText}}"  bind:click="onPickerTap" />
 <t-picker
@@ -22,7 +22,7 @@
   <t-picker-item options="{{genders}}"></t-picker-item>
 </t-picker>
 <!--手机号-->
-<t-cell title="手机号"  hover data-key="rock" note="{{1233421312}}"/>
+<t-cell title="手机号"  hover data-key="rock" note="{{phoneNumberValue}}"/>
 <!--抱石水平--> 
 <t-cell title="抱石水平" arrow hover data-key="boulder" note="{{boulderText}}"  bind:click="onPickerTap" />
 <t-picker
@@ -69,6 +69,7 @@
   mode="date"
   data-key="date"
   defaultValue="{{dateValue}}"
+  value="{{dateValue}}"
   format="YYYY-MM-DD"
   bindchange="onPickerChange"
   bindpick="onColumnChange"
@@ -85,10 +86,25 @@
   cancelBtn="取消"
   confirmBtn="确认"
   bindchange="onPickerChange"
-  bindpick="onColumnChange"
   bindcancel="onPickerCancel"
 >
   <t-picker-item options="{{height}}"></t-picker-item>
+</t-picker>
+<!-- 体重 --> 
+<t-cell title="体重" arrow hover data-key="weight" note="{{weightText}}"  bind:click="onPickerTap" />
+<t-picker
+  visible="{{weightVisible}}"
+  value="{{weightValue}}"
+  data-key="weight"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onWeightChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{weightOne}}"></t-picker-item>
+  <t-picker-item options="{{weightTwo}}"></t-picker-item>
+  <t-picker-item options="{{[{label:'kg'}]}}"></t-picker-item>
+
 </t-picker>
 <view class="logout">
     <t-button bind:tap="onLogoutTap" hover-class="none" block>退出登录</t-button>

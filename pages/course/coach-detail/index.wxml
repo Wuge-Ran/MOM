@@ -11,40 +11,43 @@
         </view>
     </view>
     <view class="coach-course">
-        <t-tabs defaultValue="group" bind:change="onTabsChange"  t-class="type-tabs">
+        <t-tabs defaultValue="group" bind:change="onTabsChange" t-class="type-tabs">
             <t-tab-panel label="团课" value="group" />
             <t-tab-panel label="私教" value="private" />
         </t-tabs>
-        <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
-        <scroll-view enable-flex  enhanced show-scrollbar="{{false}}" class="coach-course-scroll" scroll-y="{{true}}" wx:if="{{filterCourseList.length}}">
-            <view class="coach-course-item" wx:for="{{filterCourseList}}" wx:key="course_id" data-id="{{item.course_id}}" bind:tap="navgateToBook">
-                <view class="coach-course-item-time">{{time.addMinutesToTime(item.start_time,item.duration_minutes)}}</view>
-                <view class="coach-course-item-content">
-                    <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
-                    <view class="coach-course-item-content-describe">
-                        <view class="coach-course-item-content-describe-title">
-                            {{item.display_name}}
-                        </view>
-                        <view class="coach-course-item-content-describe-text">{{item.description}}</view>
-                        <view class="coach-course-item-content-describe-reserve">
-                            <t-button theme="primary" hover-class="none">预约</t-button>
-                        </view>
 
+            <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>
+            <scroll-view enable-flex enhanced show-scrollbar="{{false}}" class="coach-course-scroll" scroll-y="{{true}}" wx:if="{{filterCourseList.length}}">
+                <view class="coach-course-item" wx:for="{{filterCourseList}}" wx:key="course_id" data-id="{{item.course_id}}" bind:tap="navgateToBook">
+                    <view class="coach-course-item-time">{{time.addMinutesToTime(item.start_time,item.duration_minutes)}}</view>
+                    <view class="coach-course-item-content">
+                        <image class="coach-course-item-content-img" src="./img/coach-demo.png" mode="" />
+                        <view class="coach-course-item-content-describe">
+                            <view class="coach-course-item-content-describe-title">
+                                {{item.display_name}}
+                            </view>
+                            <view class="coach-course-item-content-describe-text">{{item.description}}</view>
+                            <view class="coach-course-item-content-describe-reserve">
+                                <t-button theme="primary" hover-class="none">预约</t-button>
+                            </view>
+
+                        </view>
                     </view>
                 </view>
+            </scroll-view>
+            <view wx:else class="coach-course-none">
+                <view class="coach-course-none-text">暂无课程</view>
             </view>
-        </scroll-view>
-        <view wx:else class="coach-course-none">
-         <view class="coach-course-none-text">暂无课程</view>
-        </view>
+
     </view>
+
 </view>
 <wxs module="time">
     function addMinutesToTime(startTime, durationMinutes) {
         var format = startTime.slice(11, startTime.length)
-        console.log('www',format)
+        console.log('www', format)
         // 将输入的时间字符串转换为 Date 对象
-        var startTimeObj = getDate('1970-01-01T'+format);
+        var startTimeObj = getDate('1970-01-01T' + format);
         // 将分钟数添加到时间
         startTimeObj.setMinutes(startTimeObj.getMinutes() + durationMinutes);
 

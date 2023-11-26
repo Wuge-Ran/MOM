@@ -35,3 +35,8 @@ export const login = function () {
     const url =`/v1/wxuser`;
     return request.get(url)
   }
+
+  export const getHomeData =() =>{
+    const url =`/v1/homepage`;
+    return request.get(url);
+  }

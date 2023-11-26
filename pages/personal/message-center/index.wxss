@@ -1,0 +1,19 @@
+.container{
+    --td-switch-checked-color: #BDCF57;
+    --td-cell-title-font-size:28rpx;
+    --td-switch-width:78rpx;
+    --td-switch-height:48rpx;
+    --td-cell-border-right-space: 32rpx;
+    --td-cell-vertical-padding:24rpx;
+    font-size: 28rpx;
+}
+
+.title{
+    padding: 24rpx 32rpx;
+    font-weight: 500;
+}
+
+.sub-title{
+    padding: 24rpx 32rpx;
+    color: #AEAEAB;
+}

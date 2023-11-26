@@ -1,5 +1,5 @@
 <!--pages/course/index.wxml-->
-<view class="course-contaioner">
+<view class="course-contaioner" wx:if="{{dateList.length}}">
   <view class="header">
     <view class="selection-bar">
         <view bind:tap="onBarIconClick">
@@ -26,5 +26,8 @@
   <view wx:else class="course-none">
          <view class="course-none-text">暂无课程</view>
         </view>
+</view>
+<view class="no-course" wx:else>
+<view class="no-course-text">新课程即将出炉，敬请期待</view>
 </view>
 <t-toast id="t-toast" />

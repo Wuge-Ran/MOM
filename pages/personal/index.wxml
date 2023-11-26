@@ -11,7 +11,7 @@
                 <image class="personal-item-img" src="./img/climbing-report.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="会员卡" hover arrow>
+        <t-cell title="会员卡" hover arrow data-link="/pages/personal/member-card/index" bind:tap="linkTo">
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/card.png" mode="aspectFit" />
             </view>
@@ -31,7 +31,7 @@
                 <image class="personal-item-img" src="./img/user.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="消息订阅管理" hover arrow bordered="{{false}}"	>
+        <t-cell title="消息订阅管理" hover arrow bordered="{{false}}"	data-link="/pages/personal/message-center/index" bind:tap="linkTo">
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/message.png" mode="aspectFit" />
             </view>

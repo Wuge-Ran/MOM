@@ -75,3 +75,14 @@
 .notification-btn {
     color: var(--theme-color);
 }
+
+.no-course{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #71716F;
+}
+
+.no-course-text{
+    margin-top: 520rpx;
+}

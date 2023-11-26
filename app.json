@@ -11,8 +11,9 @@
         "custom-tab-bar/index",
         "pages/login/index",
         "pages/personal/personal-edit/index",
-        "pages/personal/order/index"
-            
+        "pages/personal/order/index",
+        "pages/personal/message-center/index",
+        "pages/personal/member-card/index"   
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -26,7 +27,9 @@
         "date-piker":"component/date-piker/index",
         "t-icon": "tdesign-miniprogram/icon/icon",
         "t-popup": "tdesign-miniprogram/popup/popup",
-        "t-input": "tdesign-miniprogram/input/input"
+        "t-input": "tdesign-miniprogram/input/input",
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-switch": "tdesign-miniprogram/switch/switch"
     },
     "resolveAlias": {
         "@utils/*": "utils/*",
