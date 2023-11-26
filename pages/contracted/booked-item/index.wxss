@@ -64,6 +64,10 @@
     height: 48rpx;
     line-height: 48rpx;
     margin-bottom: 12rpx;
+    max-width: 330rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     /* font-weight: 500; */
 }
 
