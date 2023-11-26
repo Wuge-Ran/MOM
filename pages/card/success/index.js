@@ -5,9 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        showPurchaseUI:false,
-        canBuy:false,
-        privacyChecked:false,
+        
     },
 
     /**
@@ -17,35 +15,29 @@ Page({
 
     },
 
-    onCardTap(){
-      this.setData({ showPurchaseUI: true });
+    /**
+     * 继续购卡
+     */
+    onContinueTap(event){
+      wx.switchTab({
+        url: `/pages/card/index`,
+      });
     },
 
-    onPrivacyTap(event){
-      const chceked= !this.data.privacyChecked;
-      this.setData({ privacyChecked: chceked });
+    /**
+     * 约课
+     */
+    onConfirmTap(event){
+      wx.switchTab({
+        url: `/pages/course/index`,
+      });
     },
-
-    onConfromUIVisiableChange(event) {
-      this.setData({ showPurchaseUI: event.detail.visible });
-    },
-
-
-
-
-
+    
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-        this.getTabBar().show();
     },
 
     /**

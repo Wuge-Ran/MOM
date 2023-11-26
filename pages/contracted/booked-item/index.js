@@ -22,11 +22,22 @@ Component({
       return `${startDate.format("hh:mm")}-${endDate.format("hh:mm")}`;
     },
 
-    bookStr(data) {
-    },
+
 
     status(data) {
-     
+      let statusBtnStr="查看";
+      let statusBtnClass="";
+      const {status,isComplete } = data.props;
+      if(status===2) {
+        statusBtnStr="已签到";
+        statusBtnClass="checkin";
+      }
+      else if(isComplete===1){
+        statusBtnStr="已结束";
+        statusBtnClass="completed";
+      }
+      
+      return {statusBtnStr,statusBtnClass};
     },
   },
 

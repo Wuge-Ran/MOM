@@ -11,63 +11,79 @@ const app = getApp();
 const swiperList = [
   {
     value: `https://api.catchyrime.com/static/background.jpeg`,
-    ariaLabel: '图片1',
+    ariaLabel: "图片1",
   },
   {
     value: `https://api.catchyrime.com/static/background.jpeg`,
-    ariaLabel: '图片2',
+    ariaLabel: "图片2",
   },
   {
     value: `https://api.catchyrime.com/static/background.jpeg`,
-    ariaLabel: '图片3',
+    ariaLabel: "图片3",
   },
   {
     value: `https://api.catchyrime.com/static/background.jpeg`,
-    ariaLabel: '图片4',
+    ariaLabel: "图片4",
   },
 ];
 Page({
-    behaviors: [computedBehavior],
+  behaviors: [computedBehavior],
   data: {
-    motto: 'Hello World',
+    motto: "Hello World",
     userInfo: {},
     hasUserInfo: false,
     swiperList,
-    isLogin:false,
-    phoneNumber:null,
-    autoplay:true,
-    currentIndex:0,
-    checkSuccessVisible:true
+    isLogin: false,
+    phoneNumber: null,
+    autoplay: true,
+    currentIndex: 0,
+    checkSuccessVisible: false,
+    noMembercardVisible: true,
   },
-  computed:{
+  computed: {
     timeRangeStr(data) {
-        console.log('===')
-        const { start_time, duration_minutes = 0 } = data.userInfo.course||{ };
-        const s = dayjs(start_time);
-        const endDate = s.add(duration_minutes, "m");
-        return `${s.format("MM/DD（ddd）hh:mm")}-${endDate.format("hh:mm")}`;
-      }
+      console.log("===");
+      const { start_time, duration_minutes = 0 } = data.userInfo.course || {};
+      const s = dayjs(start_time);
+      const endDate = s.add(duration_minutes, "m");
+      return `${s.format("MM/DD（ddd）hh:mm")}-${endDate.format("hh:mm")}`;
+    },
   },
   // 事件处理函数
   bindInfoTap() {
     wx.navigateTo({
-      url: '/pages/login/index'
-    })
+      url: "/pages/login/index",
+    });
   },
-  swpierChange(event){
-    const {detail} = event;
+  swpierChange(event) {
+    const { detail } = event;
     this.setData({
-        currentIndex:detail.current
-    })
+      currentIndex: detail.current,
+    });
   },
-  oncheckSuccessTap(){
+  oncheckSuccessTap() {
     this.setData({
-        checkSuccessVisible:false
-    })
+      checkSuccessVisible: false,
+    });
+  },
+  onMembercardOk() {
+    this.setData({
+      noMembercardVisible: false,
+    });
+    // TODO：跳转到购卡页面
+    wx.navigateTo({
+      url: "/pages/login/index",
+    });
+  },
+  onMembercardCancel() {
+    this.setData({
+      noMembercardVisible: false,
+    });
   },
   onLoad() {
-      console.log('===首页 onload 触发')
+    console.log("===首页 onload 触发");
     if (wx.requirePrivacyAuthorize) {
+<<<<<<< HEAD
         wx.requirePrivacyAuthorize({
           success: res => {
             console.log('用户同意了隐私协议 或 无需用户同意隐私协议')
@@ -91,23 +107,37 @@ if (screenHeight && bottom){
     height: 48 + safeBottom
   })
 }
+=======
+      wx.requirePrivacyAuthorize({
+        success: (res) => {
+          console.log("用户同意了隐私协议 或 无需用户同意隐私协议");
+          // 用户同意隐私协议后给昵称input聚焦
+        },
+        fail: (res) => {
+          console.log("用户拒绝了隐私协议");
+          wx.reLaunch({
+            url: "/pages/index/index",
+          });
+        },
+      });
+    }
+>>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361
   },
-  onShow(){
+  onShow() {
     this.getTabBar().show();
-    console.log('===首页 onShow 触发',!!globalData.login.phoneNumber&&!!globalData.login.token);
-    setTimeout(()=>{
-        let query = wx.createSelectorQuery();
-        query.select('.userinfo').boundingClientRect(rect=>{
-        let height = rect.height;
-        console.log('boundingClientRect',height);
-        }).exec();
-    })
-
-    if(globalData.login.phoneNumber){
-        this.setData({
-            isLogin:true,
-            phoneNumber:globalData.login.phoneNumber
+    console.log(
+      "===首页 onShow 触发",
+      !!globalData.login.phoneNumber && !!globalData.login.token
+    );
+    setTimeout(() => {
+      let query = wx.createSelectorQuery();
+      query
+        .select(".userinfo")
+        .boundingClientRect((rect) => {
+          let height = rect.height;
+          console.log("boundingClientRect", height);
         })
+<<<<<<< HEAD
         getHomeData().then(res=>{
             console.log('===getHomeData',res)
             this.setData({
@@ -115,11 +145,29 @@ if (screenHeight && bottom){
             })
         })
     }else{
+=======
+        .exec();
+    });
+
+    if (globalData.login.phoneNumber) {
+      this.setData({
+        isLogin: true,
+        phoneNumber: globalData.login.phoneNumber,
+      });
+      getUserData().then((res) => {
+        console.log("===getUserData", res);
+>>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361
         this.setData({
-            isLogin:false
-        })
+          userInfo: res.data,
+        });
+      });
+    } else {
+      this.setData({
+        isLogin: false,
+      });
     }
   },
+<<<<<<< HEAD
   linkToCard(){
       console.log(212)
       wx.switchTab({
@@ -129,3 +177,6 @@ if (screenHeight && bottom){
 
 
 })
+=======
+});
+>>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361

@@ -103,3 +103,13 @@
     font-weight: 400;
     line-height: 18px;
 }
+
+.completed {
+  color: #FFF !important;
+  background-color: #AEAEAB !important;
+}
+
+.checkin {
+  border: 1px solid #AEAEAB;
+  background: #FFF;
+}

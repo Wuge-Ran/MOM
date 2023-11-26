@@ -6,8 +6,8 @@
       </t-tab-panel>
     </t-tabs>
   </view>
-  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}">
-    <view class="course-item" wx:for="{{courses}}">
+  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" >
+    <view class="course-item" wx:for="{{courses}}" wx:key="course_id">
       <course-item props="{{item}}"/>
     </view>
   </scroll-view>

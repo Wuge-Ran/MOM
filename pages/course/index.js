@@ -1,5 +1,9 @@
 // pages/course/index.js
-import { getCourseByDate, getCoursesByAllFields,getCoachList } from "@src/api/course";
+import {
+  getCourseByDate,
+  getCoursesByAllFields,
+  getCoachList,
+} from "@src/api/course";
 import { getNextDay, getDayOfWeek } from "@utils/util";
 
 Page({
@@ -12,33 +16,32 @@ Page({
     curDay: "",
     triggered: false,
     courses: [],
-    filterCourses:[],
-    visible:false,
-    selectDetail:'',
-    courseType:"group, open, private, special",
-    coachIds:[],
-    coachList:[],
-    // courses: [
-    //   {
-    //     coach_nickname: "Leo3",
-    //     coach_avatar: "/assets/images/avatar.png",
-    //     display_name: "初级团课",
-    //     start_time: "2023-11-14 08:00:00",
-    //     status: -1,
-    //     duration_minutes: 60,
-    //     max_attenders: 5,
-    //     current_attenders: 5,
-    //     waiting_attenders: 0
-    //   },
-    // ],
+    filterCourses: [],
+    visible: false,
+    selectDetail: "",
+    courseType: "group, open, private, special",
+    coachIds: [],
+    coachList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    await this.getCalendar();
+    await this.init();
+  },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    this.getTabBar().show();
+    console.log("onshow",454555);
+    this.updateCourse();
+  },
+
+  async init() {
+    await this.getCalendar();
     this.updateCourse();
     this.getCoach();
   },
@@ -48,9 +51,9 @@ Page({
    */
   async getCalendar() {
     const dateList = [];
-    const {courseType,coachIds} =this.data;
-    const coachIdStr = coachIds.join(',')
-    const { data } = await getCourseByDate(courseType,coachIdStr);
+    const { courseType, coachIds } = this.data;
+    const coachIdStr = coachIds.join(",");
+    const { data } = await getCourseByDate(courseType, coachIdStr);
     let curDay = data.today;
     // 设置当前日期
     this.setData({ curDay });
@@ -78,31 +81,24 @@ Page({
    * 获取教练
    */
 
-   getCoach(){
-    getCoachList().then(({data})=>{
-        console.log('====data',data)
-        const res = data.coaches.map((item)=>({
-            name:item.nickname,
-            id:item.coach_id,
-            image:item.avatar_url,
-            like:item.liked_by_user
-        }))
-        this.setData({
-            coachList:res
-        })
-    })
-   },
+  getCoach() {
+    getCoachList().then(({ data }) => {
+      console.log("====data", data);
+      const res = data.coaches.map((item) => ({
+        name: item.nickname,
+        id: item.coach_id,
+        image: item.avatar_url,
+        like: item.liked_by_user,
+      }));
+      this.setData({
+        coachList: res,
+      });
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    this.getTabBar().show();
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -124,39 +120,45 @@ Page({
    */
   onReachBottom() {},
 
-  onBarIconClick(){
+  onBarIconClick() {
     this.setData({
-        visible:true
-    })
+      visible: true,
+    });
   },
-  onOk(event){
-      const {detail}=event;
-      console.log('====onOk',detail);
-      const ids = [];
-      detail.forEach(item=>{
-        ids.push(item.id)
-      })
-      const filterCourses = ids.length?this.data.courses.filter(item=>ids.indexOf(item.coach_id)!==-1):this.data.courses;
-      this.setData({
-        visible:false ,
-        selectDetail:detail.map(item=>item.name).join('，'),
-        coachIds:ids,
-        filterCourses
-      })
+  onOk(event) {
+    const { detail } = event;
+    console.log("====onOk", detail);
+    const ids = [];
+    detail.forEach((item) => {
+      ids.push(item.id);
+    });
+    const filterCourses = ids.length
+      ? this.data.courses.filter((item) => ids.indexOf(item.coach_id) !== -1)
+      : this.data.courses;
+    this.setData({
+      visible: false,
+      selectDetail: detail.map((item) => item.name).join("，"),
+      coachIds: ids,
+      filterCourses,
+    });
   },
-  
+
   onRefresh() {
     this.updateCourse();
   },
 
   async updateCourse() {
-    const curDay=this.data.curDay;
+    const curDay = this.data.curDay;
 
     this.setData({ triggered: true });
     const resp = await getCoursesByAllFields(curDay, curDay);
-    const courses=resp?.data?.courses ||[];
-    const filterCourses = this.data.coachIds.length?courses.filter(item=>this.data.coachIds.indexOf(item.coach_id)!==-1):courses;
-    console.log('updateCourse:',resp,courses);
-    this.setData({ triggered: false,courses,filterCourses });
+    const courses = resp?.data?.courses || [];
+    const filterCourses = this.data.coachIds.length
+      ? courses.filter(
+          (item) => this.data.coachIds.indexOf(item.coach_id) !== -1
+        )
+      : courses;
+    console.log("updateCourse1:", courses, filterCourses);
+    this.setData({ triggered: false, courses, filterCourses });
   },
 });

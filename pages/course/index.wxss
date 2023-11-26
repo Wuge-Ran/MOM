@@ -1,75 +1,75 @@
 /* pages/course/index.wxss */
 .course-contaioner {
-    display: flex;
-    flex-direction:column;
-    height:calc(100vh - (140rpx));
-    overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - (140rpx));
+  overflow: hidden;
 }
 .header {
-    flex-shrink: 0;
-    border-bottom: 1px solid var(--neutral-color1);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--neutral-color1);
 }
 .course-list {
-    flex: 1;
-    height: 1px;
-    /* height: 300rpx; */
+  flex: 1;
+  height: 1px;
+  /* height: 300rpx; */
 }
 
-.course-none{
-    flex: 1;
-    height: 1px;
-    text-align: center;
+.course-none {
+  flex: 1;
+  height: 1px;
+  text-align: center;
 }
-.course-none-text{
-    margin-top: 320rpx;
-    color: #71716F;
-    font-size: 28rpx;
+.course-none-text {
+  margin-top: 320rpx;
+  color: #71716f;
+  font-size: 28rpx;
 }
 .selection-bar {
-    padding: 32rpx 32rpx 0 ;
-    display: flex;
-    flex-direction: row-reverse;
+  padding: 32rpx 32rpx 0;
+  display: flex;
+  flex-direction: row-reverse;
 }
 .selection-bar-icon {
-    width: 40rpx;
-    height: 40rpx;
-    margin-left: 16rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 16rpx;
 }
-.selection-bar-text{
-    flex-grow: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 24rpx;
-    line-height: 50rpx;
+.selection-bar-text {
+  flex-grow: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+  line-height: 50rpx;
 }
 
 .calendar-bar {
-    display: flex;
-    height: 134rpx;
-    align-items: center;
+  display: flex;
+  height: 134rpx;
+  align-items: center;
 }
 
 .notification {
-    background: var(--black-color);
-    padding: 8rpx 32rpx;
-    font-size: 24rpx;
-    display: flex;
-    align-items: center;
-    flex: 1 1 0;
+  background: var(--black-color);
+  padding: 8rpx 32rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
 }
 
 .message {
-    color: var(--light-color);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-height: 40rpx;
-    margin-left: 16rpx;
+  color: var(--light-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 40rpx;
+  margin-left: 16rpx;
 }
 
 .notification-icon {
-    width: 40rpx;
-    height: 40rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .notification-btn {

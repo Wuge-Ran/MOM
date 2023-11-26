@@ -1,0 +1,28 @@
+<view>
+    <t-swiper
+        current="{{current}}"
+        autoplay="{{autoplay}}"
+        duration="{{duration}}"
+        interval="{{interval}}"
+        navigation="{{ { type: 'dots' } }}"
+        list="{{coachInfo.photo_urls}}"
+        bind:click="onTap"
+        bind:change="onChange"
+        bind:image-load="onImageLoad"
+    >
+    </t-swiper>
+
+    <view class="coach-info">
+        <view class="coach-info-avatar">
+            <image src="{{coachInfo.avatar_url}}" />
+            <view class="coach-info-name">{{coachInfo.nickname}}</view>
+        </view>
+         <view >
+            <view class="coach-info-detail">个人介绍</view>
+              <scroll-view scroll-x="{{false}}" scroll-y="{{true}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+                 <text  class="coach-info-description">{{coachInfo.short_description}}</text>
+               </scroll-view>  
+        </view>
+    </view>
+</view>
+  

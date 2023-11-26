@@ -50,34 +50,34 @@
   <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
     <view class="reconfrom-container">
       <view class="reconfrom-body">
-        <span class="title">Dual Texture Drifting</span>
+        <span class="title">{{course.display_name}}</span>
         <view class="flex-row time-info1">
           <image class="icon-time icon" src="/assets/icons/clock.png"></image>
-          <span class="time">10/14 (周六) 13:00-14:00</span>
+          <span class="time">{{timeRangeStr}}</span>
         </view>
         <view class="flex-row">
           <image class="icon" src="/assets/icons/coach.png"></image>
-          <span>Leo</span>
+          <span>{{course.coach_nickname}}</span>
         </view>
         <view class="flex-row address-info1">
           <image class="icon-address icon" src="/assets/icons/address.png"></image>
-          <span class="address">Flow Bouldering</span>
+          <span class="address">{{course.address}}</span>
         </view>
-        <view wx:if="{{hasVipCards}}" class="buy-info">
+        <view wx:if="{{cards.length>0}}" class="buy-info">
           <view class="flex-row">
-          <span>预约人数</span>
+            <span>选择会员卡</span>
+            <view wx:if="{{choosedCard}}" class="choose-card bottom-arrow" bind:tap="onChooseCardTap">{{choosedCard.label}}</view>
           </view>
-          <view class="flex-row">
-          <span>选择会员卡</span>
-          </view>
-          <view class="flex-row">
-          <span>备注</span>
+          <view class="flex-row remark-info">
+            <span>备注</span>
+            <t-input align="right" value="{{remark}}" placeholder="备注信息仅教练可见">
+            </t-input>
           </view>
         </view>
         <span wx:else class="no-card">抱歉，您暂无可使用的课程卡，请购卡。</span>
       </view>
       <view class="bottom-contaioner confirm-bottom-contaioner">
-        <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">立即购卡</button>
+        <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap1">{{reConfirmBuyStr}}</button>
       </view>
     </view>
   </t-popup>
@@ -90,4 +90,13 @@
       </view>
     </view>
   </t-dialog>
+
+
+    <!-- 选择会员卡 -->
+  <t-picker visible="{{cardsChooseUIVisible}}" value="{{[choosedCard.value]}}" data-key="cards" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindclose="onPickerClose">
+              <t-picker-item options="{{cards}}"></t-picker-item>
+  </t-picker>
+
 </view>
+
+<t-toast id="t-toast" />
