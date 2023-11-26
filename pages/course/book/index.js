@@ -240,7 +240,6 @@ Page({
   },
 
   onCancelTap(event) {
-    console.log(this.data.status,898989);
     const cb = this.data.status?.cancel?.onTap;
     cb && cb(event);
   },
@@ -264,8 +263,9 @@ Page({
     });
   },
 
-  onWaitTap(event) {
+  async onWaitTap(event) {
     this.setData({ showPurchaseUI: true });
+    await this.getVipCards();
   },
 
   async onBookTap(event) {
@@ -316,31 +316,25 @@ Page({
   //购卡或预约二次确认
   onConfirmTap1() {
     if (this.data.cards.length > 0) {
+      //有卡，预约或候补
       const courseId = this.data.courseId;
-      //有卡，预约
-      book(courseId, this.data.choosedCard.value).then((resp) => {
+      const { user_can_reserve: canBook, user_can_wait: canWait, status, } = this.data?.course || {};
+      const  requestRunc = canBook?book:wait;
+      const successTitle= canBook?"预约成功":"候补成功";
+      
+      requestRunc(courseId, this.data.choosedCard.value).then((resp) => {
         if (resp?.data?.result === 0) {
-          //预约成功
+          //预约或候补成功
           this.setData({ showPurchaseUI: false });
           const { address, coach_nickname, display_name } = this.data.course;
-          const param = {
-            successTitle: "预约成功",
-            displayName: display_name,
-            coachNickname: coach_nickname,
-            address,
-            time: this.data.timeStr,
-          };
+          const param = { successTitle, displayName: display_name, coachNickname: coach_nickname, address, time: this.data.timeStr, };
           const paramURI = queryString(param);
           wx.navigateTo({
             url: `/pages/course/book/success/index${paramURI}`,
           });
         } else {
-          //预约失败
-          Toast({
-            context: this,
-            selector: "#t-toast",
-            message: resp?.data?.message,
-          });
+          //预约或候补失败
+          Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
         }
       });
     } else {
@@ -370,22 +364,24 @@ Page({
   fecthCancelBook() {
     const courseId = this.data.courseId;
     cancelBook(courseId).then((resp) => {
-      console.log(resp,2342434);
       if (resp?.data?.result === 0) {
         this.init();
         Toast({ context: this, selector: "#t-toast", message: "取消成功" });
       }else{
         Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
       }
-      
-      
     });
   },
 
   fecthCancelWait() {
-    cancelWait(this.data.courseId).then((res) => {
-      Toast({ context: this, selector: "#t-toast", message: "取消成功" });
-      this.getCourseDetail(courseId);
+    const courseId = this.data.courseId;
+    cancelWait(courseId).then((resp) => {
+      if (resp?.data?.result === 0) {
+        this.init();
+        Toast({ context: this, selector: "#t-toast", message: "取消成功" });
+      }else{
+        Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+      }
     });
   },
 

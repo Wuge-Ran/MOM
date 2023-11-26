@@ -59,7 +59,7 @@ export const cancelBook = (id) => {
 };
 
 export const cancelWait = (id) => {
-  return request.delete("/v1/reserve_course", { "course-id": id });
+  return request.delete("/v1/wait_course", { "course-id": id });
 };
 
 export const book = (courseId, cardId, remark) => {
@@ -68,7 +68,7 @@ export const book = (courseId, cardId, remark) => {
 };
 
 export const wait = (id) => {
-  return request.post("/v1/reserve_course", { "course-id": id });
+  return request.post("/v1/wait_course", { "course-id": id });
 };
 
 export const getCourseCards = (courseId) => {
