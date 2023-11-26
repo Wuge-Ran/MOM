@@ -83,7 +83,6 @@ Page({
   onLoad() {
     console.log("===首页 onload 触发");
     if (wx.requirePrivacyAuthorize) {
-<<<<<<< HEAD
         wx.requirePrivacyAuthorize({
           success: res => {
             console.log('用户同意了隐私协议 或 无需用户同意隐私协议')
@@ -107,21 +106,6 @@ if (screenHeight && bottom){
     height: 48 + safeBottom
   })
 }
-=======
-      wx.requirePrivacyAuthorize({
-        success: (res) => {
-          console.log("用户同意了隐私协议 或 无需用户同意隐私协议");
-          // 用户同意隐私协议后给昵称input聚焦
-        },
-        fail: (res) => {
-          console.log("用户拒绝了隐私协议");
-          wx.reLaunch({
-            url: "/pages/index/index",
-          });
-        },
-      });
-    }
->>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361
   },
   onShow() {
     this.getTabBar().show();
@@ -137,15 +121,6 @@ if (screenHeight && bottom){
           let height = rect.height;
           console.log("boundingClientRect", height);
         })
-<<<<<<< HEAD
-        getHomeData().then(res=>{
-            console.log('===getHomeData',res)
-            this.setData({
-                userInfo:res.data
-            })
-        })
-    }else{
-=======
         .exec();
     });
 
@@ -154,11 +129,19 @@ if (screenHeight && bottom){
         isLogin: true,
         phoneNumber: globalData.login.phoneNumber,
       });
-      getUserData().then((res) => {
-        console.log("===getUserData", res);
->>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361
+      getHomeData().then((res) => {
+        console.log("===getHomeData", res);
+        const userInfo = res.data;
+        const swiperList = userInfo.background.map(item=>{
+            return {
+                value:item.image_url,
+                link:item.link
+            }
+        })
+        globalData.userInfo = userInfo;
         this.setData({
-          userInfo: res.data,
+          userInfo,
+          swiperList
         });
       });
     } else {
@@ -167,7 +150,6 @@ if (screenHeight && bottom){
       });
     }
   },
-<<<<<<< HEAD
   linkToCard(){
       console.log(212)
       wx.switchTab({
@@ -177,6 +159,3 @@ if (screenHeight && bottom){
 
 
 })
-=======
-});
->>>>>>> b126f61560ab7b4933c6a1530ee052936ac27361

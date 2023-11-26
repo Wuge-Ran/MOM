@@ -62,6 +62,15 @@ export default {
     set course(val){
       this._course=val;
     }
+  },
+  userInfo:{
+    _userInfo:null,
+    get userInfo(){
+      return _userInfo;
+    },
+    
+    set userInfo(val){
+      this._userInfo=val;
+    }  
   }
-
 };

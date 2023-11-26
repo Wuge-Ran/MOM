@@ -1,11 +1,12 @@
 // pages/personal/index.js
+import {getUserInfo} from '@src/api/personal'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        userInfo:null
     },
 
     /**
@@ -27,6 +28,12 @@ Page({
      */
     onShow() {
         this.getTabBar().show();
+        getUserInfo().then(({data})=>{
+            console.log(data)
+            this.setData({
+                userInfo:data
+            })
+        })
     },
 
     /**
