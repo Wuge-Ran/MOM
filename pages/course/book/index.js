@@ -277,7 +277,7 @@ Page({
     this.setData({ showPurchaseUI: event.detail.visible });
   },
 
-  onOtherCoachTap(event) {
+  onCoachTap(event) {
     wx.navigateTo({
       url: `/pages/course/coach-detail/index?id=${event.currentTarget.dataset.id}`,
     });

@@ -46,9 +46,9 @@ Component({
       const activeValue = e.detail.value;
     //   this.activeValue=activeValue;
       const item = this.data.list.find((item) => item.value == activeValue);
-      this.setData({
-        value: e.detail.value,
-      });
+      // this.setData({
+      //   value: e.detail.value,
+      // });
       wx.switchTab({
         url: item.path,
       });
