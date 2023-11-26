@@ -1,11 +1,11 @@
 /**app.wxss**/
 .container {
   width: 100vw;
-  /* height:  calc(100vh - 140rpx - env(safe-area-inset-bottom)); */
-  height: 100%;
+  height:  calc(100vh - 140rpx - env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  overflow-x: scroll;
 }
 
 button {
@@ -13,7 +13,6 @@ button {
 }
 
 page {
-  /* position: relative; */
   /*设置tabbar高度+ios安全距离，防止被覆盖 */
   padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
 
