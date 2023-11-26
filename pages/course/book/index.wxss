@@ -194,7 +194,7 @@
 
 .display-absolute {
     position: absolute;
-    bottom: 40rpx;
+    bottom: calc(40rpx + env(safe-area-inset-bottom));
 }
 
 .btn {

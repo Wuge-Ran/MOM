@@ -27,8 +27,9 @@
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(5px);
   width: 100%;
-  bottom: 148rpx;
+  bottom: 0rpx;
   padding: 28rpx;
+  padding-bottom: 48rpx;
   box-sizing: border-box;
 }
 .userinfo-nickname{
@@ -187,7 +188,7 @@
 
 .swiper-box,.swiper-img{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
 
 .swiper-item image{
