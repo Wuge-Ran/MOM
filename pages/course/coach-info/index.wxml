@@ -1,5 +1,6 @@
-<view>
+<view class="coach-info">
     <t-swiper
+        height="750rpx"
         current="{{current}}"
         autoplay="{{autoplay}}"
         duration="{{duration}}"
@@ -12,7 +13,7 @@
     >
     </t-swiper>
 
-    <view class="coach-info">
+    <view class="coach-info-bottom">
         <view class="coach-info-avatar">
             <image src="{{coachInfo.avatar_url}}" />
             <view class="coach-info-name">{{coachInfo.nickname}}</view>

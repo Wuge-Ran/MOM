@@ -5,7 +5,7 @@
 >
     <view class="no-membercard-popup-header">
         <image src="./images/warning.jpg"/>
-        <text class="popup-header-text">温馨提示</text>
+        <text class="no-membercard-popup-text">温馨提示</text>
     </view>
     <view>
         <view class="no-membercard-popup-content-text">当前没有可用会员卡，请购卡</view>
