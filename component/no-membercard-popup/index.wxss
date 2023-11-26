@@ -1,0 +1,23 @@
+.no-membercard-popup {
+  box-sizing: border-box;
+  width: 520rpx;
+  padding: 48rpx 32rpx;
+}
+.no-membercard-popup-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no-membercard-popup-header image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+.no-membercard-popup-content-text {
+  margin: 48rpx 0;
+  text-align: center;
+}
+.no-membercard-popup-operation {
+  display: flex;
+  justify-content: space-between;
+}

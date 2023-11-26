@@ -102,4 +102,5 @@
     <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
   </view>
 </t-popup>
+ <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="onMembercardOk" bind:onCancel="onMembercardCancel"/>
 </view>

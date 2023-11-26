@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "t-swiper": "tdesign-miniprogram/swiper/swiper",
-    "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav"
+    "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav",
+    "no-membercard-popup":"../../component/no-membercard-popup"
   }
 }
