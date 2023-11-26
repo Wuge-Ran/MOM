@@ -6,7 +6,7 @@
       </t-tab-panel>
     </t-tabs>
   </view>
-  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true" refresher-enabled="true" bindrefresherrefresh="onRefresh" >
+  <scroll-view wx:if="{{courses.length}}" class="course-list" scroll-y="{{true}}" show-scrollbar="{{false}}" enable-passive="true">
     <view class="course-item" wx:for="{{courses}}" wx:key="course_id">
       <course-item props="{{item}}"/>
     </view>

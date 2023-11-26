@@ -1,5 +1,5 @@
 <!--pages/card/index.wxml-->
-<view>
+<view class="container">
   <!-- 卡片列表 -->
   <view class="cards-container">
     <view class="title">特惠活动</view>
