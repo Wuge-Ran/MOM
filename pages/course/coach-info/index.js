@@ -32,7 +32,6 @@ Page({
 
   getCoachInfo(id) {
     getCoachInfo(id).then(({ data }) => {
-        data.photo_urls =['https://api.catchyrime.com/static/coach.jpeg','https://api.catchyrime.com/static/coach.jpeg','https://api.catchyrime.com/static/coach.jpeg','https://api.catchyrime.com/static/coach.jpeg'];
       this.setData({
         coachInfo: data,
       });

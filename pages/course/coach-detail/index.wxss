@@ -1,5 +1,6 @@
 /* pages/course/index.wxss */
 .container {
+    height: 100vh!important;
     background-color: #F9F6F2;
     padding: 40rpx 32rpx 0;
     justify-content: start;

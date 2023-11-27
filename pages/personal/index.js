@@ -65,7 +65,6 @@ Page({
     },
 
     linkTo(e){
-        
         const link = e.currentTarget.dataset.link;
         console.log(link)
         wx.navigateTo({

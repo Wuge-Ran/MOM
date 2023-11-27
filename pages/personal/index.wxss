@@ -49,5 +49,5 @@
 }
 
 .personal-bottom{
-    height: 160rpx;
+    height: 50rpx;
 }

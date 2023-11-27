@@ -1,7 +1,7 @@
 .member-card{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     --td-switch-checked-color: #BDCF57;
     --td-cell-title-font-size:28rpx;
     --td-switch-width:78rpx;

@@ -1108,7 +1108,7 @@ Page({
             boulder:'bouldering_grade',
             rock:'wall_grade',
             date:'birthday',
-            height:'height'
+            height:'height',
         }
         const text = label?label.join(' '):value;
         console.log('picker change:',key, value,text);
@@ -1130,10 +1130,14 @@ Page({
             value,label
         } = e.detail;
 
-        console.log('picker change:', e.detail);
+        console.log('onWeightChange:', e.detail);
+        const updateValue = `${value[0]}.${value[1]}`
+        updateInfo('weight',updateValue).then(res=>{
+            console.log('===updateInfo',res)
+        })
         this.setData({
             [`${key}Visible`]: false,
-            [`${key}Value`]: value[0]+'.'+value[1],
+            [`${key}Value`]: value,
             [`${key}Text`]: label[0]+'.'+label[1]+'kg',
         });
     },
@@ -1164,7 +1168,7 @@ Page({
     updateInfo(){
         getUserInfo().then(({data})=>{
             console.log('==data',data);
-
+            const [w1,w2] = data.weight.split('.')
             this.setData({
                 nicknameValue:data.nickname,
                 genderText:data.gender,
@@ -1177,7 +1181,9 @@ Page({
                 dateText:data.birthday,
                 dateValue:data.birthday,
                 heightText:data.height&&data.height+' cm',
-                heightValue:[data.height]
+                heightValue:[data.height],
+                weightText:data.weight&&data.weight+' kg',
+                weightValue:[w1,w2]
             })
         })
     },
