@@ -30,9 +30,9 @@
         <image class="icon-address icon" src="/assets/icons/address.png"></image>
         <span class="address">{{course.address}}</span>
       </view>
-      <view class="map-info flex-row" bind:tap="onMapTap">
+      <view wx:if="{{course.address_lat!=0 && course.address_long!=0}}"  class="map-info flex-row" bind:tap="onMapTap">
         <image class="icon-map icon" src="/assets/icons/address1.png"></image>
-        <span class="map-title">导航</span>
+        <span class="map-title" >导航</span>
       </view>
     </view>
     <view class="course-desc">

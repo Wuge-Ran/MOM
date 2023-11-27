@@ -29,6 +29,7 @@
   width: 100%;
   bottom: 0;
   padding: 28rpx;
+  padding-bottom: 48rpx;
   box-sizing: border-box;
 }
 .userinfo-nickname{

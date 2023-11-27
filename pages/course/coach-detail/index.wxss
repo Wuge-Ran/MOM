@@ -12,7 +12,8 @@
     --td-button-primary-disabled-bg: var(--neutral-color3);
     --td-button-primary-disabled-border-color: var(--neutral-color3);
     --td-button-font-weight: 500;
-    --td-button-medium-font-size: 28rpx
+    --td-button-medium-font-size: 28rpx;
+    --bottom-safe-height: 0rpx;
 }
 
 .coach-intro {

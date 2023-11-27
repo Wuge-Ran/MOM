@@ -41,6 +41,14 @@ Component({
     ],
   },
 
+  created(){
+
+    // for(const item of this.data.list){
+    //   wx.getImageInfo({ src: item.icon });
+    //   wx.getImageInfo({ src: item.activeIcon })
+    // }
+  },
+
   methods: {
     onChange(e) {
       const activeValue = e.detail.value;

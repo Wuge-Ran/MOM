@@ -3,7 +3,7 @@
     <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
         <t-tab-bar-item
         wx:for="{{list}}" 
-        wx:key="index" 
+        wx:key="value" 
         value="{{item.value}}" 
         icon="{{value===item.value?item.activeIcon:item.icon}}"
         >
