@@ -71,13 +71,7 @@ export const wait = (id) => {
   return request.post("/v1/wait_course", { "course-id": id });
 };
 
-export const getCourseCards = (courseId) => {
-  const url = `/v1/course`;
-  const options = {
-    header: { "course-id": courseId },
-  };
-  return request.get(url, {}, options);
-};
+
 
 export const getCourseRecord = (status) => {
   return getCoursesByAllFields(undefined,dayjs().format("YYYY-MM-DD"),status)
