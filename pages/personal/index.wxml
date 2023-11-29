@@ -2,7 +2,7 @@
 <view class="container personal">
     <image class="personal-logo" src="./img/personal-logo.png" mode="aspectFit" alt="" />
     <view class="personal-info" data-link="/pages/personal/personal-edit/index" bind:tap="linkTo">
-        <image class="personal-info-avatar" src="./img/coach-demo.png" />
+        <image class="personal-info-avatar" src="{{avatarUrl}}" />
         <view>{{userInfo.nickname}}</view>
     </view>
     <view class="personal-center">

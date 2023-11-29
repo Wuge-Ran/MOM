@@ -1,6 +1,7 @@
 /* pages/card/index.wxss */
 .container{
     height: 100vh!important;
+    padding-bottom: 40rpx;
 }
 .avatar-wrapper {
     padding: 0;

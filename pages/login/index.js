@@ -39,7 +39,6 @@ Page({
     },
     onLoad() {
         login().then(res => {
-            console.log('===login', res)
         })
     },
 

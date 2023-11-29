@@ -19,7 +19,7 @@
          <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="index"></view>
         </view>
         <view class="userinfo-logo">
-            <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
+            <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
             <text class="userinfo-nickname">{{ 'Hello '+userInfo.nickname+'!'}}</text>
         </view>
         <view class="userinfo-description">
@@ -104,5 +104,5 @@
     <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
   </view>
 </t-popup>
- <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="onMembercardOk" bind:onCancel="onMembercardCancel"/>
+ <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="linkToCard" bind:onCancel="onMembercardCancel"/>
 </view>

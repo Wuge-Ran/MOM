@@ -12,6 +12,7 @@ const request = function (url, data, options = {},showLoading=true, chekLogin = 
     const { method, token, header } = options;
     // 自定义的token 优先级更高
     const userToken = token || globalData.login.token;
+    console.log(globalData.login.token)
    if(showLoading)wx.showLoading({ title: "", mask: true }); //接口请loading...
     wx.request({
       url: `${globalData.request.baseUrl}${url}`,

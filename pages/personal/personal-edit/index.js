@@ -1,7 +1,11 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 
-import globalData from '@src/global/index'
-import {getUserInfo,updateInfo} from '@src/api/personal'
+import globalData from '@src/global/index';
+import {saveImage,readData} from '@utils/fileReader'
+import {
+    getUserInfo,
+    updateInfo
+} from '@src/api/personal'
 
 Page({
 
@@ -10,8 +14,8 @@ Page({
      */
     data: {
         avatarUrl: defaultAvatarUrl,
-        nicknameValue:'',
-        phoneNumberValue:'',
+        nicknameValue: '',
+        phoneNumberValue: '',
         genders: [{
                 label: '男',
                 value: '男'
@@ -27,52 +31,52 @@ Page({
         ],
         genderVisible: false,
         genderText: null,
-        genderValue:'',
-        boulder:[{
-            label: 'V0V1',
-            value: 'V0V1'
-        },
-        {
-            label: 'V1V2',
-            value: 'V1V2'
-        },
-        {
-            label: 'V2V3',
-            value: 'V2V3'
-        },
-        {
-            label: 'V3V4',
-            value: 'V3V4'
-        },
-        {
-            label: 'V4V5',
-            value: 'V4V5'
-        },
-        {
-            label: 'V5V6',
-            value: 'V5V6'
-        },
-        {
-            label: 'V6V7',
-            value: 'V6V7'
-        },
-        {
-            label: 'V7V8',
-            value: 'V7V8'
-        },
-        {
-            label: 'V8V9',
-            value: 'V8V9'
-        },
-        {
-            label: 'V9V10',
-            value: 'V9V10'
-        },],
+        genderValue: '',
+        boulder: [{
+                label: 'V0V1',
+                value: 'V0V1'
+            },
+            {
+                label: 'V1V2',
+                value: 'V1V2'
+            },
+            {
+                label: 'V2V3',
+                value: 'V2V3'
+            },
+            {
+                label: 'V3V4',
+                value: 'V3V4'
+            },
+            {
+                label: 'V4V5',
+                value: 'V4V5'
+            },
+            {
+                label: 'V5V6',
+                value: 'V5V6'
+            },
+            {
+                label: 'V6V7',
+                value: 'V6V7'
+            },
+            {
+                label: 'V7V8',
+                value: 'V7V8'
+            },
+            {
+                label: 'V8V9',
+                value: 'V8V9'
+            },
+            {
+                label: 'V9V10',
+                value: 'V9V10'
+            },
+        ],
         boulderVisible: false,
         boulderText: null,
-        boulderValue:'',
-        rock:[
-            {
+        boulderValue: '',
+        rock: [{
                 "label": "5.6",
                 "value": "5.6"
             },
@@ -187,14 +191,13 @@ Page({
         ],
         rockVisible: false,
         rockText: null,
-        rockValue:'',
+        rockValue: '',
         dateValue: new Date().getTime(),
-        dateText:'',
-        dateVisible:false,
+        dateText: '',
+        dateVisible: false,
         start: '1930-01-01 00:00:00',
         end: new Date().getTime(),
-        height:[
-            {
+        height: [{
                 "label": "140 cm",
                 "value": "140"
             },
@@ -561,9 +564,8 @@ Page({
         ],
         heightVisible: false,
         heightText: null,
-        heightValue:['180'],
-        weightOne:[
-            {
+        heightValue: ['180'],
+        weightOne: [{
                 "label": "40",
                 "value": "40"
             },
@@ -1008,8 +1010,7 @@ Page({
                 "value": "150"
             }
         ],
-        weightTwo:[
-            {
+        weightTwo: [{
                 "label": "0",
                 "value": "0"
             },
@@ -1050,16 +1051,18 @@ Page({
                 "value": "9"
             }
         ],
-        weightVisible:false,
-        weightValue:[],
+        weightVisible: false,
+        weightValue: [],
         weightText: null,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
-
+    onLoad() {
+        this.setData({
+            avatarUrl:globalData.avatar
+        })
     },
 
     /**
@@ -1069,24 +1072,54 @@ Page({
         const {
             avatarUrl
         } = e.detail
-        this.setData({
-            avatarUrl,
+        console.log(avatarUrl)
+        
+        wx.showLoading({
+          title: '头像上传中',
+        })
+        wx.cloud.uploadFile({
+            cloudPath: `wxuser_avatar/${globalData.login.token}.png`, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
+            filePath: avatarUrl, // 微信本地文件，通过选择图片，聊天文件等接口获取
+            success: res => {
+                console.log('uploadFile:', res.fileID);
+                globalData.login.avatarId = res.fileID;
+                saveImage(avatarUrl, 'avatar.png').then(()=>{
+                    return readData('avatar.png', 'base64');
+                }).then(res => {
+                    const base64 = 'data:image/png;base64,' + res;
+                    this.setData({
+                        avatarUrl:base64
+                    })
+                    globalData.avatar = base64;
+                    wx.showToast({
+                        title: '头像上传成功',
+                    })
+                })
+                
+
+            },
+            fail: err => {
+                console.error(err)
+                wx.showToast({
+                    title: '头像上传失败请重试',
+                })
+            }
         })
     },
-    onBlur(e){
+    onBlur(e) {
         console.log(e)
-        updateInfo('nickname',e.detail.value).then(res=>{
+        updateInfo('nickname', e.detail.value).then(res => {
 
         })
         this.setData({
-            nicknameValue:e.detail.value
+            nicknameValue: e.detail.value
         })
     },
     onPickerTap(e) {
         const {
             key
         } = e.currentTarget.dataset;
-        console.log('ww',key)
+        console.log('ww', key)
         this.setData({
             [`${key}Visible`]: true
         });
@@ -1101,20 +1134,21 @@ Page({
             key
         } = e.currentTarget.dataset;
         const {
-            value,label
+            value,
+            label
         } = e.detail;
         const keyMap = {
-            gender:'gender',
-            boulder:'bouldering_grade',
-            rock:'wall_grade',
-            date:'birthday',
-            height:'height',
+            gender: 'gender',
+            boulder: 'bouldering_grade',
+            rock: 'wall_grade',
+            date: 'birthday',
+            height: 'height',
         }
-        const text = label?label.join(' '):value;
-        console.log('picker change:',key, value,text);
-        const updateValue = Array.isArray(value) ?value[0]:value
-        updateInfo(keyMap[key],updateValue).then(res=>{
-            console.log('===updateInfo',res)
+        const text = label ? label.join(' ') : value;
+        console.log('picker change:', key, value, text);
+        const updateValue = Array.isArray(value) ? value[0] : value
+        updateInfo(keyMap[key], updateValue).then(res => {
+            console.log('===updateInfo', res)
         })
         this.setData({
             [`${key}Visible`]: false,
@@ -1122,23 +1156,24 @@ Page({
             [`${key}Text`]: text,
         });
     },
-    onWeightChange(e){
+    onWeightChange(e) {
         const {
             key
         } = e.currentTarget.dataset;
         const {
-            value,label
+            value,
+            label
         } = e.detail;
 
         console.log('onWeightChange:', e.detail);
         const updateValue = `${value[0]}.${value[1]}`
-        updateInfo('weight',updateValue).then(res=>{
-            console.log('===updateInfo',res)
+        updateInfo('weight', updateValue).then(res => {
+            console.log('===updateInfo', res)
         })
         this.setData({
             [`${key}Visible`]: false,
             [`${key}Value`]: value,
-            [`${key}Text`]: label[0]+'.'+label[1]+'kg',
+            [`${key}Text`]: label[0] + '.' + label[1] + 'kg',
         });
     },
 
@@ -1152,12 +1187,13 @@ Page({
             [`${key}Visible`]: false,
         });
     },
-    onLogoutTap(){
+    onLogoutTap() {
         wx.clearStorageSync();
-        globalData.login.phoneNumber = ''
+        globalData.login.phoneNumber = '';
+        globalData.login.token = ''
         wx.reLaunch({
             url: '/pages/index/index'
-          })
+        })
     },
     /**
      * 生命周期函数--监听页面显示
@@ -1165,27 +1201,31 @@ Page({
     onShow() {
         this.updateInfo();
     },
-    updateInfo(){
-        getUserInfo().then(({data})=>{
-            console.log('==data',data);
-            const [w1,w2] = data.weight.split('.')
+    updateInfo() {
+        getUserInfo().then(({
+            data
+        }) => {
+            console.log('==data', data);
+            const [w1, w2] = data.weight.split('.')
             this.setData({
-                nicknameValue:data.nickname,
-                genderText:data.gender,
-                genderValue:[data.gender],
-                phoneNumberValue:data.phone_number,
-                boulderText:data.bouldering_grade,
-                boulderValue:[data.bouldering_grade],
-                rockText:data.wall_grade,
-                rockValue:[data.wall_grade],
-                dateText:data.birthday,
-                dateValue:data.birthday,
-                heightText:data.height&&data.height+' cm',
-                heightValue:[data.height],
-                weightText:data.weight&&data.weight+' kg',
-                weightValue:[w1,w2]
+                nicknameValue: data.nickname,
+                genderText: data.gender,
+                genderValue: [data.gender],
+                phoneNumberValue: data.phone_number,
+                boulderText: data.bouldering_grade,
+                boulderValue: [data.bouldering_grade],
+                rockText: data.wall_grade,
+                rockValue: [data.wall_grade],
+                dateText: data.birthday,
+                dateValue: data.birthday,
+                heightText: data.height && data.height + ' cm',
+                heightValue: [data.height],
+                weightText: data.weight && data.weight + ' kg',
+                weightValue: [w1, w2]
             })
         })
+
+
     },
 
     /**

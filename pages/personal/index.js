@@ -1,20 +1,17 @@
 // pages/personal/index.js
-import {getUserInfo} from '@src/api/personal'
+import {getUserInfo} from '@src/api/personal';
+import globalData from '@src/global/index';
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        userInfo:null
+        userInfo:null,
+        avatarUrl:null
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad(options) {
-
-    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -33,6 +30,9 @@ Page({
             this.setData({
                 userInfo:data
             })
+        })
+        this.setData({
+            avatarUrl:globalData.avatar
         })
     },
 
@@ -54,13 +54,6 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
 
     },
 
