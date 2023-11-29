@@ -70,7 +70,7 @@
           </view>
           <view class="flex-row remark-info">
             <span>备注</span>
-            <t-input align="right" value="{{remark}}" placeholder="备注信息仅教练可见">
+            <t-input maxlength="{{50}}" align="right" value="{{remark}}" placeholder="备注信息仅教练可见">
             </t-input>
           </view>
         </view>
@@ -93,7 +93,7 @@
 
 
     <!-- 选择会员卡 -->
-  <t-picker visible="{{cardsChooseUIVisible}}" value="{{[choosedCard.value]}}" data-key="cards" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindclose="onPickerClose">
+  <t-picker visible="{{cardsChooseUIVisible}}" value="{{[choosedCard.value]}}" data-key="id" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindclose="onPickerClose">
               <t-picker-item options="{{cards}}"></t-picker-item>
   </t-picker>
 

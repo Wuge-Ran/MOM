@@ -1,3 +1,17 @@
+import {
+  home,
+  homeActive,
+  course,
+  courseActive,
+  contracted,
+  contractedActive,
+  card,
+  cardActive,
+  personal,
+  personalActive,
+} from "../assets/icons/base64format";
+import globalData from "@src/global/index";
+
 Component({
   data: {
     value: "home",
@@ -6,43 +20,42 @@ Component({
       {
         value: "home",
         label: "首页",
-        icon: "/assets/icons/home.png",
-        activeIcon: "/assets/icons/home-active.png",
+        icon: home,
+        activeIcon: homeActive,
         path: "/pages/index/index",
       },
       {
         value: "course",
         label: "约课",
-        icon: "/assets/icons/course.png",
-        activeIcon: "/assets/icons/course-active.png",
+        icon: course,
+        activeIcon: courseActive,
         path: "/pages/course/index",
       },
       {
         value: "contracted",
         label: "已约",
-        icon: "/assets/icons/contracted.png",
-        activeIcon: "/assets/icons/contracted-active.png",
+        icon: contracted,
+        activeIcon: contractedActive,
         path: "/pages/contracted/index",
       },
       {
         value: "card",
         label: "会员卡",
-        icon: "/assets/icons/card.png",
-        activeIcon: "/assets/icons/card-active.png",
+        icon: card,
+        activeIcon: cardActive,
         path: "/pages/card/index",
       },
       {
         value: "personal",
         label: "我的",
-        icon: "/assets/icons/personal.png",
-        activeIcon: "/assets/icons/personal-active.png",
+        icon: personal,
+        activeIcon: personalActive,
         path: "/pages/personal/index",
       },
     ],
   },
 
-  created(){
-
+  created() {
     // for(const item of this.data.list){
     //   wx.getImageInfo({ src: item.icon });
     //   wx.getImageInfo({ src: item.activeIcon })
@@ -51,25 +64,28 @@ Component({
 
   methods: {
     onChange(e) {
-      const activeValue = e.detail.value;
-    //   this.activeValue=activeValue;
-      const item = this.data.list.find((item) => item.value == activeValue);
-      // this.setData({
-      //   value: e.detail.value,
-      // });
-      wx.switchTab({
-        url: item.path,
-      });
+      const { phoneNumber, token } = globalData?.login || {};
+      if (!phoneNumber || !token) { // 跳转到登录页
+        wx.navigateTo({ url: "/pages/login/index", });
+      }
+      else{// 跳转到具体页面
+        const activeValue = e.detail.value;
+        const item = this.data.list.find((item) => item.value == activeValue);
+        wx.switchTab({ url: item.path, });
+      }
+      
     },
 
     show() {
-        const page = getCurrentPages().pop();
-        const item = this.data.list.find((item) => item.path ===`/${page.route}`);
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-          this.getTabBar().setData({
-            value: item.value,
-          })
-        }
-      },
+      const page = getCurrentPages().pop();
+      const item = this.data.list.find(
+        (item) => item.path === `/${page.route}`
+      );
+      if (typeof this.getTabBar === "function" && this.getTabBar()) {
+        this.getTabBar().setData({
+          value: item.value,
+        });
+      }
+    },
   },
 });

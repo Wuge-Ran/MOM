@@ -8,8 +8,8 @@ import {
   cancelWait,
   book,
   wait,
-  getCourseCards,
 } from "@src/api/course";
+import {getCourseCards} from "@src/api/card";
 const computedBehavior = require("miniprogram-computed").behavior;
 import Toast from "tdesign-miniprogram/toast/index";
 Page({
@@ -44,10 +44,11 @@ Page({
     //会员卡
     cardsChooseUIVisible: false,
     cards: [
-      { value: 1, label: "单人私教10次卡" },
-      { value: 2, label: "单人私教20次卡" },
+      // { value: 1, label: "单人私教10次卡" },
+      // { value: 2, label: "单人私教20次卡" },
     ],
     choosedCard: undefined,
+    // selectKeys:{value:"id",label:"name"},
     remark: "",
   },
 
@@ -127,8 +128,10 @@ Page({
   },
 
   async getVipCards(courseId) {
-    // const cards = (await getCourseCards(courseId))?.data?.cards||[];
-    const cards = this.data.cards;
+    const cardsOrigin = (await getCourseCards())?.data?.cardcat_list||[];
+
+    const cards =cardsOrigin.map(card=>({value:card.id,label:card.name}));
+    // const cards = this.data.cards;
     console.log("getVipCards:", cards);
     const [fistCard] = cards;
     this.setData({ cards, choosedCard: fistCard });

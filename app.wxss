@@ -2,7 +2,7 @@
 .container {
   width: 100vw;
   /*设置tabbar高度+ios安全距离，防止被覆盖 */
-  height:  calc(100vh - var(--bottom-safe-height));
+  height:  var(--content-height);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -30,8 +30,15 @@ page {
   --td-toast-bg-color: rgba(0, 0, 0, 0.72);
   --td-popup-border-radius: 24rpx;
 
-  /*设置tabbar高度+ios安全距离，防止被覆盖 */
-  --bottom-safe-height: calc(140rpx + env(safe-area-inset-bottom));
+  /* tabbar高度 */
+  --tabbar-height:140rpx;
+
+  /*减去(tabbar+ios安全距离)高度，防止被覆盖 */
+  --bottom-safe-height: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
+
+  /* 设置安全，如果是之定义tabar则高度为tabbar高度+ios安全距离，如果是官方tabbar则设置为0 */
   /* --bottom-safe-height: 0rpx; */
-  /* padding-bottom: var(--bottom-safe-height); */
+
+  /* 可用容器高度 */
+  --content-height:calc(100vh - var(--bottom-safe-height));
 }
