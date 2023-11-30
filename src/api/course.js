@@ -76,3 +76,9 @@ export const wait = (id) => {
 export const getCourseRecord = (status) => {
   return getCoursesByAllFields(undefined,dayjs().format("YYYY-MM-DD"),status)
 };
+
+
+export const buySpecialCourse = (courseId) => {
+  const data = { "course-id": courseId };
+  return request.post("/v1/reserve_course", data);
+};

@@ -12,7 +12,7 @@
 
   <view class="course-detail">
     <span class="title">{{course.display_name}}</span>
-    <span class="book-info">{{bookStr}}</span>
+    <span wx:if="{{showBookStr}}" class="book-info">{{bookStr}}</span>
     <view class="coach-info" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
       <image class="coach-avatar" src="{{course.coach_avatar_url || avatarUrl}}" shape="round"></image>
       <view class="coach-info-right" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
@@ -23,7 +23,7 @@
     </view>
     <view class="time-info flex-row">
       <image class="icon-time icon" src="/assets/icons/clock.png"></image>
-      <span class="time">{{timeRangeStr}}</span>
+      <span wx:if="{{type!=='special'}}" class="time">{{timeRangeStr}}</span>
     </view>
     <view class="address-info flex-row">
       <view class="flex-row">
@@ -38,6 +38,9 @@
     <view class="course-desc">
       <view class="course-desc-title">课程介绍</view>
       <view class="course-desc-detail">{{course.description}}</view>
+       <view wx:if="{{type==='special'}}" class="course-desc-detail">课时：2h/节*2节</view>
+       <view wx:if="{{type==='special'}}" class="course-desc-detail">费用：600/人</view>
+       <view wx:if="{{type==='special'}}" class="course-desc-detail">此课程付款成功即为报名成功，一旦报名成功，不可退款。</view>
     </view>
   </view>
 
@@ -51,6 +54,7 @@
     <view class="reconfrom-container">
       <view class="reconfrom-body">
         <span class="title">{{course.display_name}}</span>
+        <view wx:if="{{showWaitStr}}" class="wait-info">当前候补人数<span class="wait-num">{{course.waiting_attenders}}</span>人</view>
         <view class="flex-row time-info1">
           <image class="icon-time icon" src="/assets/icons/clock.png"></image>
           <span class="time">{{timeRangeStr}}</span>
@@ -70,7 +74,7 @@
           </view>
           <view class="flex-row remark-info">
             <span>备注</span>
-            <t-input maxlength="{{50}}" align="right" value="{{remark}}" placeholder="备注信息仅教练可见">
+            <t-input maxlength="{{50}}" align="right" bind:change="onRemarkChange" value="{{remark}}" placeholder="备注信息仅教练可见">
             </t-input>
           </view>
         </view>
@@ -86,16 +90,38 @@
   <t-dialog class="dialog" visible="{{showDialogConfirm}}" title="{{status.cancel.text}}" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消" bind:confirm="onReconfirmTap" bind:cancel="closeDialog">
     <view slot="content">
       <view class="dialog-content-container">
-        <span>取消候补后将释放您的预约名额，课程卡将退回账户</span>
+        <span wx:if="{{course.user_can_reserve}}">取消预约后将释放您的预约名额，课程卡次数将退回账户</span>
+        <span wx:else>取消候补后将释放您的等位名额，课程卡次数将退回账户</span>
       </view>
     </view>
   </t-dialog>
-
 
     <!-- 选择会员卡 -->
   <t-picker visible="{{cardsChooseUIVisible}}" value="{{[choosedCard.value]}}" data-key="id" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindclose="onPickerClose">
               <t-picker-item options="{{cards}}"></t-picker-item>
   </t-picker>
+
+
+    <!-- 顶绳/先锋/野攀购买底部弹窗 -->
+  <t-popup visible="{{showBuySpecialUI}}" bind:visible-change="onSpecialUIVisiableChange" placement="bottom">
+    <view class="special">
+      <view class="reconfrom-body flex-cloumn">
+        <view class="buy-title">{{course.display_name}}</view>
+        <view class="price">¥600<span class="price-origin">¥680</span></view>
+        <view class="flex-row limits">
+          <view>使用规则</view>
+          <view>仅限持卡者本人使用，单日仅限使用1次</view>
+        </view>
+        <view class="privacy">
+          <checkbox bind:tap="onPrivacyTap" checked="{{privacyChecked}}"></checkbox>
+          <span calss="privacy-char">我已阅读并同意<span class="privacy-btn">购课协议</span>、<span class="privacy-btn">会员卡/课程卡使用须知</span>。</span>
+        </view>
+      </view>
+      <view class="bottom-contaioner confirm-bottom-contaioner">
+        <button class="btn btn-borde-rnone {{privacyChecked?'confirm-btn':'btn-disabled'}}" disabled="{{!privacyChecked}}" bind:tap="onSpecialConfirmTap">{{privacyChecked?"立即报名":"立即购买"}}</button>
+      </view>
+    </view>
+  </t-popup>
 
 </view>
 
