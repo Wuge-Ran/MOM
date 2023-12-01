@@ -36,7 +36,7 @@ Page({
    */
   onShow() {
     this.getTabBar()?.show();
-    console.log("onshow",454555);
+    console.log("onshow", 454555);
     this.updateCourse();
   },
 
@@ -127,7 +127,6 @@ Page({
   },
   onOk(event) {
     const { detail } = event;
-    console.log("====onOk", detail);
     const ids = [];
     detail.forEach((item) => {
       ids.push(item.id);
@@ -135,6 +134,8 @@ Page({
     const filterCourses = ids.length
       ? this.data.courses.filter((item) => ids.indexOf(item.coach_id) !== -1)
       : this.data.courses;
+
+    console.log("====onOk", detail,filterCourses);
     this.setData({
       visible: false,
       selectDetail: detail.map((item) => item.name).join("，"),
@@ -152,13 +153,17 @@ Page({
 
     this.setData({ triggered: true });
     const resp = await getCoursesByAllFields(curDay, curDay);
-    const courses = resp?.data?.courses || [];
+    const coursesAllType = resp?.data?.courses || [];
+    // const courses=coursesAllType;
+    const courses = coursesAllType.filter(
+      (item) => item.type === "group" || item.type === "open"
+    );
     const filterCourses = this.data.coachIds.length
       ? courses.filter(
           (item) => this.data.coachIds.indexOf(item.coach_id) !== -1
         )
       : courses;
-    console.log("updateCourse1:", courses, filterCourses);
-    this.setData({ triggered: false, courses, filterCourses });
+    console.log("updateCourse:",coursesAllType, courses, filterCourses);
+    this.setData({ triggered: false,courses, filterCourses });
   },
 });

@@ -17,7 +17,6 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
   const options = {
     header: {
       "to-date": toDate,
-      "status":status,
       fields:
         "course_id, type, display_name, description, address, start_time, duration_minutes, max_attenders, current_attenders, waiting_attenders, coach_id, coach_nickname, coach_avatar_url, coach_liked_by_user, status,user_can_cancel_reserve,user_can_reserve,user_can_wait",
       //,address_lat,address_long
@@ -63,15 +62,14 @@ export const cancelWait = (id) => {
 };
 
 export const book = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId /*,"card-id":cardId,"remark":remark*/ };
+  const data = { "course-id": courseId ,"cardins-id":cardId,/*"remark":remark*/ };
   return request.post("/v1/reserve_course", data);
 };
 
-export const wait = (id) => {
-  return request.post("/v1/wait_course", { "course-id": id });
+export const wait = (courseId, cardId, remark) => {
+  const data = { "course-id": courseId ,"cardins-id":cardId,/*"remark":remark*/ };
+  return request.post("/v1/wait_course", data);
 };
-
-
 
 export const getCourseRecord = (status) => {
   return getCoursesByAllFields(undefined,dayjs().format("YYYY-MM-DD"),status)

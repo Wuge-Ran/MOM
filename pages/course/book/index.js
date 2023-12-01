@@ -132,7 +132,6 @@ Page({
     const [cancelBookDisabled, cancelBookDisabledStr] =
       this.calCancelBookDisabled();
     const status = this.calStatus(started, cancelBookDisabled);
-    this.getVipCards();
     this.setData({
       started,
       status,
@@ -144,22 +143,13 @@ Page({
   },
 
   async getCourseDetail(courseId) {
-    const course = (await getCourseById(courseId))?.data?.course;
-    console.log("getCourseDetail:", course);
-    this.setData({ course });
-  },
-
-  async getVipCards(courseId) {
-    const cardsOrigin = (await getCourseCards())?.data?.cardcat_list || [];
-
-    const cards = cardsOrigin.map((card) => ({
-      value: card.id,
-      label: card.name,
-    }));
-    // const cards = this.data.cards;
-    console.log("getVipCards:", cards);
+    const resp =(await getCourseById(courseId))?.data;
+    const course = resp?.course||[];
+    const cardsOrigin=resp?.cardins_list||[];
+    const cards = cardsOrigin.map((card) => ({ value: card.cardcat_id, label: card.cardcat_name,...card }));
     const [fistCard] = cards;
-    this.setData({ cards, choosedCard: fistCard });
+    console.log("getCourseDetail:", course,cards);
+    this.setData({ course,cards, choosedCard: fistCard  });
   },
 
   calCourseStarted() {
@@ -307,12 +297,10 @@ Page({
 
   async onWaitTap(event) {
     this.setData({ showPurchaseUI: true });
-    await this.getVipCards();
   },
 
   async onBookTap(event) {
     this.setData({ showPurchaseUI: true });
-    await this.getVipCards();
   },
 
   onPrivacyTap(event) {
