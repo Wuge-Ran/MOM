@@ -16,7 +16,8 @@
         "pages/personal/member-card/index",   
         "pages/card/success/index",
         "pages/course/book/success/index",
-        "pages/course/coach-info/index"
+        "pages/course/coach-info/index",
+        "pages/personal/consume/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

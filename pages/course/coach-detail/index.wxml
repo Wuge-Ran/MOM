@@ -13,7 +13,7 @@
     <view class="coach-course">
         <t-tabs defaultValue="group" bind:change="onTabsChange" t-class="type-tabs">
             <t-tab-panel label="团课" value="group" />
-            <t-tab-panel label="私教" value="private" />
+            <t-tab-panel label="私教" value="privatelv1,privatelv2" />
         </t-tabs>
 
             <date-piker bind:dateChange="onDateChange" list="{{dateList}}"></date-piker>

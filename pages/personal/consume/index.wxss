@@ -1,0 +1,20 @@
+.container{
+    height: var(--content-without-tab-height);
+}
+
+
+.consume-detail{
+    padding: 32rpx;
+}
+.consume-name{
+    font-weight: 500;
+    margin-bottom: 24rpx;
+}
+.consume-price{
+    font-weight: 500;
+}
+
+.consume-content{
+    display: flex;
+    justify-content: space-between;
+}

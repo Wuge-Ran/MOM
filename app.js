@@ -13,7 +13,8 @@ App({
             traceUser: true,
         })
         //获取头像
-        readData('avatar.png', 'base64').then((res) => {
+        readData(`${globalData.login.token}.png`, 'base64').then((res) => {
+            console.log(123)
             const base64 = 'data:image/png;base64,' + res;
             globalData.avatar = base64;
         })

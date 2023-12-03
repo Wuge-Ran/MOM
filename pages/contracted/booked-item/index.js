@@ -51,8 +51,10 @@ Component({
 
   methods: {
     navToDetail() {
+        console.log('===data.props',this.properties)
+        const {coach_id} = this.properties.props;
       wx.navigateTo({
-        url: "/pages/course/coach-detail/index",
+        url: `/pages/course/coach-detail/index?id=${coach_id}`,
       });
     },
     

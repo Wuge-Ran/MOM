@@ -1,0 +1,18 @@
+<view class="container">
+    <view class="consume-list">
+        <view class="consume-detail">
+            <view class="consume-name">单人中级私教10次卡-续费</view>
+            <view class="consume-content">
+                <view>2023-09-09 11:11</view>
+                <view class="consume-price">¥2342</view>
+            </view>
+        </view>
+        <view class="consume-detail">
+            <view class="consume-name">单人中级私教10次卡-续费</view>
+            <view class="consume-content">
+                <view>2023-09-09 11:11</view>
+                <view class="consume-price">¥2342</view>
+            </view>
+        </view>
+    </view>
+</view>

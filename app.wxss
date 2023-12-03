@@ -1,44 +1,47 @@
 /**app.wxss**/
 .container {
-  width: 100vw;
-  /*设置tabbar高度+ios安全距离，防止被覆盖 */
-  height:  var(--content-height);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow-y: scroll;
+    width: 100vw;
+    /*设置tabbar高度+ios安全距离，防止被覆盖 */
+    height: var(--content-height);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 button {
-  background-color: --theme-color;
+    background-color: --theme-color;
 }
 
 page {
-  font-family: PingFang SC;
-  --light-color: #FFFFFF;
-  --black-color: #282825;
-  --theme-color: #C8D67A;
-  --sub-color1: #FF7F52;
-  --sub-color2: #7D8E64;
-  --sub-color3: #EC5B6C;
-  --neutral-color1: #F9F6F2;
-  --neutral-color2: #DBD9D8;
-  --neutral-color3: #AEAEAB;
-  --neutral-color4: #71716F;
-  --neutral-color5: #3C3C3C;
-  --td-toast-radius: 16rpx;
-  --td-toast-bg-color: rgba(0, 0, 0, 0.72);
-  --td-popup-border-radius: 24rpx;
+    font-family: PingFang SC;
+    --light-color: #FFFFFF;
+    --black-color: #282825;
+    --theme-color: #C8D67A;
+    --sub-color1: #FF7F52;
+    --sub-color2: #7D8E64;
+    --sub-color3: #EC5B6C;
+    --neutral-color1: #F9F6F2;
+    --neutral-color2: #DBD9D8;
+    --neutral-color3: #AEAEAB;
+    --neutral-color4: #71716F;
+    --neutral-color5: #3C3C3C;
+    --td-toast-radius: 16rpx;
+    --td-toast-bg-color: rgba(0, 0, 0, 0.72);
+    --td-popup-border-radius: 24rpx;
 
-  /* tabbar高度 */
-  --tabbar-height:140rpx;
+    /* tabbar高度 */
+    --tabbar-height: 140rpx;
 
-  /*减去(tabbar+ios安全距离)高度，防止被覆盖 */
-  --bottom-safe-height: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
+    /*减去(tabbar+ios安全距离)高度，防止被覆盖 */
+    --bottom-safe-height: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
 
-  /* 设置安全，如果是之定义tabar则高度为tabbar高度+ios安全距离，如果是官方tabbar则设置为0 */
-  /* --bottom-safe-height: 0rpx; */
+    /* 可用容器没有底 tab 页面高度 */
+    --content-without-tab-height: calc(100vh - calc(env(safe-area-inset-bottom)));
 
-  /* 可用容器高度 */
-  --content-height:calc(100vh - var(--bottom-safe-height));
+    /* 设置安全，如果是之定义tabar则高度为tabbar高度+ios安全距离，如果是官方tabbar则设置为0 */
+    /* --bottom-safe-height: 0rpx; */
+
+    /* 可用容器高度 */
+    --content-height: calc(100vh - var(--bottom-safe-height));
 }

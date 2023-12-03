@@ -1,14 +1,14 @@
 <!-- 轮播 -->
 <view class="container" >
-    <view class="member-card" wx:if="{{!cardinsList.length}}">
+    <view class="member-card" wx:if="{{cardinsList.length}}">
     <view class="swiper-view">
         <swiper class="swipers swiper-box" circular="{{true}}" previous-margin="{{swiperMargin}}" autoplay="{{autoplay}}" duration="500" bindchange="swiperChange">
-            <block wx:for="{{banner}}" wx:for-item="item" wx:key="id">
+            <block wx:for="{{cardinsList}}" wx:for-item="item" wx:key="id">
                 <swiper-item class="swiper-item" bindtap="toDetail" data-proid="{{item.id}}" style="text-align: center;">
                     <view class="swiper-item-view {{ swiperCurrent==index?'active':''}}">
-                        <image mode="scaleToFill" style="width: 100%;" class="swiper-image " src="{{item.url}}" alt=""></image>
+                        <image mode="scaleToFill" style="width: 100%;" class="swiper-image " src="./img/card-1.png" alt=""></image>
                         <view class="swiper-card-title">
-                            <view class="swiper-card-title-content">「嘉里创始 KC FOUNDERS」</view>
+                            <view class="swiper-card-title-content">{{item.cardcat_name}}</view>
                         </view>
                         <view class="swiper-card-point">
                             <view class="swiper-card-point-number">2</view>
@@ -25,7 +25,7 @@
             </block>
         </swiper>
         <view class="swiper-dots-view">
-            <view class="swiper-dot {{ swiperCurrent==index ? 'active':''}}" wx:for="{{banner}}" wx:key="id"></view>
+            <view class="swiper-dot {{ swiperCurrent==index ? 'active':''}}" wx:for="{{cardinsList}}" wx:key="cardcat_id"></view>
         </view>
     </view>
     <view class="member-card-content">

@@ -1,7 +1,12 @@
+.container{
+    height: var(--content-without-tab-height);
+}
+
 .member-card{
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-top: 24rpx;
     --td-switch-checked-color: #BDCF57;
     --td-cell-title-font-size:28rpx;
     --td-switch-width:78rpx;

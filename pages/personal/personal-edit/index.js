@@ -1083,8 +1083,8 @@ Page({
             success: res => {
                 console.log('uploadFile:', res.fileID);
                 globalData.login.avatarId = res.fileID;
-                saveImage(avatarUrl, 'avatar.png').then(()=>{
-                    return readData('avatar.png', 'base64');
+                saveImage(avatarUrl, `${globalData.login.token}.png`).then(()=>{
+                    return readData(`${globalData.login.token}.png`, 'base64');
                 }).then(res => {
                     const base64 = 'data:image/png;base64,' + res;
                     this.setData({

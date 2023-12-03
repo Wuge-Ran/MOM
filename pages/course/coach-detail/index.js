@@ -108,7 +108,14 @@ Page({
       courseType: type,
     });
     this.getCourseDate(type);
-    const filter = this.data.courseList.filter((item) => item.type === type);
+    const filter = this.data.courseList.filter((item) => {
+        const arr = type.split(',')
+        console.log('=',this.data.courseList,arr)
+        if(arr.length === 2){
+            return arr.indexOf(item.type)!==-1;
+        }
+        return item.type === type
+    });
     this.setData({
       filterCourseList: filter,
     });
@@ -128,13 +135,19 @@ Page({
       fields:
         "course_id, type, display_name, description, address, start_time, duration_minutes, max_attenders, current_attenders, waiting_attenders, coach_id, coach_nickname, coach_avatar_url, status",
     }).then((res) => {
+        const type = this.data.courseType
       const courseList = res.data.courses.filter(
         (item) => item.coach_id === this.data.coachId
       );
       console.log("===getCourseList", courseList);
-      const filter = courseList.filter(
-        (item) => item.type === this.data.courseType
-      );
+      const filter = courseList.filter((item) => {
+        const arr = type.split(',')
+        console.log('=',this.data.courseList,arr)
+        if(arr.length === 2){
+            return arr.indexOf(item.type)!==-1;
+        }
+        return item.type === type
+    });
       this.setData({
         courseList,
         filterCourseList: filter,
