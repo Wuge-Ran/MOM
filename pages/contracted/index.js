@@ -87,7 +87,6 @@ Page({
             course.isComplete=1;
             typedCourses.push(course);
           }
-            
         }
       }
     }
@@ -98,7 +97,7 @@ Page({
     standbyTab.value=standbyTab.value.format(standbyNum);
     doneTab.value=doneTab.value.format(doneNum);
     const tabs =[bookedTab,standbyTab,doneTab]
-    console.log("updateBooked:", typedCourses,this.data);
+    console.log("updateBooked:",courses,typedCourses,this.data.activeTab);
 
     this.setData({ triggered: false, tabs, });
     this.setData({courses:typedCourses})

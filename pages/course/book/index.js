@@ -10,7 +10,6 @@ import {
   wait,
   buySpecialCourse,
 } from "@src/api/course";
-import { getCourseCards } from "@src/api/card";
 const computedBehavior = require("miniprogram-computed").behavior;
 import Toast from "tdesign-miniprogram/toast/index";
 Page({

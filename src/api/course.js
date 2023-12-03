@@ -72,7 +72,7 @@ export const wait = (courseId, cardId, remark) => {
 };
 
 export const getCourseRecord = (status) => {
-  return getCoursesByAllFields(undefined,dayjs().format("YYYY-MM-DD"),status)
+  return getCoursesByAllFields(undefined,dayjs().add(1,"M").format("YYYY-MM-DD"),status)
 };
 
 

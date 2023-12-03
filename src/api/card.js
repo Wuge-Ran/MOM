@@ -3,7 +3,7 @@ import globalData from "../global/index";
 import dayjs from "dayjs";
 
 
-export const getCourseCards = (courseId) => {
+export const getCards = () => {
   const url = `/v1/cardcat`;
   const options = {};
   return request.get(url, {}, options);
