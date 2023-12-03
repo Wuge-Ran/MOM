@@ -11,13 +11,15 @@
 
   <!-- </view> -->
   <view class="course-detail">
+  <view wx:if="{{waitNum}}" class="wait-info">当前候补人数<span class="wait-num">{{waitNum}}</span>人</view>
     <view class="detail">课程：{{displayName}}</view>
-    <view class="detail">教练：{{coachNickname}}</view>
+    <view wx:if="{{coachNickname}}" class="detail">教练：{{coachNickname}}</view>
     <view class="detail">地点：{{address}}</view>
-    <view class="detail">时间：{{time}}</view>
+    <view  wx:if="{{time}}" class="detail">时间：{{time}}</view>
     <view class="course-desc">
       <view class="course-desc-title">温馨提示：</view>
-      <view class="course-desc-detail">开课前5小时内，不允许取消预约</view>
+      <view  wx:if="{{type==='special'}}" class="course-desc-detail">报名成功后不可取消，课程信息将会在小程序已约页面更新</view>
+      <view wx:else class="course-desc-detail">开课前5小时内，不允许取消预约</view>
     </view>
   </view>
 </view>

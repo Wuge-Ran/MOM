@@ -8,8 +8,8 @@ import {
   cancelWait,
   book,
   wait,
+  buySpecialCourse,
 } from "@src/api/course";
-import {getCourseCards} from "@src/api/card";
 const computedBehavior = require("miniprogram-computed").behavior;
 import Toast from "tdesign-miniprogram/toast/index";
 Page({
@@ -37,6 +37,8 @@ Page({
       content: "确定",
       variant: "base",
     },
+    //showPurchaseUI或showBuySpecialUI，根据courseType决定弹出哪种
+    showPupoUI:false,
 
     // 候补或预约底部弹窗是否展示
     showPurchaseUI: false,
@@ -50,6 +52,10 @@ Page({
     choosedCard: undefined,
     // selectKeys:{value:"id",label:"name"},
     remark: "",
+
+    //特殊课程购买弹窗
+    showBuySpecialUI: false,
+    privacyChecked: false,
   },
 
   computed: {
@@ -75,17 +81,29 @@ Page({
       return bookStr;
     },
 
-    reConfirmBuyStr(data){
-      let str="";
-      const {current_attenders,max_attenders}=data.course;
-      if(data.cards.length>0){
-        if(current_attenders<max_attenders)str="确认预约";
-        else str="确认候补";
-      }else{
-        str="购买会员卡"
+    reConfirmBuyStr(data) {
+      let str = "";
+      const { current_attenders, max_attenders } = data.course;
+      if (data.cards.length > 0) {
+        if (current_attenders < max_attenders) str = "确认预约";
+        else str = "确认候补";
+      } else {
+        str = "购买会员卡";
       }
       console.log(str);
       return str;
+    },
+
+    showBookStr(data) {
+      const { type } = data.course || {};
+      return type !== "private" && type !== "special";
+      // return false;
+    },
+
+    showWaitStr(data) {
+      const { type, user_can_wait } = data.course || {};
+      return user_can_wait && type !== "private" && type !== "special";
+      // return false;
     },
   },
 
@@ -93,9 +111,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const showPurchaseUI = options.showPurchaseUI === "true" ? true : false;
+    const showPupoUI = options.showPurchaseUI === "true" ? true : false;
     const { courseId = "CMock2110Group" } = options;
-    this.setData({ courseId, showPurchaseUI });
+    this.setData({ courseId, showPupoUI });
   },
 
   /**
@@ -108,33 +126,29 @@ Page({
   async init() {
     const { courseId } = this.data;
     await this.getCourseDetail(courseId);
+    const type=this.data.course.type;
     const started = this.calCourseStarted();
     const [cancelBookDisabled, cancelBookDisabledStr] =
       this.calCancelBookDisabled();
     const status = this.calStatus(started, cancelBookDisabled);
-    this.getVipCards();
     this.setData({
       started,
       status,
       cancelBookDisabledStr,
       cancelBookDisabled,
+      showBuySpecialUI:type==="special",
+      showPurchaseUI:this.data.showPupoUI && type!=="special"
     });
   },
 
   async getCourseDetail(courseId) {
-    const course = (await getCourseById(courseId))?.data?.course;
-    console.log("getCourseDetail:", course);
-    this.setData({ course });
-  },
-
-  async getVipCards(courseId) {
-    const cardsOrigin = (await getCourseCards())?.data?.cardcat_list||[];
-
-    const cards =cardsOrigin.map(card=>({value:card.id,label:card.name}));
-    // const cards = this.data.cards;
-    console.log("getVipCards:", cards);
+    const resp =(await getCourseById(courseId))?.data;
+    const course = resp?.course||[];
+    const cardsOrigin=resp?.cardins_list||[];
+    const cards = cardsOrigin.map((card) => ({ value: card.cardcat_id, label: card.cardcat_name,...card }));
     const [fistCard] = cards;
-    this.setData({ cards, choosedCard: fistCard });
+    console.log("getCourseDetail:", course,cards);
+    this.setData({ course,cards, choosedCard: fistCard  });
   },
 
   calCourseStarted() {
@@ -156,6 +170,7 @@ Page({
       user_can_reserve: canBook,
       user_can_wait: canWait,
       status,
+      type,
     } = data?.course || {};
     //是否已开课
     const statusInfo = {
@@ -164,6 +179,13 @@ Page({
     };
     if (started) {
       statusInfo.confirm = { disabled: true, visible: true, text: "已开课" };
+    } else if ((type==="special")) {
+      statusInfo.confirm = {
+        disabled: false,
+        visible: true,
+        text: "立即报名",
+        onTap: _.onSpecialCourseTap.bind(_),
+      };
     } else if (canBook) {
       statusInfo.confirm = {
         disabled: false,
@@ -226,13 +248,15 @@ Page({
     } = this.data.course || {};
     if (canCancelBook) {
       const isBeforefiveHourse = dayjs()
-        .add(deadline,"h")
+        .add(deadline, "h")
         .isBefore(dayjs(start_time));
       if (type === "open") {
         // 公开课随时可以取消预约
         disabled = false;
       } else if (isBeforefiveHourse) {
         // 如果距离开课时间大于5小时,可取消预约
+        disabled = false;
+      } else if (type === "group" && bookNum < 3) {
         disabled = false;
       } else {
         disabledStr = "开课前5小时内，不允许取消预约";
@@ -252,6 +276,10 @@ Page({
     cb && cb(event);
   },
 
+  onSpecialCourseTap(event) {
+    this.setData({ showBuySpecialUI: true });
+  },
+
   onCancelBookTap(event) {
     this.showDialog();
   },
@@ -268,16 +296,23 @@ Page({
 
   async onWaitTap(event) {
     this.setData({ showPurchaseUI: true });
-    await this.getVipCards();
   },
 
   async onBookTap(event) {
     this.setData({ showPurchaseUI: true });
-    await this.getVipCards();
+  },
+
+  onPrivacyTap(event) {
+    const chceked = !this.data.privacyChecked;
+    this.setData({ privacyChecked: chceked });
   },
 
   onConfromUIVisiableChange(event) {
     this.setData({ showPurchaseUI: event.detail.visible });
+  },
+
+  onSpecialUIVisiableChange(event) {
+    this.setData({ showBuySpecialUI: event.detail.visible });
   },
 
   onCoachTap(event) {
@@ -321,31 +356,68 @@ Page({
     if (this.data.cards.length > 0) {
       //有卡，预约或候补
       const courseId = this.data.courseId;
-      const { user_can_reserve: canBook, user_can_wait: canWait, status, } = this.data?.course || {};
-      const  requestRunc = canBook?book:wait;
-      const successTitle= canBook?"预约成功":"候补成功";
-      
-      requestRunc(courseId, this.data.choosedCard.value).then((resp) => {
-        if (resp?.data?.result === 0) {
-          //预约或候补成功
-          this.setData({ showPurchaseUI: false });
-          const { address, coach_nickname, display_name } = this.data.course;
-          const param = { successTitle, displayName: display_name, coachNickname: coach_nickname, address, time: this.data.timeStr, };
-          const paramURI = queryString(param);
-          wx.navigateTo({
-            url: `/pages/course/book/success/index${paramURI}`,
-          });
-        } else {
-          //预约或候补失败
-          Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+      const {
+        user_can_reserve: canBook,
+        user_can_wait: canWait,
+        status,
+        waiting_attenders,
+      } = this.data?.course || {};
+      const requestRunc = canBook ? book : wait;
+      const type = canBook ? "booked" : "wait";
+      const waitPeo=canBook?0:waiting_attenders+1;
+      requestRunc(courseId, this.data.choosedCard.value, this.data.remark).then((resp) => {
+          if (resp?.data?.result === 0) {
+            //预约或候补成功
+            this.setData({ showPurchaseUI: false });
+            const { address, coach_nickname, display_name } = this.data.course;
+            const param = {
+              type,
+              displayName: display_name,
+              coachNickname: coach_nickname,
+              address,
+              time: this.data.timeStr,
+              waitPeo,
+            };
+            const paramURI = queryString(param);
+            wx.navigateTo({
+              url: `/pages/course/book/success/index${paramURI}`,
+            });
+          } else {
+            //预约或候补失败
+            Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+          }
         }
-      });
+      );
     } else {
       // 无卡，跳转到购卡首页
       wx.switchTab({
         url: `/pages/card/index`,
       });
     }
+  },
+
+  //特殊课程购买逻辑
+  onSpecialConfirmTap(){
+    const courseId = this.data.courseId;
+    buySpecialCourse(courseId).then((resp) => {
+        if (resp?.data?.result === 0) {
+          this.setData({ showBuySpecialUI: false });
+          const { address, display_name } = this.data.course;
+          const param = { type:"special", displayName: display_name, address, };
+          const paramURI = queryString(param);
+          wx.navigateTo({
+            url: `/pages/course/book/success/index${paramURI}`,
+          });
+        } else {
+          //失败
+          Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+        }
+      }
+    );
+  },
+
+  onRemarkChange(event) {
+    this.setData({ remark: event.detail.value });
   },
 
   onChooseCardTap(event) {
@@ -370,8 +442,12 @@ Page({
       if (resp?.data?.result === 0) {
         this.init();
         Toast({ context: this, selector: "#t-toast", message: "取消成功" });
-      }else{
-        Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+      } else {
+        Toast({
+          context: this,
+          selector: "#t-toast",
+          message: resp?.data?.message,
+        });
       }
     });
   },
@@ -382,8 +458,12 @@ Page({
       if (resp?.data?.result === 0) {
         this.init();
         Toast({ context: this, selector: "#t-toast", message: "取消成功" });
-      }else{
-        Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+      } else {
+        Toast({
+          context: this,
+          selector: "#t-toast",
+          message: resp?.data?.message,
+        });
       }
     });
   },
