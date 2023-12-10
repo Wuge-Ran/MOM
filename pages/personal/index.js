@@ -31,9 +31,6 @@ Page({
                 userInfo:data
             })
         })
-        this.setData({
-            avatarUrl:globalData.avatar
-        })
     },
 
     /**

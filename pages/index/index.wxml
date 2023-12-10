@@ -19,7 +19,7 @@
          <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="index"></view>
         </view>
         <view class="userinfo-logo">
-            <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
+            <image class="userinfo-avatar" src="{{userInfo.avatar_fileid}}" mode="cover"></image>
             <text class="userinfo-nickname">{{ 'Hello '+userInfo.nickname+'!'}}</text>
         </view>
         <view class="userinfo-description">

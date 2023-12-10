@@ -1082,19 +1082,8 @@ Page({
             filePath: avatarUrl, // 微信本地文件，通过选择图片，聊天文件等接口获取
             success: res => {
                 console.log('uploadFile:', res.fileID);
+                updateInfo('avatar_fileid',res.fileID)
                 globalData.login.avatarId = res.fileID;
-                saveImage(avatarUrl, `${globalData.login.token}.png`).then(()=>{
-                    return readData(`${globalData.login.token}.png`, 'base64');
-                }).then(res => {
-                    const base64 = 'data:image/png;base64,' + res;
-                    this.setData({
-                        avatarUrl:base64
-                    })
-                    globalData.avatar = base64;
-                    wx.showToast({
-                        title: '头像上传成功',
-                    })
-                })
                 
 
             },
@@ -1108,9 +1097,7 @@ Page({
     },
     onBlur(e) {
         console.log(e)
-        updateInfo('nickname', e.detail.value).then(res => {
-
-        })
+        updateInfo('nickname', e.detail.value)
         this.setData({
             nicknameValue: e.detail.value
         })
@@ -1205,9 +1192,9 @@ Page({
         getUserInfo().then(({
             data
         }) => {
-            console.log('==data', data);
             const [w1, w2] = data.weight.split('.')
             this.setData({
+                userAvatar: data.avatar_fileid,
                 nicknameValue: data.nickname,
                 genderText: data.gender,
                 genderValue: [data.gender],

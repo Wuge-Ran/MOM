@@ -2,7 +2,7 @@
 <view class="container">
 <view class="avatar-name">
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-        <image class="avatar" src="{{avatarUrl}}"></image>
+        <image class="avatar" src="{{userAvatar}}"></image>
     </button>
     <view class="name">{{nicknameValue}}</view>
 </view>
