@@ -1,3 +1,5 @@
+import { getOrderList } from '@src/api/personal';
+
 // pages/personal/index.js
 Page({
 
@@ -18,7 +20,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        getOrderList().then(({data})=>{
+            const map = data.orders.map(item=>({
+                id:item.cardcat_id,
+                type:item.cardcat_name,
+                time:item.order_created_at.replace('T',' '),
+                status:'支付成功',
+                money:item.order_paid_price
+            }))
+            this.setData({
+                orderList:map
+            })
+            console.log('===res',data)
+        })
     },
 
     /**
