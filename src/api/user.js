@@ -40,3 +40,7 @@ export const login = function () {
     const url =`/v1/homepage`;
     return request.get(url);
   }
+  export const postScanCheckin =() =>{
+    const url =`/v1/scan_checkin_daypass`;
+    return request.post(url);
+  }

@@ -1084,8 +1084,9 @@ Page({
                 console.log('uploadFile:', res.fileID);
                 updateInfo('avatar_fileid',res.fileID)
                 globalData.login.avatarId = res.fileID;
-                
-
+                this.setData({
+                    userAvatar:res.fileID
+                })
             },
             fail: err => {
                 console.error(err)
@@ -1192,9 +1193,9 @@ Page({
         getUserInfo().then(({
             data
         }) => {
-            const [w1, w2] = data.weight.split('.')
+            const [w1, w2] = data.weight?.split('.')??[]
             this.setData({
-                userAvatar: data.avatar_fileid,
+                userAvatar: globalData.userInfo.avatar_fileid,
                 nicknameValue: data.nickname,
                 genderText: data.gender,
                 genderValue: [data.gender],

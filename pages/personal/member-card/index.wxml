@@ -10,10 +10,10 @@
                         <view class="swiper-card-title">
                             <view class="swiper-card-title-content">{{item.cardcat_name}}</view>
                         </view>
-                        <view class="swiper-card-point">
+                        <!-- <view class="swiper-card-point">
                             <view class="swiper-card-point-number">2</view>
                             <view class="swiper-card-point-unit">次剩余</view>
-                        </view>
+                        </view> -->
                         <view class="swiper-card-date">
                             <view class="swiper-card-date-mini">有效期</view>
                             <view>从2023-09-09</view>

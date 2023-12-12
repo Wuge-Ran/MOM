@@ -1,4 +1,6 @@
-import { getOrderList } from '@src/api/personal';
+import {
+    getOrderList
+} from '@src/api/personal';
 
 // pages/personal/index.js
 Page({
@@ -7,31 +9,37 @@ Page({
      * 页面的初始数据
      */
     data: {
-        orderList:[{
-            id:1,
-            type:"单人中级私教10次卡-续费",
-            time:'2023-09-09 11:11',
-            status:'支付成功',
-            money:"3680"
-        }]
+        orderList: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        getOrderList().then(({data})=>{
-            const map = data.orders.map(item=>({
-                id:item.cardcat_id,
-                type:item.cardcat_name,
-                time:item.order_created_at.replace('T',' '),
-                status:'支付成功',
-                money:item.order_paid_price
-            }))
-            this.setData({
-                orderList:map
+        getOrderList().then(({
+            data
+        }) => {
+            const typeCss = {
+                'card_daypass_time':'time',
+                'card_daypass_bundle':'bundle',
+                'card_group':'group',
+                'card_privatelv1':'private',
+                'card_privatelv2':'private',
+            } 
+            const map = data.orders.map(item => {
+                return {
+                    id: item.cardcat_id,
+                    type: item.cardcat_name,
+                    time: item.order_created_at.replace('T', ' '),
+                    status: '支付成功',
+                    money: item.order_paid_price,
+                    curClass:typeCss[item.order_subtype]
+                }
             })
-            console.log('===res',data)
+            this.setData({
+                orderList: map
+            })
+            console.log('===res', data)
         })
     },
 
@@ -45,8 +53,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
-    },
+    onShow() {},
 
     /**
      * 生命周期函数--监听页面隐藏

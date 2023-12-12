@@ -6,13 +6,13 @@
         >
             <view class="order-list-wrap">
                 <view class="order-list private-coach" wx:for="{{orderList}}"  wx:key="id">
-                    <view class="order-list-text"> 
+                    <view class="order-list-text clip {{item.curClass}}"> 
                         <text class="order-type">{{item.type}}</text>
                         <text class="order-time">{{item.time}}</text>
                     </view>
-                    <view class="order-list-text">
+                    <view class="order-list-text ">
                         <text class="order-status">{{item.status}}</text>
-                        <text class="order-money">¥ {{item.money}}</text>
+                        <text class="order-money">¥{{item.money}}</text>
                     </view>
                 </view>
             </view>  

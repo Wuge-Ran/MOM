@@ -134,7 +134,7 @@
 .coach-course-scroll {
     display: flex;
     flex: 1;  
-    height: 100rpx;
+    min-height: 100rpx;
     padding-top: 16rpx;
     flex-direction: column;
 }

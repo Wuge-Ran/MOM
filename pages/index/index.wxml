@@ -1,22 +1,21 @@
 <!--index.wxml-->
 <view class="container">
     <view class="swiper-box">
-        <swiper class="swiper-img" indicator-dots="{{false}}"
-        autoplay="{{autoplay}}" interval="{{10000}}" circular="{{true}}" duration="{{500}}" bindchange="swpierChange">
-        <block wx:for="{{swiperList}}" wx:key="index">
-          <swiper-item>
-            <view class="swiper-item">
-                <image src="{{item.value}}" mode="cover"/>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
+        <swiper class="swiper-img" indicator-dots="{{false}}" autoplay="{{autoplay}}" interval="{{10000}}" circular="{{true}}" duration="{{500}}" bindchange="swpierChange">
+            <block wx:for="{{swiperList}}" wx:key="index">
+                <swiper-item>
+                    <view class="swiper-item">
+                        <image src="{{item.value}}" mode="cover" />
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
         <!-- <t-swiper class="swiper-img" autoplay="{{true}}" interval="{{10000}}" height="100vh" navigation="{{ { type: 'dots-bar' } }}" list="{{swiperList}}"> t-class-nav="card-theme-nav"
         </t-swiper> -->
     </view>
     <view class="userinfo" wx:if="{{isLogin}}">
         <view class="my-dot-list">
-         <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="index"></view>
+            <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="index"></view>
         </view>
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatar_fileid}}" mode="cover"></image>
@@ -28,7 +27,7 @@
                 <view class="description-item-content">
                     <view class="description-item-number {{userInfo.checkin_times?'':'gray'}}">{{userInfo.checkin_times}}</view>
                     <view class="description-item-unit">次</view>
-                    
+
                 </view>
             </view>
             <view class="description-item">
@@ -36,9 +35,7 @@
                 <view class="description-item-content">
                     <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards}}</view>
                     <view class="description-item-unit"> 张</view>
-                    <image wx:if="{{!userInfo.available_cards}}" 
-                    bind:tap="linkToCard"
-                    class="description-item-buy" src="./img/buy-card.png" mode=""/>
+                    <image wx:if="{{!userInfo.available_cards}}" bind:tap="linkToCard" class="description-item-buy" src="./img/buy-card.png" mode="" />
                 </view>
             </view>
         </view>
@@ -50,11 +47,11 @@
                     <view class="my-course-content-title">{{userInfo.course.display_name}}</view>
                     <view class="my-course-content-message">
                         <view class="my-course-content-message-item">
-                            <image src="./img/course-time.png" alt=""/>
+                            <image src="./img/course-time.png" alt="" />
                             <view class="course-text">{{timeRangeStr}}</view>
                         </view>
                         <view class="my-course-content-message-item course-coach">
-                            <image src="./img/course-coach.png" alt=""/>
+                            <image src="./img/course-coach.png" alt="" />
                             <view class="course-text">Leo</view>
                         </view>
                     </view>
@@ -64,7 +61,7 @@
     </view>
     <view class="userinfo" bindtap="bindInfoTap" wx:else>
         <view class="my-dot-list">
-         <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="*this"></view>
+            <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="*this"></view>
         </view>
         <view class="userinfo-logo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
@@ -89,20 +86,15 @@
         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
 
     </view>
-    <t-popup
-    class="check-success"
-  visible="{{checkSuccessVisible}}"
-  bind:visible-change="onVisibleChange"
-  placement="center"
->
-  <view class="popup-header">
-  <image class="popup-header-img" src="./img/success.png" mode="aspectFill"/>
-  <view class="popup-header-text">签到成功</view>
-  </view>
-  <view class="popup-content">
-    <view class="popup-content-text">您于YYYY-MM-DD HH:MM:SS使用{卡名占位}成功签到1次</view>
-    <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
-  </view>
-</t-popup>
- <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="linkToCard" bind:onCancel="onMembercardCancel"/>
+    <t-popup class="check-success" visible="{{checkSuccessVisible}}" bind:visible-change="onVisibleChange" placement="center">
+        <view class="popup-header">
+            <image class="popup-header-img" src="./img/success.png" mode="aspectFill" />
+            <view class="popup-header-text">签到成功</view>
+        </view>
+        <view class="popup-content">
+            <view class="popup-content-text">您于YYYY-MM-DD HH:MM:SS使用{卡名占位}成功签到1次</view>
+            <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
+        </view>
+    </t-popup>
+    <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="linkToCard" bind:onCancel="onMembercardCancel" />
 </view>

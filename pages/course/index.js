@@ -44,6 +44,7 @@ Page({
     await this.getCalendar();
     this.updateCourse();
     this.getCoach();
+    console.log('===getDayOfWeek',getDayOfWeek('2023-12-11'))
   },
 
   /**

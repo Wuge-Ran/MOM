@@ -1,5 +1,5 @@
 <!--pages/personal/index.wxml-->
-<view class="container personal">
+<scroll-view class="container personal" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
     <image class="personal-logo" src="./img/personal-logo.png" mode="aspectFit" alt="" />
     <view class="personal-info" data-link="/pages/personal/personal-edit/index" bind:tap="linkTo">
         <image class="personal-info-avatar" src="{{userInfo.avatar_fileid}}" />
@@ -33,4 +33,4 @@
         </t-cell>
     </view>
     <view class="personal-bottom"></view>
-</view>
+</scroll-view>

@@ -1,6 +1,7 @@
 import globalData from "../../src/global/index";
 import {
-    getHomeData
+    getHomeData,
+    postScanCheckin
 } from "@src/api/user";
 import dayjs from "dayjs";
 const computedBehavior = require("miniprogram-computed").behavior;
@@ -37,7 +38,7 @@ Page({
         autoplay: true,
         currentIndex: 0,
         checkSuccessVisible: false,
-        noMembercardVisible: true,
+        noMembercardVisible: false,
         avatarUrl:''
     },
     computed: {
@@ -85,8 +86,8 @@ Page({
             noMembercardVisible: false,
         });
     },
-    onLoad() {
-        console.log("===首页 onload 触发");
+    onLoad(options) {
+        console.log("===首页 onload 触发",options);
         if (wx.requirePrivacyAuthorize) {
             wx.requirePrivacyAuthorize({
                 success: res => {
@@ -98,6 +99,20 @@ Page({
                     wx.reLaunch({
                         url: "/pages/index/index"
                     });
+                }
+            })
+        }
+        // 说明已经登录
+        if (globalData.login.phoneNumber && options.type ==='scan_checkin_daypass'){
+            postScanCheckin().then(({data})=>{
+                if(data.cardins){
+                    this.setData({
+                        checkSuccessVisible:true
+                    })
+                }else{
+                    this.setData({
+                        noMembercardVisible:true
+                    })
                 }
             })
         }

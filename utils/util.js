@@ -39,7 +39,7 @@ export function getDayOfWeek(dateString) {
   const dayOfWeek = date.getDay();
 
   // 定义星期几的字符串数组
-  const daysOfWeek = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+  const daysOfWeek = ["周日","周一", "周二", "周三", "周四", "周五", "周六" ];
 
   // 返回星期几的字符串
   return daysOfWeek[dayOfWeek];
