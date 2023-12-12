@@ -36,7 +36,6 @@ Page({
    */
   onShow() {
     this.getTabBar()?.show();
-    console.log("onshow", 454555);
     this.updateCourse();
   },
 
