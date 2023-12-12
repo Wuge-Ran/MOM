@@ -1,27 +1,31 @@
 <!--pages/card/index.wxml-->
 <view class="container">
-  <!-- 成功图标 -->
-  <image class="success-icon" src="/assets/icons/success.png"></image>
+  <view class="header">
+    <image class="success-icon" src="/assets/icons/success.png"></image>
   <view class="succ-title">购买成功</view>
+  </view>
+  <!-- 成功图标 -->
+
 
   <!-- <view class="card-root"> -->
   <!-- 会员卡 -->
   <view class="card-container succ-card" bind:tap="onCardTap">
-    <image class="card-bg" src="/assets/images/place-card.png"></image>
-    <!-- <image class="card-event" src="/assets/images/event.png"></image> -->
-    <view class="card-info">
-      <view class="card-title">通用无限次月卡 (30天)</view>
-      <view class="card-times">100<span class="card-times-sufix">天</span></view>
-      <view class="price-info">
-        <span class="price">￥17400</span>
-        <span class="per-price">￥600/次</span>
-        <span class="pos-limits">支持全部场馆</span>
-      </view>
-    </view>
+        <image class="card-bg" src="{{card.bgImg}}"></image>
+        <image class="card-event" src="{{card.logo}}"></image>
+        <view class="card-info">
+          <view class="card-title">{{card.name}}</view>
+          <view  wx:if="{{card.class==='time'}}" class="card-times">{{card.max_expire_days}}<span class="card-times-sufix">天</span></view>
+          <view  wx:else class="card-times">{{card.max_consume_times}}<span class="card-times-sufix">次课</span></view>
+          
+          <view class="price-info">
+            <span class="price">￥{{card.price}}</span>
+            <span class="per-price">￥{{(card.price)}}</span>
+          </view>
+        </view>
   </view>
   <view class="succ-desc">
-    <view class="buy-title">30天月卡</view>
-    <view class="user-limit">使用期限：365天</view>
+    <view class="buy-title">{{card.name}}</view>
+    <view class="user-limit">使用期限：{{card.useLimts}}天</view>
   </view>
   </view>
 <!-- </view> -->

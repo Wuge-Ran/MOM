@@ -3,6 +3,7 @@
 import { getCards, getPrepayInfo, postBuyResult } from "@src/api/card";
 const computedBehavior = require("miniprogram-computed").behavior;
 import Toast from "tdesign-miniprogram/toast/index";
+import globalData from "@src/global/index";
 Page({
   behaviors: [computedBehavior],
   /**
@@ -95,7 +96,6 @@ Page({
   onCardTap(events) {
     const curCard = events?.currentTarget?.dataset?.card || {};
     console.log("onCardTap:", events, curCard);
-
     this.setData({ showPurchaseUI: true, curCard, privacyChecked: false });
   },
 
@@ -162,7 +162,12 @@ Page({
         postBuyResult(order.order_id).then(({ data }) => {
           console.log("支付查询结果", data);
           if (data.result === 0) {
+            this.setData({ showPurchaseUI: false });
             //支付成功
+            globalData.curBuyCard=this.data.curCard;
+            wx.navigateTo({
+              url: `/pages/card/success/index`,
+            });
           } else {
             Toast({
               context: this,
