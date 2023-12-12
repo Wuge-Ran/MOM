@@ -1,5 +1,7 @@
 {
     "navigationBarTitleText": "会员卡",
     "navigationBarBackgroundColor": "#F9F6F2",
-    "usingComponents": {}
+    "usingComponents": {
+        "t-toast": "tdesign-miniprogram/toast/toast"
+    }
 }
