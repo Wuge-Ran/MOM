@@ -15,7 +15,7 @@
             <span class="per-price {{item.type==='group'?'group-per-price':''}}">￥{{(item.display_list_price)}}</span>
           </view>
         </view>
-         <view class='hint'>{{item.display_footnote}}</view>
+         <view class="hint {{item.type==='group'?'group-hint':''}}">{{item.display_footnote}}</view>
       </view>
     </scroll-view>
   </view>
