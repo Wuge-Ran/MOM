@@ -19,7 +19,7 @@ Page({
     filterCourses: [],
     visible: false,
     selectDetail: "",
-    courseType: "group, open, private, special",
+    courseType: "group, open",
     coachIds: [],
     coachList: [],
   },

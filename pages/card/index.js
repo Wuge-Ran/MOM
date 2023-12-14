@@ -22,11 +22,11 @@ Page({
       其他: "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
     },
     cardsTypeTitle: {
-      o4_private: "私教课程",
-      o3_group: "团课课程",
-      o2_bundle: "门票（Day Pass）",
-      o2_time: "",
-      o1_active: "特惠活动",
+      1: "特惠活动",
+      2: "门票（Day Pass）",
+      3: "",
+      4: "团课课程",
+      5: "私教课程",
     },
   },
   computed: {
@@ -63,33 +63,94 @@ Page({
     for (const cardOrigin of cardsOrigin) {
       //浅拷贝，并增加localType用于UI上分栏目展示
       const card = { ...cardOrigin };
-      const { type, class: classic,max_consume_times,max_expire_days } = card;
-      switch (type) {
-        case "privatelv1":
-        case "privatelv2":
-          card.localType = "o4_private";
+      const {
+        type,
+        class: classic,
+        max_consume_times,
+        max_expire_days,
+        display_title,
+        display_subtitle,
+        display_badge,
+        display_bgstyle,
+        display_ontop,
+      } = card;
+      if (display_ontop) {
+        card.localType = 1;
+      } else {
+        switch (type) {
+          case "privatelv1":
+          case "privatelv2":
+            card.localType = 5;
+            break;
+          case "daypass":
+            if(classic==="bundle")card.localType = 2;
+            else card.localType = 3;
+            break;
+          case "group":
+            card.localType = 4;
+            break;
+          default:
+            card.localType = type;
+            break;
+        }
+      }
+
+      switch (classic) {
+        case "bundle":
+          card.times=max_consume_times?`${max_consume_times}`:"无限";
+          card.suffix='次课'
+          break;
+        case "time":
+          card.times=max_expire_days?`${max_expire_days}`:"无限";
+          card.suffix='天'
+          break;
+       
+        default:
+          card.localType = type;
+          break;
+      }
+
+      switch (display_bgstyle) {
+        case "pink":
           card.bgImg = "/assets/images/private-card.png";
           break;
-        case "daypass":
-          card.localType = `o2_${classic}`;
+        case "brown":
+          card.bgImg = "/assets/images/month-card.png";
+          break;
+        case "lightgreen":
           card.bgImg = "/assets/images/place-card.png";
           break;
-        case "group":
-          card.localType = `o3_${type}`;
+        case "deepgreen":
           card.bgImg = "/assets/images/group-card.png";
           break;
         default:
           card.localType = type;
           break;
       }
-      card.logo='/assets/images/event.png';
-      card.useLimts=`${max_expire_days==='NULL'?"无限次":max_expire_days}`;
+
+
+      card.logo =
+        display_badge === "trial"
+          ? "/assets/images/event.png"
+          : display_badge === "discount_rebuy"
+          ? "/assets/images/rebug.png"
+          : "";
+      card.useLimts = `${max_expire_days ? max_expire_days : "无限次"}`;
       const { localType } = card;
       if (!cardsByType[localType]) {
         cardsByType[localType] = [];
       }
+
+      card.title =
+        display_title && display_subtitle
+          ? `${display_title}  |  ${display_subtitle}`
+          : display_title;
       cardsByType[localType].push(card);
     }
+    for(const key in cardsByType){
+      console.log(key);
+    }
+    console.log(cardsByType,99999);
     return cardsByType;
   },
 
@@ -164,7 +225,7 @@ Page({
           if (data.result === 0) {
             this.setData({ showPurchaseUI: false });
             //支付成功
-            globalData.curBuyCard=this.data.curCard;
+            globalData.curBuyCard = this.data.curCard;
             wx.navigateTo({
               url: `/pages/card/success/index`,
             });

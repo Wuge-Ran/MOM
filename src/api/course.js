@@ -62,12 +62,12 @@ export const cancelWait = (id) => {
 };
 
 export const book = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,/*"remark":remark*/ };
+  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":remark };
   return request.post("/v1/reserve_course", data);
 };
 
 export const wait = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,/*"remark":remark*/ };
+  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":remark };
   return request.post("/v1/wait_course", data);
 };
 
