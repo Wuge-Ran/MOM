@@ -6,17 +6,16 @@
     <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
       <view class="card-container" wx:for="{{cards}}" data-card="{{item}}" wx:key="id" bind:tap="onCardTap">
         <image class="card-bg" src="{{item.bgImg}}"></image>
-        <image class="card-event" src="{{item.logo}}"></image>
+        <image class="card-event" wx:if="{{item.logo}}" src="{{item.logo}}"></image>
         <view class="card-info">
-          <view class="card-title">{{item.name}}</view>
-          <view  wx:if="{{item.class==='time'}}" class="card-times">{{item.max_expire_days}}<span class="card-times-sufix">天</span></view>
-          <view  wx:else class="card-times">{{item.max_consume_times}}<span class="card-times-sufix">次课</span></view>
-          
+          <view class="card-title {{item.type==='group'?'group-card-title':''}}">{{item.title}}</view>
+          <view  class="card-times">{{item.times}}<span class="card-times-sufix">{{item.suffix}}</span></view>
           <view class="price-info">
-            <span class="price">￥{{item.price}}</span>
-            <span class="per-price">￥{{(item.price)}}</span>
+            <span class="price {{item.type==='group'?'group-price':''}}">￥{{item.price}}</span>
+            <span class="per-price {{item.type==='group'?'group-per-price':''}}">￥{{(item.display_list_price)}}</span>
           </view>
         </view>
+         <view class='hint'>{{item.display_footnote}}</view>
       </view>
     </scroll-view>
   </view>
@@ -25,7 +24,7 @@
     <view class="reconfrom-container">
       <view class="reconfrom-body flex-cloumn">
         <view class="buy-title">{{curCard.name}}</view>
-        <view class="price">￥{{curCard.price}}<span class="price-origin">￥{{curCard.price}}</span></view>
+        <view class="price">￥{{curCard.price}}<span class="price-origin">￥{{curCard.display_list_price}}</span></view>
         <view class="flex-row">
           <view>使用期限</view>
           <view>{{curCard.useLimts}} 天</view>

@@ -2,7 +2,7 @@
 <view class="course-item-container flex-row">
  <view class="course-coach flex-row">
   <view class="coach-info flex-col" bind:tap="onCoachTap">
-    <image class="coach-avatar" src="{{props.coach_avatar||avatarUrl}}" shape="round"></image>
+    <image class="coach-avatar" src="{{props.coach_avatar_url||avatarUrl}}" shape="round"></image>
     <span class="coach-name">{{props.coach_nickname}}</span>
   </view>
   <view class="course-info flex-col" bind:tap="onCourseTap" >

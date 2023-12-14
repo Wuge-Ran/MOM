@@ -21,7 +21,7 @@ Component({
       const { start_time, duration_minutes = 0 } = data.props;
       const startDate = dayjs(start_time);
       const endDate = startDate.add(duration_minutes, "m");
-      return `${startDate.format("hh:mm")}-${endDate.format("hh:mm")}`;
+      return `${startDate.format("HH:mm")}-${endDate.format("HH:mm")}`;
     },
 
     bookStr(data) {

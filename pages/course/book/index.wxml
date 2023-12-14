@@ -15,7 +15,7 @@
     <span wx:if="{{showBookStr}}" class="book-info">{{bookStr}}</span>
     <view class="coach-info" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
       <image class="coach-avatar" src="{{course.coach_avatar_url || avatarUrl}}" shape="round"></image>
-      <view class="coach-info-right" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
+      <view class="coach-info-right" data-id="{{course.coach_id}}">
         <span class="coach-name">{{course.coach_nickname}}</span>
         <span class="ohter-coach">点击查看教练其他课程</span>
         <image class="arrow-right" src="/assets/icons/arrow-right.png"></image>

@@ -22,9 +22,8 @@ Component({
       return `${startDate.format("hh:mm")}-${endDate.format("hh:mm")}`;
     },
 
-
-
     status(data) {
+      
       let statusBtnStr="查看";
       let statusBtnClass="";
       const {status,isComplete } = data.props;
@@ -42,7 +41,9 @@ Component({
   },
 
   lifetimes: {
-    created() {},
+    created() {
+      console.log('3rw3rwerewrw');
+    },
     attached() {
     },
     moved() {},
@@ -69,11 +70,16 @@ Component({
       // globalData.course.courses = this.data;
     },
 
+    navToCourseDetail(showPurchaseUI=false){
+      const {course_id} =this.data.props;
+      const url=`/pages/course/book/index?courseId=${course_id}&showPurchaseUI=${showPurchaseUI}`;
+      wx.navigateTo({ url });
+    },
+
     onStatusBtnTap(event) {
-      wx.navigateTo({
-        url: "/pages/course/book/index",
-      });
-      globalData.course.courses = this.data;
+      const {status} =this.data.props;
+      const showPurchaseUI= false;
+      this.navToCourseDetail(showPurchaseUI);
     },
   },
   observers: {},
