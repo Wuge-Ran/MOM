@@ -58,7 +58,7 @@ Page({
         const reg = /(http|https):\/\/([\w.]+\/?)\S*/ig;
         if(link.match(reg)){
             wx.navigateTo({
-                url: '/pages/webview/index?webview='+webview,
+                url: '/pages/webview/index?webview='+link,
                 })
           }else{
             wx.navigateTo({
