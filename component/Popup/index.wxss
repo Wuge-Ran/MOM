@@ -1,3 +1,6 @@
+.container{
+    height: 100vh;
+}
 .pop-up{
     --td-button-border-radius:0;
 }
@@ -68,4 +71,8 @@
 .pop-up .ok-button{
     background-color: var(--theme-color);
     --td-button-default-border-color:var(--theme-color);
+}
+
+.container{
+    overflow: hidden;
 }

@@ -26,11 +26,11 @@
                 <image class="personal-item-img" src="./img/user.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="消息订阅管理" hover arrow bordered="{{false}}"	data-link="/pages/personal/message-center/index" bind:tap="linkTo">
+        <!-- <t-cell title="消息订阅管理" hover arrow bordered="{{false}}"	data-link="/pages/personal/message-center/index" bind:tap="linkTo">
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/message.png" mode="aspectFit" />
             </view>
-        </t-cell>
+        </t-cell> -->
     </view>
     <view class="personal-bottom"></view>
 </scroll-view>

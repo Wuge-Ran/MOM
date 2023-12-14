@@ -1,30 +1,27 @@
 <t-popup class="pop-up" visible="{{visible}}" placement="top">
     <view class="popup-content">
         <view class="popup-title">教练</view>
-        <scroll-view 
-            scroll-y="fasle" 
-            show-scrollbar="false"
-        >
+        <scroll-view scroll-y="fasle" show-scrollbar="false">
             <view class="popup-coach">
                 <view class="popup-avatar-wrap" wx:for="{{localCoachList}}" wx:key="id" bind:tap="onCoachClick" data-item="{{item}}">
-                 <view class="popup-avatar-circle">
-                    <view class="popup-avatar-default {{item.select?'pop-up-active':''}}">
-                        <image class="popup-avatar-image" src="{{item.image}}"/>
-                        <image wx:if="{{item.select}}" class="popup-up-active-image" src="./images/avatar-active.jpg"/>
-                        <image wx:if="{{item.like}}" class="popup-up-like" src="./images/avatar-like.jpg"/>
+                    <view class="popup-avatar-circle">
+                        <view class="popup-avatar-default {{item.select?'pop-up-active':''}}">
+                            <image class="popup-avatar-image" src="{{item.image}}" />
+                            <image wx:if="{{item.select}}" class="popup-up-active-image" src="./images/avatar-active.jpg" />
+                            <image wx:if="{{item.like}}" class="popup-up-like" src="./images/avatar-like.jpg" />
+                        </view>
                     </view>
-                 </view>
                     <text class="popup-name">{{item.name}}</text>
                 </view>
-            </view>  
-        </scroll-view> 
+            </view>
+        </scroll-view>
     </view>
     <t-row>
-        <t-col span="12"> 
+        <t-col span="12">
             <t-button block size="large" bind:tap="onCancel">重置</t-button>
         </t-col>
-        <t-col span="12"> 
-            <t-button block size="large"  t-class="ok-button" bind:tap="onOk">完成</t-button>
+        <t-col span="12">
+            <t-button block size="large" t-class="ok-button" bind:tap="onOk">完成</t-button>
         </t-col>
     </t-row>
 </t-popup>

@@ -28,10 +28,6 @@
             <view class="swiper-dot {{ swiperCurrent==index ? 'active':''}}" wx:for="{{cardinsList}}" wx:key="cardcat_id"></view>
         </view>
     </view>
-    <view class="member-card-content">
-        <view class="member-card-content-course">支持课程：MEGA Got U Back, MEGA Zero, MEGA Cardio+, MEGA PRo</view>
-        <view class="member-card-content-venues">支持场馆：嘉里中心</view>
-    </view>
     <view class="member-card-cell">
         <t-cell title="消费记录" hover arrow bordered="{{false}}"></t-cell>
     </view>
