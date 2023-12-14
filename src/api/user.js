@@ -26,7 +26,7 @@ export const login = function () {
 
   export const updatePhone =(encryptedData,iv)=>{
     const url =`/v1/wxuser/phone`;
-    const data = {encrypted_data:encryptedData,iv};
+    const data = {'encrypted-data':encryptedData,iv};
     return request.post(url,data)
   }
 

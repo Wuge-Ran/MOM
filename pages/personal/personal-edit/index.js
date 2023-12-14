@@ -192,7 +192,7 @@ Page({
         rockVisible: false,
         rockText: null,
         rockValue: '',
-        dateValue: new Date().getTime(),
+        dateValue: new Date('2000-01-01').getTime(),
         dateText: '',
         dateVisible: false,
         start: '1930-01-01 00:00:00',
