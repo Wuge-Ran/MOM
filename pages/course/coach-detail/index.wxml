@@ -28,7 +28,7 @@
                             </view>
                             <view class="coach-course-item-content-describe-text">{{item.description}}</view>
                             <view class="coach-course-item-content-describe-reserve">
-                                <t-button theme="primary" hover-class="none">预约</t-button>
+                                <t-button theme="primary" hover-class="none" bind:tap="navgateToBook" data-id="{{item.course_id}}">预约</t-button>
                             </view>
 
                         </view>

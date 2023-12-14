@@ -9,23 +9,7 @@ const computedBehavior = require("miniprogram-computed").behavior;
 // index.js
 // 获取应用实例
 const app = getApp();
-const swiperList = [{
-        value: `https://api.catchyrime.com/static/background.jpeg`,
-        ariaLabel: "图片1",
-    },
-    {
-        value: `https://api.catchyrime.com/static/background.jpeg`,
-        ariaLabel: "图片2",
-    },
-    {
-        value: `https://api.catchyrime.com/static/background.jpeg`,
-        ariaLabel: "图片3",
-    },
-    {
-        value: `https://api.catchyrime.com/static/background.jpeg`,
-        ariaLabel: "图片4",
-    },
-];
+const swiperList = [];
 Page({
     behaviors: [computedBehavior],
     data: {
@@ -39,7 +23,8 @@ Page({
         currentIndex: 0,
         checkSuccessVisible: false,
         noMembercardVisible: false,
-        avatarUrl:''
+        avatarUrl:'',
+        topNumber:0,
     },
     computed: {
         timeRangeStr(data) {
@@ -67,6 +52,21 @@ Page({
             currentIndex: detail.current,
         });
     },
+    swiperLinkTo(event){
+        const link = event.target.dataset.link
+        console.log('===link',link)
+        const reg = /(http|https):\/\/([\w.]+\/?)\S*/ig;
+        if(link.match(reg)){
+            wx.navigateTo({
+                url: '/pages/webview/index?webview='+webview,
+                })
+          }else{
+            wx.navigateTo({
+                url: link,
+              })
+          }
+        
+    },
     oncheckSuccessTap() {
         this.setData({
             checkSuccessVisible: false,
@@ -77,8 +77,8 @@ Page({
             noMembercardVisible: false,
         });
         // TODO：跳转到购卡页面
-        wx.navigateTo({
-            url: "/pages/login/index",
+        wx.switchTab({
+            url: "/pages/card/index",
         });
     },
     onMembercardCancel() {
@@ -138,16 +138,7 @@ Page({
             "===首页 onShow 触发",
             !!globalData.login.phoneNumber && !!globalData.login.token
         );
-        setTimeout(() => {
-            let query = wx.createSelectorQuery();
-            query
-                .select(".userinfo")
-                .boundingClientRect((rect) => {
-                    let height = rect.height;
-                    console.log("boundingClientRect", height);
-                })
-                .exec();
-        });
+        
 
         if (globalData.login.phoneNumber) {
             this.setData({
@@ -157,11 +148,24 @@ Page({
             });
             getHomeData().then((res) => {
                 console.log("===getHomeData", res);
+                setTimeout(() => {
+                    let query = wx.createSelectorQuery();
+                    query
+                        .select(".userinfo")
+                        .boundingClientRect((rect) => {
+                            this.setData({
+                                topNumber:(rect.top - 70) +'px'
+                            })
+                            console.log("boundingClientRect", rect);
+                        })
+                        .exec();
+                });
                 const userInfo = res.data;
                 const swiperList = userInfo.background.map(item => {
                     return {
                         value: item.image_url,
-                        link: item.link
+                        link: item.link,
+                        text:item.btn_text
                     }
                 })
                 globalData.userInfo = userInfo;

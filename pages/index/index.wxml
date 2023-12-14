@@ -5,6 +5,11 @@
             <block wx:for="{{swiperList}}" wx:key="index">
                 <swiper-item>
                     <view class="swiper-item">
+                        <view wx:if="{{item.link}}" style="top:{{topNumber}}" 
+                        class="swiper-item-link"
+                        data-link="{{item.link}}"
+                        bind:tap="swiperLinkTo"
+                        >{{item.text}}</view>
                         <image src="{{item.value}}" mode="cover" />
                     </view>
                 </swiper-item>

@@ -17,7 +17,8 @@
         "pages/card/success/index",
         "pages/course/book/success/index",
         "pages/course/coach-info/index",
-        "pages/personal/consume/index"
+        "pages/personal/consume/index",
+        "pages/webview/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

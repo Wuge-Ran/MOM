@@ -1,18 +1,20 @@
 /**index.wxss**/
-.container{
+.container {
     /* background: url('./img/bg.png'); */
     position: relative;
     font-size: 28rpx;
     --td-button-border-radius: 44rpx;
     --td-button-default-bg-color: var(--theme-color);
-    --td-button-font-weight:400;
-    --td-button-default-border-color:var(--theme-color);
+    --td-button-font-weight: 400;
+    --td-button-default-border-color: var(--theme-color);
 }
+
 .t-swiper-host {
     width: 100vw;
     border-radius: 0 !important;
 }
-.t-swiper-nav{
+
+.t-swiper-nav {
     top: 32%;
     --td-swiper-radius: 0;
     --td-swiper-item-padding: 0 12rpx;
@@ -21,61 +23,62 @@
 
 
 .userinfo {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
-  width: 100%;
-  bottom: 0;
-  padding: 28rpx;
-  padding-bottom: 48rpx;
-  box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    bottom: 0;
+    padding: 28rpx;
+    padding-bottom: 48rpx;
+    box-sizing: border-box;
 }
-.userinfo-nickname{
+
+.userinfo-nickname {
     color: #ffffff;
     font-size: 28rpx;
 }
 
 
 .userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin-right: 20rpx;
-  border-radius: 50%;
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    margin-right: 20rpx;
+    border-radius: 50%;
 }
 
 .usermotto {
-  margin-top: 200px;
+    margin-top: 200px;
 }
 
-.userinfo-logo{
+.userinfo-logo {
     display: flex;
     align-items: center;
 }
 
-.userinfo-avatar{
+.userinfo-avatar {
     width: 39px;
     height: 39px;
 }
 
-.userinfo-content{
+.userinfo-content {
     display: flex;
 }
 
-.userinfo-content button{
+.userinfo-content button {
     width: 296rpx;
     line-height: 72rpx;
     font-size: 28rpx;
 }
 
-.userinfo-content image{
+.userinfo-content image {
     width: 136rpx;
     height: 136rpx;
 }
 
-.userinfo-content-item{
+.userinfo-content-item {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -83,7 +86,7 @@
     --td-button-border-radius: 16rpx;
 }
 
-.userinfo-aboutUs{
+.userinfo-aboutUs {
     height: 120rpx;
     background-color: #F9F6F2;
     display: flex;
@@ -93,124 +96,141 @@
     margin-top: 32rpx;
 }
 
-.userinfo-aboutUs-img{
+.userinfo-aboutUs-img {
     width: 276rpx;
     height: 64rpx;
     margin-right: auto;
 }
 
-.userinfo-aboutUs-btn{
+.userinfo-aboutUs-btn {
     width: 72rpx;
     height: 72rpx;
 }
 
-.userinfo-aboutUs-text{
+.userinfo-aboutUs-text {
     margin-right: 32rpx;
     /* margin-left: auto; */
 }
 
-.userinfo-description{
+.userinfo-description {
     background-color: #F9F6F2;
     border-radius: 24rpx;
     display: flex;
-    padding: 24rpx 0 ;
+    padding: 24rpx 0;
     margin-top: 32rpx;
 }
-.border-right{
-  border-right: 1px solid #DBD9D8;
+
+.border-right {
+    border-right: 1px solid #DBD9D8;
 }
 
-.description-item{
+.description-item {
     width: 50%;
 }
 
-.description-item-title{
+.description-item-title {
     margin-left: 40rpx;
 }
 
-.description-item-number{
+.description-item-number {
     color: #B4CC2B;
     font-size: 80rpx;
 }
-.description-item-content{
+
+.description-item-content {
     display: flex;
     justify-content: center;
     align-items: baseline;
     position: relative;
 }
-.description-item-unit{
+
+.description-item-unit {
     color: #AEAEAB;
     margin-left: 4rpx;
     font-size: 24rpx;
 }
 
-.my-course{
+.my-course {
     margin-top: 32rpx;
 }
 
-.my-course-title{
+.my-course-title {
     color: #ffffff;
     margin-bottom: 24rpx;
 }
 
-.my-course-content{
+.my-course-content {
     background-color: #F9F6F2;
     border-radius: 24rpx;
     display: flex;
-    padding: 24rpx 32rpx ;
+    padding: 24rpx 32rpx;
 }
 
-.course-avatar{
+.course-avatar {
     width: 140rpx;
     height: 140rpx;
     margin-right: 32rpx;
 }
 
-.my-course-content-title{
+.my-course-content-title {
     font-weight: 500;
     margin-bottom: 12rpx;
 }
 
-.my-course-content-message-item{
+.my-course-content-message-item {
     display: flex;
     align-items: center;
 }
 
-.my-course-content-message-item image{
+.my-course-content-message-item image {
     width: 32rpx;
     height: 32rpx;
     margin-right: 16rpx;
 }
 
-.course-coach{
+.course-coach {
     margin-top: 4rpx;
 }
 
-.swiper-item{
+.swiper-item {
+    position: relative;
     height: 100%;
 }
 
-.swiper-box,.swiper-img{
+.swiper-item-link {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 16rpx;
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(4px);
+    padding: 12rpx 48rpx;
+    color: #ffffff;
+}
+
+.swiper-box,
+.swiper-img {
     width: 100vw;
     height: 100%;
 }
 
-.swiper-item image{
+.swiper-item image {
     width: 100vw;
     height: 100%;
 }
 
-.my-dot-list{
+.my-dot-list {
     display: flex;
     justify-content: center;
     position: absolute;
-    top:-40rpx;
+    top: -40rpx;
     left: 50%;
-    transform: translate(-50%,0); 
+    transform: translate(-50%, 0);
     margin: 0 auto;
 }
 
-.my-dot-item{
+.my-dot-item {
     width: 12rpx;
     height: 12rpx;
     border-radius: 50%;
@@ -218,55 +238,56 @@
     margin: 0 6rpx;
 }
 
-.active-dot{
+.active-dot {
     background-color: rgba(200, 214, 122, 1);
 }
-.gray{
+
+.gray {
     color: #71716F;
 }
 
-.description-item-buy{
+.description-item-buy {
     width: 72rpx;
     height: 72rpx;
     position: absolute;
     top: 50%;
-    transform: translate(0,-50%); 
+    transform: translate(0, -50%);
     right: 40rpx;
 }
 
 /** 弹窗样式 **/
 
-.popup-header{
+.popup-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 32rpx;
 }
 
-.popup-header-img{
+.popup-header-img {
     width: 128rpx;
     height: 128rpx;
 }
 
-.popup-header-text{
+.popup-header-text {
     font-size: 32rpx;
     font-weight: 600;
     text-align: center;
 }
 
-.check-success{
+.check-success {
     padding: 48rpx 32rpx;
 }
 
-.check-success{
+.check-success {
     width: 560rpx;
 }
 
-.t-button{
- border-radius: 8rpx;
+.t-button {
+    border-radius: 8rpx;
 }
 
-.popup-content-text{
+.popup-content-text {
     margin-bottom: 48rpx;
     text-align: center;
 }
