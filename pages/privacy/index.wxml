@@ -1,0 +1,4 @@
+<scroll-view class="container" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
+   <view class='title'>{{title}}</view>
+   <text class='content'>{{content}}</text>
+</scroll-view>

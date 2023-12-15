@@ -1,5 +1,6 @@
 {
     "pages": [
+        
         "pages/index/index",
         "pages/course/book/index",
         "pages/logs/logs",
@@ -13,12 +14,14 @@
         "pages/personal/personal-edit/index",
         "pages/personal/order/index",
         "pages/personal/message-center/index",
-        "pages/personal/member-card/index",   
+        "pages/personal/member-card/index",
         "pages/card/success/index",
         "pages/course/book/success/index",
         "pages/course/coach-info/index",
         "pages/personal/consume/index",
-        "pages/webview/index"
+        "pages/webview/index",
+        "pages/privacy/index"
+
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -29,7 +32,7 @@
     "sitemapLocation": "sitemap.json",
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button",
-        "date-piker":"component/date-piker/index",
+        "date-piker": "component/date-piker/index",
         "t-icon": "tdesign-miniprogram/icon/icon",
         "t-popup": "tdesign-miniprogram/popup/popup",
         "t-input": "tdesign-miniprogram/input/input",
@@ -46,34 +49,34 @@
         "selectedColor": "#282826",
         "backgroundColor": "#FFFFFF",
         "list": [
-            {   
+            {
                 "pagePath": "pages/index/index",
-                "iconPath":"/assets/icons/home.png",
-                "selectedIconPath":"/assets/icons/home-active.png",
+                "iconPath": "/assets/icons/home.png",
+                "selectedIconPath": "/assets/icons/home-active.png",
                 "text": "首页"
             },
             {
                 "pagePath": "pages/course/index",
-                "iconPath":"/assets/icons/course.png",
-                "selectedIconPath":"/assets/icons/course-active.png",
+                "iconPath": "/assets/icons/course.png",
+                "selectedIconPath": "/assets/icons/course-active.png",
                 "text": "约课"
             },
             {
                 "pagePath": "pages/contracted/index",
-                "iconPath":"/assets/icons/contracted.png",
-                "selectedIconPath":"/assets/icons/contracted-active.png",
+                "iconPath": "/assets/icons/contracted.png",
+                "selectedIconPath": "/assets/icons/contracted-active.png",
                 "text": "已约"
             },
             {
                 "pagePath": "pages/card/index",
-                "iconPath":"/assets/icons/card.png",
-                "selectedIconPath":"/assets/icons/card-active.png",
+                "iconPath": "/assets/icons/card.png",
+                "selectedIconPath": "/assets/icons/card-active.png",
                 "text": "会员卡"
             },
             {
                 "pagePath": "pages/personal/index",
-                "iconPath":"/assets/icons/personal.png",
-                "selectedIconPath":"/assets/icons/personal-active.png",
+                "iconPath": "/assets/icons/personal.png",
+                "selectedIconPath": "/assets/icons/personal-active.png",
                 "text": "我的"
             }
         ]

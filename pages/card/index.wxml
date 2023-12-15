@@ -1,5 +1,6 @@
 <!--pages/card/index.wxml-->
-<view class="container">
+<scroll-view class="container" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
+<view class="content">
   <!-- 卡片列表 -->
   <view class="cards-container" wx:for="{{cardsByType}}" wx:for-index='key' wx:key="key" wx:for-item="cards">
     <view class="title">{{cardsTypeTitle[key]}}</view>
@@ -35,7 +36,7 @@
         </view>
         <view class="privacy" wx:if="{{canBuy}}">
           <checkbox bind:tap="onPrivacyTap" checked="{{privacyChecked}}"></checkbox>
-          <span calss="privacy-char">我已阅读并同意<span class="privacy-btn">购卡协议</span>、<span class="privacy-btn">会员卡/课程卡使用须知</span>。</span>
+          <span calss="privacy-char">我已阅读并同意<span class="privacy-btn" bind:tap="onBuCardPrivacy">购卡协议</span>、<span class="privacy-btn" bind:tap="onBuCardPrivacy1">会员卡/课程卡使用须知</span>。</span>
         </view>
         <view wx:else class="no-card">很抱歉，您不满足此卡的购买条件，请购买其它卡种。</view>
       </view>
@@ -44,5 +45,6 @@
       </view>
     </view>
   </t-popup>
-</view>
+  </view>
+</scroll-view>
 <t-toast id="t-toast" />
