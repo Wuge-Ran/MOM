@@ -19,6 +19,7 @@ Page({
     errorMsg: {
       ERR_WXPAY_CANCELLED: "超时或支付取消",
       ERR_WXPAY_FAILED: "支付失败",
+      ERR_CANNOT_BUY_THAT_MANY:'您已达到购买数量上限，无法再购买',
       其他: "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
     },
     cardsTypeTitle: {
