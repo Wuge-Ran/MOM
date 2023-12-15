@@ -145,7 +145,7 @@ Page({
     const resp =(await getCourseById(courseId))?.data;
     const course = resp?.course||[];
     const cardsOrigin=resp?.cardins_list||[];
-    const cards = cardsOrigin.map((card) => ({ value: card.cardcat_id, label: card.cardcat_name,...card }));
+    const cards = cardsOrigin.map((card) => ({ value: card.cardins_id, label: card.cardcat_name,...card }));
     const [fistCard] = cards;
     console.log("getCourseDetail:", course,cards);
     this.setData({ course,cards, choosedCard: fistCard  });

@@ -158,11 +158,6 @@ Page({
     const curCard = events?.currentTarget?.dataset?.card || {};
     console.log("onCardTap:", events, curCard);
     this.setData({ showPurchaseUI: true, curCard, privacyChecked: false });
-
-    globalData.curBuyCard = curCard;
-            wx.navigateTo({
-              url: `/pages/card/success/index`,
-            });
   },
 
   onPrivacyTap(event) {
