@@ -23,7 +23,7 @@
   <t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
     <view class="reconfrom-container">
       <view class="reconfrom-body flex-cloumn">
-        <view class="buy-title">{{curCard.name}}</view>
+        <view class="buy-title">{{curCard.title}}</view>
         <view class="price">￥{{curCard.price}}<span class="price-origin">￥{{curCard.display_list_price}}</span></view>
         <view class="flex-row">
           <view>使用期限</view>

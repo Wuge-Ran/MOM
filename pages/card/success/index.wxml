@@ -10,18 +10,18 @@
   <!-- <view class="card-root"> -->
   <!-- 会员卡 -->
   <view class="card-container succ-card" bind:tap="onCardTap">
-        <image class="card-bg" src="{{card.bgImg}}"></image>
-        <image class="card-event" src="{{card.logo}}"></image>
+   <image class="card-bg" src="{{card.bgImg}}"></image>
+        <image class="card-event" wx:if="{{card.logo}}" src="{{card.logo}}"></image>
         <view class="card-info">
-          <view class="card-title">{{card.name}}</view>
-          <view  wx:if="{{card.class==='time'}}" class="card-times">{{card.max_expire_days}}<span class="card-times-sufix">天</span></view>
-          <view  wx:else class="card-times">{{card.max_consume_times}}<span class="card-times-sufix">次课</span></view>
-          
+          <view class="card-title {{card.type==='group'?'group-card-title':''}}">{{card.title}}</view>
+          <view  class="card-times">{{card.times}}<span class="card-times-sufix">{{card.suffix}}</span></view>
           <view class="price-info">
-            <span class="price">￥{{card.price}}</span>
-            <span class="per-price">￥{{(card.price)}}</span>
+            <span class="price {{card.type==='group'?'group-price':''}}">￥{{card.price}}</span>
+            <span class="per-price {{card.type==='group'?'group-per-price':''}}">￥{{(card.display_list_price)}}</span>
           </view>
         </view>
+         <view class="hint {{card.type==='group'?'group-hint':''}}">{{card.display_footnote}}</view>
+       
   </view>
   <view class="succ-desc">
     <view class="buy-title">{{card.name}}</view>
