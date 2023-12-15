@@ -1,5 +1,6 @@
 <!--pages/card/index.wxml-->
-<view class="container">
+<scroll-view class="container" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
+<view class="content">
   <!-- 卡片列表 -->
   <view class="cards-container" wx:for="{{cardsByType}}" wx:for-index='key' wx:key="key" wx:for-item="cards">
     <view class="title">{{cardsTypeTitle[key]}}</view>
@@ -44,5 +45,6 @@
       </view>
     </view>
   </t-popup>
-</view>
+  </view>
+</scroll-view>
 <t-toast id="t-toast" />
