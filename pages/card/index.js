@@ -165,6 +165,17 @@ Page({
     const chceked = !this.data.privacyChecked;
     this.setData({ privacyChecked: chceked });
   },
+  onBuCardPrivacy(event) {
+    wx.navigateTo({
+      url: `/pages/privacy/index?type=${'vipCards'}`,
+    });
+  },
+  onBuCardPrivacy1(event) {
+    wx.navigateTo({
+      url: `/pages/privacy/index?type=${'vipCards'}`,
+    });
+  },
+  
 
   onConfromUIVisiableChange(event) {
     this.setData({ showPurchaseUI: event.detail.visible });
