@@ -42,7 +42,6 @@ Component({
 
   lifetimes: {
     created() {
-      console.log('3rw3rwerewrw');
     },
     attached() {
     },
