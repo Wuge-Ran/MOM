@@ -29,16 +29,16 @@
     justify-content: space-between;
     padding: 32rpx 10rpx 32rpx 32rpx;
 }
-.private {
+.pink {
     background:#EED5D2;
 }
-.group{
+.lightgreen{
+    background:#C8D67A;
+}
+.deepgreen{
     background:#75855E;
 }
-.bundle{
-    background:#75855E;
-}
-.time{
+.brown{
     background:#B2A691;
 }
 .clip{

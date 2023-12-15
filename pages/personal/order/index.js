@@ -19,13 +19,6 @@ Page({
         getOrderList().then(({
             data
         }) => {
-            const typeCss = {
-                'card_daypass_time':'time',
-                'card_daypass_bundle':'bundle',
-                'card_group':'group',
-                'card_privatelv1':'private',
-                'card_privatelv2':'private',
-            } 
             const map = data.orders.map(item => {
                 return {
                     id: item.cardcat_id,
@@ -33,7 +26,7 @@ Page({
                     time: item.order_created_at.replace('T', ' '),
                     status: '支付成功',
                     money: item.order_paid_price,
-                    curClass:typeCss[item.order_subtype]
+                    curClass:item.cardcat_display_bgstyle
                 }
             })
             this.setData({
