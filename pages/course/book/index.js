@@ -83,7 +83,7 @@ Page({
 
     reConfirmBuyStr(data) {
       let str = "";
-      const { current_attenders, max_attenders } = data.course;
+      const { current_attenders, max_attenders, } = data.course;
       if (data.cards.length > 0) {
         if (current_attenders < max_attenders) str = "确认预约";
         else str = "确认候补";
@@ -92,6 +92,32 @@ Page({
       }
       console.log(str);
       return str;
+    },
+
+    openClassCantBookStr(data) {
+      let str = "";
+      const { user_can_reserve } = data.course;
+      if (data.cards.length<=0 && user_can_reserve ) {
+        str = "抱歉，您不是场馆会员，请先购买会员卡";
+      }
+      console.log('openClassCantBookStr:',str);
+      return str;
+    },
+
+    openClassNoCards(data) {
+      const { type } = data.course;
+      if (data.cards.length<=0 && type==='open' ) {
+       return true;
+      }
+      return false;
+    },
+
+    openClassHasCards(data) {
+      const { type } = data.course;
+      if (data.cards.length>0 && type==='open' ) {
+       return true;
+      }
+      return false;
     },
 
     showBookStr(data) {
@@ -165,6 +191,7 @@ Page({
   calStatus(started, cancelBookDisabled) {
     const data = this.data;
     const _ = this;
+    const hasCards =data.cards.length>0;
     const {
       user_can_cancel_reserve: canCancelBook,
       user_can_reserve: canBook,

@@ -68,7 +68,7 @@
           <span class="address">{{course.address}}</span>
         </view>
         <view wx:if="{{cards.length>0}}" class="buy-info">
-          <view class="flex-row">
+          <view class="flex-row" wx:if="{{course.type !=='open'}}">
             <span>选择会员卡</span>
             <view wx:if="{{choosedCard}}" class="choose-card bottom-arrow" bind:tap="onChooseCardTap">{{choosedCard.label}}</view>
           </view>
@@ -78,7 +78,7 @@
             </t-input>
           </view>
         </view>
-        <span wx:else class="no-card">抱歉，您暂无可使用的课程卡，请购卡。</span>
+        <span wx:else class="no-card">{{course.type ==='open'?"抱歉，您不是场馆会员，请先购买会员卡":"抱歉，您暂无可使用的课程卡，请购卡。"}}</span>
       </view>
       <view class="bottom-contaioner confirm-bottom-contaioner">
         <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap1">{{reConfirmBuyStr}}</button>
