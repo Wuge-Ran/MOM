@@ -44,7 +44,7 @@
                 </view>
             </view>
         </view>
-        <view class="my-course">
+        <view class="my-course" wx:if="{{userInfo.course}}">
             <view class="my-course-title">即将开始</view>
             <view class="my-course-content">
                 <image class="course-avatar" src="{{userInfo.avatarUrl||'./img/course-demo.png'}}" mode="cover"></image>
@@ -97,7 +97,7 @@
             <view class="popup-header-text">签到成功</view>
         </view>
         <view class="popup-content">
-            <view class="popup-content-text">您于YYYY-MM-DD HH:MM:SS使用{卡名占位}成功签到1次</view>
+            <view class="popup-content-text">您于{{checkInTime}}使用{{checkInfo.cardcat_name}}成功签到1次</view>
             <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
         </view>
     </t-popup>

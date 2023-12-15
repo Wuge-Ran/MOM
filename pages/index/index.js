@@ -25,10 +25,12 @@ Page({
         noMembercardVisible: false,
         avatarUrl:'',
         topNumber:0,
+        checkInfo:{},
+        checkInTime:0
     },
     computed: {
         timeRangeStr(data) {
-            console.log("===");
+            console.log("===",data);
             const {
                 start_time,
                 duration_minutes = 0
@@ -107,7 +109,9 @@ Page({
             postScanCheckin().then(({data})=>{
                 if(data.cardins){
                     this.setData({
-                        checkSuccessVisible:true
+                        checkSuccessVisible:true,
+                        checkInfo:data.cardins,
+                        checkInTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
                     })
                 }else{
                     this.setData({

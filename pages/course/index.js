@@ -37,12 +37,13 @@ Page({
   onShow() {
     this.getTabBar()?.show();
     this.updateCourse();
+    this.getCoach();
   },
 
   async init() {
     await this.getCalendar();
     this.updateCourse();
-    this.getCoach();
+    
     console.log('===getDayOfWeek',getDayOfWeek('2023-12-11'))
   },
 
@@ -89,7 +90,11 @@ Page({
         id: item.coach_id,
         image: item.avatar_url,
         like: item.liked_by_user,
-      }));
+      })).sort(function(a, b) {
+        // 将 like 为 true 的元素排在前面
+        return (b.like || 0) - (a.like || 0);
+      });
+    ;
       this.setData({
         coachList: res,
       });

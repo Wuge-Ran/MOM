@@ -11,7 +11,7 @@
                 {
                     "name": "",
                     "pathName": "pages/index/index",
-                    "query": "",
+                    "query": "type=scan_checkin_daypass",
                     "launchMode": "default",
                     "scene": null
                 }
