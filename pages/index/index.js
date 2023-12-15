@@ -37,7 +37,7 @@ Page({
             } = data.userInfo.course || {};
             const s = dayjs(start_time);
             const endDate = s.add(duration_minutes, "m");
-            return `${s.format("MM/DD（ddd）hh:mm")}-${endDate.format("hh:mm")}`;
+            return `${s.format("MM/DD（ddd）HH:mm")}-${endDate.format("HH:mm")}`;
         },
     },
     // 事件处理函数

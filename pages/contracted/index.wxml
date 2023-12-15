@@ -2,7 +2,11 @@
 <view class="course-contaioner">
   <view class="header">
     <t-tabs defaultValue="{{activeTab}}" space-evenly="{{true}}" bind:change="onTabsChange" bind:click="onTabsClick">
-      <t-tab-panel wx:for="{{tabs}}"  label="{{item.value}}" value="{{item.key}}">
+      <t-tab-panel label="{{bookedTab.value}}" value="{{bookedTab.key}}">
+      </t-tab-panel>
+      <t-tab-panel label="{{standbyTab.value}}" value="{{standbyTab.key}}">
+      </t-tab-panel>
+      <t-tab-panel label="{{doneTab.value}}" value="{{doneTab.key}}">
       </t-tab-panel>
     </t-tabs>
   </view>

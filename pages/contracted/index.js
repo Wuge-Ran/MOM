@@ -9,11 +9,10 @@ Page({
   data: {
     triggered: false,
     activeTab: 1,
-    tabs: [
-      { key: 1, value: "共{0}节已约" },
-      { key: -1, value: "共{0}节候补" },
-      { key: 0, value: "共{0}节已完成" },
-    ],
+
+    bookedTab: { key: 1, value: "共0节已约",templete:"共{0}节已约" },
+    standbyTab: { key: -1, value: "共0节候补",templete:"共{0}节候补"  },
+    doneTab: { key: 0, value: "共0节已完成",templete:"共{0}节已完成"  },
     courses: [],
   },
 
@@ -27,7 +26,6 @@ Page({
    */
   onShow() {
     this.getTabBar()?.show();
-    // this.updateTabs();
     this.updateBooked();
   },
 
@@ -55,12 +53,17 @@ Page({
   },
 
   updateTabs(bookedNum = 0, standbyNum = 0, doneNum = 0) {
-    const [bookedTab, standbyTab, doneTab] = this.data.tabs;
-    bookedTab.value = bookedTab.value.format(bookedNum);
-    standbyTab.value = standbyTab.value.format(standbyNum);
-    doneTab.value = doneTab.value.format(doneNum);
-    const tabs = [bookedTab, standbyTab, doneTab];
-    this.setData({ tabs });
+    const { bookedTab, standbyTab, doneTab } = this.data;
+    bookedTab.value = bookedTab.templete.format(bookedNum);
+    standbyTab.value = standbyTab.templete.format(standbyNum);
+    doneTab.value = doneTab.templete.format(doneNum);
+   
+    this.setData({
+      bookedTab,
+      standbyTab,
+      doneTab,
+    });
+    console.log(bookedTab,standbyTab,doneTab,bookedNum,standbyNum,doneNum,this.data,88888);
   },
 
   async updateBooked() {
@@ -96,15 +99,15 @@ Page({
         }
       }
     }
-
-    //更新tabs
-    const [bookedTab, standbyTab, doneTab] = this.data.tabs;
-    bookedTab.value = bookedTab.value.format(bookedNum);
-    standbyTab.value = standbyTab.value.format(standbyNum);
-    doneTab.value = doneTab.value.format(doneNum);
-    const tabs = [bookedTab, standbyTab, doneTab];
-    console.log("updateBooked:", courses, typedCourses, this.data.activeTab,bookedNum,standbyNum,doneNum);
-    this.updateTabs(bookedNum,standbyNum,doneNum);
+    // console.log(
+    //   "updateBooked:",
+    //   courses,
+    //   typedCourses,
+    //   bookedNum,
+    //   standbyNum,
+    //   doneNum
+    // );
+    this.updateTabs(bookedNum, standbyNum, doneNum);
     this.setData({ courses: typedCourses });
   },
 });

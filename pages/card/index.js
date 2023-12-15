@@ -19,7 +19,8 @@ Page({
     errorMsg: {
       ERR_WXPAY_CANCELLED: "超时或支付取消",
       ERR_WXPAY_FAILED: "支付失败",
-      其他: "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
+      ERR_CANNOT_BUY_THAT_MANY:'您已达到购买数量上限，无法再购买',
+      UNKOWN: "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
     },
     cardsTypeTitle: {
       1: "特惠活动",
@@ -236,7 +237,7 @@ Page({
               selector: "#t-toast",
               theme: "warning",
               direction: "column",
-              message: errorMsg[data?.message || "未知"],
+              message: errorMsg[data?.message]||'抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看',
             });
           }
         });

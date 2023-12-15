@@ -176,6 +176,7 @@
 .course-desc-detail {
     color: #040000;
     line-height: 44rpx;
+    word-break: break-all;
 }
 
 .bottom-contaioner {

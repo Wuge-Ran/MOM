@@ -63,8 +63,8 @@ Page({
       const { start_time, duration_minutes = 0 } = data.course || {};
       const s = dayjs(start_time);
       const endDate = s.add(duration_minutes, "m");
-      const result = `${s.format("MM/DD（ddd）hh:mm")}-${endDate.format(
-        "hh:mm"
+      const result = `${s.format("MM/DD（ddd）HH:mm")}-${endDate.format(
+        "HH:mm"
       )}`;
       data.timeStr = result;
       return result;
