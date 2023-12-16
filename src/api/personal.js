@@ -1,4 +1,5 @@
 import request from "../network/request";
+import {encode as encodeBase64} from '@utils/base64';
 
 export const getCurrentCard = () => {
     const url = `/v1/cardins`;
@@ -45,7 +46,7 @@ export const getOrderList = () => {
 
 export const updateInfo = (attr, value) => {
     const url = `/v1/wxuser/info`;
-    const encode = Base64.encode(value)
+    const encode =encodeBase64(value)
     return request.post(url, {
         attr,
         value: encode

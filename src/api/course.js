@@ -1,7 +1,7 @@
 import request from "../network/request";
 import globalData from "../global/index";
 import dayjs from "dayjs";
-import {Base64} from './personal'
+import {encode as encodeBase64} from '@utils/base64';
 
 export const getCourseByDate = (courseType, coachIds) => {
   const url = `/v1/course_by_date`;
@@ -63,12 +63,12 @@ export const cancelWait = (id) => {
 };
 
 export const book = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":Base64.encode(remark) };
+  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":encodeBase64(remark) };
   return request.post("/v1/reserve_course", data);
 };
 
 export const wait = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":Base64.encode(remark) };
+  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":encodeBase64(remark) };
   return request.post("/v1/wait_course", data);
 };
 
