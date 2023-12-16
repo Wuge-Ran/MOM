@@ -19,6 +19,7 @@ Page({
         getOrderList().then(({
             data
         }) => {
+            
             const map = data.orders.map(item => {
                 return {
                     id: item.cardcat_id,

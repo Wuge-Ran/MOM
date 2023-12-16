@@ -61,10 +61,12 @@
     color: #71716F;
     font-size: 28rpx;
     line-height:48rpx;
+    text-align: end;
 }
 .order-money{
     font-size: 38rpx;
     line-height: 60rpx;
     font-weight: 500;
     color: var(--sub-color3);
+    text-align: end;
 }

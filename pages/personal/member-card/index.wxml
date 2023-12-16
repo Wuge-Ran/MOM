@@ -6,19 +6,16 @@
             <block wx:for="{{cardinsList}}" wx:for-item="item" wx:key="id">
                 <swiper-item class="swiper-item" bindtap="toDetail" data-proid="{{item.id}}" style="text-align: center;">
                     <view class="swiper-item-view {{ swiperCurrent==index?'active':''}}">
-                        <image mode="scaleToFill" style="width: 100%;" class="swiper-image " src="./img/card-1.png" alt=""></image>
+                        <image mode="scaleToFill" style="width: 100%; height: 100%;" class="swiper-image " src="{{item.imgUrl}}" alt=""></image>
                         <view class="swiper-card-title">
                             <view class="swiper-card-title-content">{{item.cardcat_name}}</view>
                         </view>
-                        <!-- <view class="swiper-card-point">
-                            <view class="swiper-card-point-number">2</view>
-                            <view class="swiper-card-point-unit">次剩余</view>
-                        </view> -->
-                        <view class="swiper-card-date">
-                            <view class="swiper-card-date-mini">有效期</view>
-                            <view>从2023-09-09</view>
-                            <view>至2024-09-09</view>
-                            <view class="swiper-card-date-mini">支持全部场馆</view>
+                        <view class="swiper-card-point">
+                            <view class="swiper-card-point-number">{{item.excess}}</view>
+                            <view class="swiper-card-point-unit">{{item.unit}}</view>
+                        </view>
+                        <view class="swiper-card-disable" wx:if="{{item.cardins_status === 'inactive'}}">
+                         *未开卡
                         </view>
                     </view>
                 </swiper-item>
@@ -28,7 +25,7 @@
             <view class="swiper-dot {{ swiperCurrent==index ? 'active':''}}" wx:for="{{cardinsList}}" wx:key="cardcat_id"></view>
         </view>
     </view>
-    <view class="member-card-cell">
+    <view class="member-card-cell" bind:tap="toLink">
         <t-cell title="消费记录" hover arrow bordered="{{false}}"></t-cell>
     </view>
 </view>

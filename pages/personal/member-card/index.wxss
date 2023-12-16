@@ -52,6 +52,7 @@
     transform: scale(0.85, 0.8);
     /* 缩放处理，产生一种层次感 */
     border-radius: 16rpx;
+    color: #71716F;
 }
 
 .swiper-item-view.active {
@@ -86,24 +87,37 @@
 
 .swiper-card-title {
     position: absolute;
-    width: 300rpx;
-    top: 24rpx;
-    left: 24rpx;
+    top: 16rpx;
+    left: 50%;
+    transform: translate(-50%,0);
 }
-
+.swiper-image{
+    position: relative;
+}
 .swiper-card-point {
     position: absolute;
-    width: 300rpx;
-    bottom: 20rpx;
-    left: 24rpx;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: baseline;
-    height: 100rpx;
-    line-height: 100rpx;
 }
 
 .swiper-card-point-number {
     font-size: 100rpx;
+    font-weight: 500;
+    color: #595953;
+}
+.swiper-card-title-content{
+    color: #595953;
+}
+
+.swiper-card-disable{
+    position: absolute;
+    left: 12rpx;
+    bottom: 7rpx;
+    color: #71716F;
+    font-size: 16rpx;
 }
 
 .swiper-card-point-unit {

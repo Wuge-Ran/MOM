@@ -111,7 +111,11 @@ Page({
                     this.setData({
                         checkSuccessVisible:true,
                         checkInfo:data.cardins,
-                        checkInTime:dayjs().format('YYYY-MM-DD HH:mm:ss')
+                        checkInTime:dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                        userInfo:{
+                            ...this.data.userInfo,
+                            'checkin_times':this.data.userInfo.checkin_times + 1
+                        }
                     })
                 }else{
                     this.setData({
