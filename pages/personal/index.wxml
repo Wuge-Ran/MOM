@@ -21,7 +21,7 @@
                 <image class="personal-item-img" src="./img/personal-info.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="用户协议" hover arrow>
+        <t-cell title="用户协议" data-link="/pages/personal/privacy/index" bind:tap="linkTo" hover arrow>
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/user.png" mode="aspectFit" />
             </view>

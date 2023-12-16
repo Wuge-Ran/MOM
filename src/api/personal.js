@@ -10,6 +10,18 @@ export const getUserInfo = () => {
     return request.get(url);
 }
 
+export const postAvatar = (base64) => {
+    const url = `/v1/upload_public_file_base64`;
+    return request.bodyPost(url,{
+        filename:Base64.encode('avatar.png')
+    },{
+        header:{
+            'content-type': 'application/octet-stream'
+        },
+        bodyData:base64,
+    });
+}
+
 function generateDates() {
     // 获取今天的日期
     const today = new Date();

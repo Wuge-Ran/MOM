@@ -1,10 +1,14 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 
 import globalData from '@src/global/index';
-import {saveImage,readData} from '@utils/fileReader'
+import {
+    saveImage,
+    readData
+} from '@utils/fileReader'
 import {
     getUserInfo,
-    updateInfo
+    updateInfo,
+    postAvatar
 } from '@src/api/personal'
 
 Page({
@@ -1061,7 +1065,7 @@ Page({
      */
     onLoad() {
         this.setData({
-            avatarUrl:globalData.avatar
+            avatarUrl: globalData.avatar
         })
     },
 
@@ -1075,26 +1079,40 @@ Page({
         console.log(avatarUrl)
         
         wx.showLoading({
-          title: '头像上传中',
+            title: '头像上传中',
         })
-        wx.cloud.uploadFile({
-            cloudPath: `wxuser_avatar/${globalData.login.token}.png`, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
-            filePath: avatarUrl, // 微信本地文件，通过选择图片，聊天文件等接口获取
-            success: res => {
-                console.log('uploadFile:', res.fileID);
-                updateInfo('avatar_fileid',res.fileID)
-                globalData.login.avatarId = res.fileID;
+        this.base64({
+            url:avatarUrl,
+            type:'png'
+        }).then(res=>{
+            // console.log('png:',res)
+            return postAvatar(res)
+        }).then(res=>{
+            console.log('上传成功',res)
+            const url = res.data.url
+            updateInfo('avatar_fileid',url)
+                globalData.login.avatarId = url;
                 this.setData({
-                    userAvatar:res.fileID
+                    userAvatar:url
                 })
-            },
-            fail: err => {
-                console.error(err)
-                wx.showToast({
-                    title: '头像上传失败请重试',
-                })
-            }
         })
+    },
+
+    base64({
+        url,
+        type
+    }) {
+        return new Promise((resolve, reject) => {
+            wx.getFileSystemManager().readFile({
+                filePath: url, //选择图片返回的相对路径
+                encoding: 'base64', //编码格式
+                success: res => {
+                    resolve(res.data)
+                },
+                fail: res => reject(res.errMsg)
+            })
+        })
+
     },
     onBlur(e) {
         console.log(e)
@@ -1193,10 +1211,10 @@ Page({
         getUserInfo().then(({
             data
         }) => {
-            const [w1, w2] = data.weight?.split('.')??[]
+            const [w1, w2] = data.weight?.split('.') ?? []
             this.setData({
                 userAvatar: globalData.userInfo.avatar_fileid,
-                nicknameValue: data.nickname||'微信用户',
+                nicknameValue: data.nickname || '微信用户',
                 genderText: data.gender,
                 genderValue: [data.gender],
                 phoneNumberValue: data.phone_number,

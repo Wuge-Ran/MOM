@@ -19,6 +19,7 @@
         "pages/course/book/success/index",
         "pages/course/coach-info/index",
         "pages/personal/consume/index",
+        "pages/personal/privacy/index",
         "pages/webview/index",
         "pages/privacy/index"
 

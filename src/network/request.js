@@ -9,16 +9,18 @@ import {
  * @param {*} options 参数
  * @returns
  */
-const request = function (url, data, options = {}, showLoading = true, chekLogin = true) {
+const request = function (url, data, options = {}, showLoading = true, chekLogin = true, body) {
     return new Promise((resolve, reject) => {
         const {
             method,
             token,
-            header
+            header,
+            bodyData
         } = options;
         // 自定义的token 优先级更高
         const userToken = token || globalData.login.token;
         console.log('====',url)
+        const bodyParmas = body?bodyData:{}
         // if (showLoading) wx.showLoading({
         //     title: "",
         //     mask: true
@@ -33,8 +35,9 @@ const request = function (url, data, options = {}, showLoading = true, chekLogin
                 "user-token": userToken,
                 "wxuser-token": userToken,
                 "X-WX-SERVICE": "mellow",
-    "content-type": "application/json",
+                "content-type": "application/json",
             },
+            data:bodyParmas,
             success: (res) => {
                 if (showLoading) wx.hideLoading(); //关闭loading
                 if (res.statusCode === 200) {
@@ -84,6 +87,14 @@ request.get = function (url, data, options = {},showLoading = true, chekLogin = 
         method: "GET"
     },(showLoading), (chekLogin = true));
 };
+
+request.bodyPost = function (url, data, options = {},showLoading = true, chekLogin = true,body=true) {
+    return request(url, data, {
+        ...options,
+        method: "POST"
+    },(showLoading), (chekLogin = true),body);
+};
+
 
 request.post = function (url, data, options = {},showLoading = true, chekLogin = true) {
     return request(url, data, {
