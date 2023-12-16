@@ -23,15 +23,15 @@ Component({
     },
 
     status(data) {
-      
       let statusBtnStr="查看";
       let statusBtnClass="";
-      const {status,isComplete } = data.props;
-      if(status===2) {
+      const { attend_status: status } = data.props;
+   
+      if(status === "checkedin") {
         statusBtnStr="已签到";
         statusBtnClass="checkin";
       }
-      else if(isComplete===1){
+      else if(status === "noshow"){
         statusBtnStr="已结束";
         statusBtnClass="completed";
       }
