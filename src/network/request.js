@@ -19,10 +19,10 @@ const request = function (url, data, options = {}, showLoading = true, chekLogin
         // 自定义的token 优先级更高
         const userToken = token || globalData.login.token;
         console.log('====',url)
-        if (showLoading) wx.showLoading({
-            title: "",
-            mask: true
-        }); //接口请loading...
+        // if (showLoading) wx.showLoading({
+        //     title: "",
+        //     mask: true
+        // }); //接口请loading...
         wx.cloud.callContainer({
             path: url,
             method,
@@ -78,26 +78,27 @@ const request = function (url, data, options = {}, showLoading = true, chekLogin
     });
 };
 
-request.get = function (url, data, options = {}, chekLogin = true) {
+request.get = function (url, data, options = {},showLoading = true, chekLogin = true) {
     return request(url, data, {
         ...options,
         method: "GET"
-    }, (chekLogin = true));
+    },(showLoading), (chekLogin = true));
 };
 
-request.post = function (url, data, options = {}, chekLogin = true) {
+request.post = function (url, data, options = {},showLoading = true, chekLogin = true) {
     return request(url, data, {
         ...options,
         method: "POST"
-    }, (chekLogin = true));
+    },(showLoading), (chekLogin = true));
 };
-request.delete = function (url, data, options = {}, chekLogin = true) {
+request.delete = function (url, data, options = {},showLoading = true, chekLogin = true) {
     return request(
         url,
         data, {
             ...options,
             method: "DELETE"
         },
+        (showLoading),
         (chekLogin = true)
     );
 };
