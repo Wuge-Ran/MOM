@@ -25,7 +25,7 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
   };
   if(fromDate)options.header["from-date"]=fromDate;
   if(status)options.header["status"]=status;
-  return request.get(url, {}, options);
+  return request.get(url, {}, options,false);
 };
 
 export const getCourseById = (courseId) => {
