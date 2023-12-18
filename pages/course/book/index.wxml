@@ -68,7 +68,7 @@
           <span class="address">{{course.address}}</span>
         </view>
         <view wx:if="{{cards.length>0}}" class="buy-info">
-          <view class="flex-row" wx:if="{{course.type !=='open'}}">
+          <view class="flex-row choose-card-container" wx:if="{{course.type !=='open'}}">
             <span>选择会员卡</span>
             <view wx:if="{{choosedCard}}" class="choose-card bottom-arrow" bind:tap="onChooseCardTap">{{choosedCard.label}}</view>
           </view>
@@ -90,7 +90,7 @@
   <t-dialog class="dialog" visible="{{showDialogConfirm}}" title="{{status.cancel.text}}" confirm-btn="{{dialogConfirmBtn}}" cancel-btn="取消" bind:confirm="onReconfirmTap" bind:cancel="closeDialog">
     <view slot="content">
       <view class="dialog-content-container">
-        <span wx:if="{{course.user_can_reserve}}">取消预约后将释放您的预约名额，课程卡次数将退回账户</span>
+        <span wx:if="{{course.user_can_cancel_reserve}}">取消预约后将释放您的预约名额，课程卡次数将退回账户</span>
         <span wx:else>取消候补后将释放您的等位名额，课程卡次数将退回账户</span>
       </view>
     </view>

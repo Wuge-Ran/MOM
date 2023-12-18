@@ -30,6 +30,7 @@ Page({
     // 底部按钮状态
     status: {},
     timeStr: "",
+    firstLoad:true,
 
     //控制取消预约或取消候补弹窗是否展示
     showDialogConfirm: false,
@@ -38,7 +39,7 @@ Page({
       variant: "base",
     },
     //showPurchaseUI或showBuySpecialUI，根据courseType决定弹出哪种
-    showPupoUI:false,
+    showPupoUI: false,
 
     // 候补或预约底部弹窗是否展示
     showPurchaseUI: false,
@@ -83,7 +84,7 @@ Page({
 
     reConfirmBuyStr(data) {
       let str = "";
-      const { current_attenders, max_attenders, } = data.course;
+      const { current_attenders, max_attenders } = data.course;
       if (data.cards.length > 0) {
         if (current_attenders < max_attenders) str = "确认预约";
         else str = "确认候补";
@@ -97,25 +98,25 @@ Page({
     openClassCantBookStr(data) {
       let str = "";
       const { user_can_reserve } = data.course;
-      if (data.cards.length<=0 && user_can_reserve ) {
+      if (data.cards.length <= 0 && user_can_reserve) {
         str = "抱歉，您不是场馆会员，请先购买会员卡";
       }
-      console.log('openClassCantBookStr:',str);
+      console.log("openClassCantBookStr:", str);
       return str;
     },
 
     openClassNoCards(data) {
       const { type } = data.course;
-      if (data.cards.length<=0 && type==='open' ) {
-       return true;
+      if (data.cards.length <= 0 && type === "open") {
+        return true;
       }
       return false;
     },
 
     openClassHasCards(data) {
       const { type } = data.course;
-      if (data.cards.length>0 && type==='open' ) {
-       return true;
+      if (data.cards.length > 0 && type === "open") {
+        return true;
       }
       return false;
     },
@@ -146,13 +147,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // if(!this.firstLoad) this.setData({showPupoUI:false });
     this.init();
+    // this.setData({firstLoad:false});
   },
 
   async init() {
     const { courseId } = this.data;
     await this.getCourseDetail(courseId);
-    const type=this.data.course.type;
+    const type = this.data.course.type;
     const started = this.calCourseStarted();
     const [cancelBookDisabled, cancelBookDisabledStr] =
       this.calCancelBookDisabled();
@@ -162,19 +165,23 @@ Page({
       status,
       cancelBookDisabledStr,
       cancelBookDisabled,
-      showBuySpecialUI:type==="special",
-      showPurchaseUI:this.data.showPupoUI && type!=="special"
+      showBuySpecialUI: type === "special",
+      showPurchaseUI: this.data.showPupoUI && type !== "special",
     });
   },
 
   async getCourseDetail(courseId) {
-    const resp =(await getCourseById(courseId))?.data;
-    const course = resp?.course||[];
-    const cardsOrigin=resp?.cardins_list||[];
-    const cards = cardsOrigin.map((card) => ({ value: card.cardins_id, label: card.cardcat_name,...card }));
+    const resp = (await getCourseById(courseId))?.data;
+    const course = resp?.course || [];
+    const cardsOrigin = resp?.cardins_list || [];
+    const cards = cardsOrigin.map((card) => ({
+      value: card.cardins_id,
+      label: card.cardcat_name,
+      ...card,
+    }));
     const [fistCard] = cards;
-    console.log("getCourseDetail:", course,cards);
-    this.setData({ course,cards, choosedCard: fistCard  });
+    console.log("getCourseDetail:", course, cards);
+    this.setData({ course, cards, choosedCard: fistCard });
   },
 
   calCourseStarted() {
@@ -191,7 +198,7 @@ Page({
   calStatus(started, cancelBookDisabled) {
     const data = this.data;
     const _ = this;
-    const hasCards =data.cards.length>0;
+    const hasCards = data.cards.length > 0;
     const {
       user_can_cancel_reserve: canCancelBook,
       user_can_reserve: canBook,
@@ -199,6 +206,7 @@ Page({
       status,
       type,
     } = data?.course || {};
+
     //是否已开课
     const statusInfo = {
       cancel: { disabled: false, visible: false, text: "未知" },
@@ -206,7 +214,7 @@ Page({
     };
     if (started) {
       statusInfo.confirm = { disabled: true, visible: true, text: "已开课" };
-    } else if ((type==="special")) {
+    } else if (type === "special") {
       statusInfo.confirm = {
         disabled: false,
         visible: true,
@@ -227,20 +235,6 @@ Page({
         text: "候补",
         onTap: _.onWaitTap.bind(_),
       };
-    } else if (canCancelBook) {
-      statusInfo.cancel = {
-        disabled: cancelBookDisabled,
-        visible: true,
-        type: 1,
-        text: "取消预约",
-        onTap: _.onCancelBookTap.bind(_),
-      };
-      statusInfo.confirm = {
-        disabled: false,
-        visible: true,
-        text: "继续约课",
-        onTap: _.onContinueTap.bind(_),
-      };
     } else if (status < 0) {
       statusInfo.cancel = {
         disabled: false,
@@ -248,6 +242,20 @@ Page({
         text: "取消候补",
         type: 2,
         onTap: _.oncancelWaitTap.bind(_),
+      };
+      statusInfo.confirm = {
+        disabled: false,
+        visible: true,
+        text: "继续约课",
+        onTap: _.onContinueTap.bind(_),
+      };
+    } else if (canCancelBook || cancelBookDisabled) {
+      statusInfo.cancel = {
+        disabled: cancelBookDisabled,
+        visible: true,
+        type: 1,
+        text: "取消预约",
+        onTap: _.onCancelBookTap.bind(_),
       };
       statusInfo.confirm = {
         disabled: false,
@@ -266,30 +274,35 @@ Page({
   calCancelBookDisabled() {
     let disabled = true;
     let disabledStr = "";
+    const started =this.calCourseStarted();
     const deadline = this.data.cancelBookDeadline || 5;
     const {
       user_can_cancel_reserve: canCancelBook,
       type,
+      status,
       current_attenders: bookNum,
       start_time,
     } = this.data.course || {};
     if (canCancelBook) {
-      const isBeforefiveHourse = dayjs()
-        .add(deadline, "h")
-        .isBefore(dayjs(start_time));
-      if (type === "open") {
-        // 公开课随时可以取消预约
-        disabled = false;
-      } else if (isBeforefiveHourse) {
-        // 如果距离开课时间大于5小时,可取消预约
-        disabled = false;
-      } else if (type === "group" && bookNum < 3) {
-        disabled = false;
-      } else {
-        disabledStr = "开课前5小时内，不允许取消预约";
-      }
+      disabled = false;
+      // const isBeforefiveHourse = dayjs()
+      //   .add(deadline, "h")
+      //   .isBefore(dayjs(start_time));
+      // if (type === "open") {
+      //   // 公开课随时可以取消预约
+      //   disabled = false;
+      // } else if (isBeforefiveHourse) {
+      //   // 如果距离开课时间大于5小时,可取消预约
+      //   disabled = false;
+      // } else if (type === "group" && bookNum < 3) {
+      //   disabled = false;
+      // } else {
+      //   disabledStr = "开课前5小时内，不允许取消预约";
+      // }
+    } else if(status==1 && !started){
+      disabledStr = "开课前5小时内，不允许取消预约";
     }
-
+    console.log("calCancelBookDisabled", canCancelBook, disabled, disabledStr);
     return [disabled, disabledStr];
   },
 
@@ -391,8 +404,9 @@ Page({
       } = this.data?.course || {};
       const requestRunc = canBook ? book : wait;
       const type = canBook ? "booked" : "wait";
-      const waitPeo=canBook?0:waiting_attenders+1;
-      requestRunc(courseId, this.data.choosedCard.value, this.data.remark).then((resp) => {
+      const waitPeo = canBook ? 0 : waiting_attenders + 1;
+      requestRunc(courseId, this.data.choosedCard.value, this.data.remark).then(
+        (resp) => {
           if (resp?.data?.result === 0) {
             //预约或候补成功
             this.setData({ showPurchaseUI: false });
@@ -406,12 +420,14 @@ Page({
               waitPeo,
             };
             const paramURI = queryString(param);
-            wx.navigateTo({
-              url: `/pages/course/book/success/index${paramURI}`,
-            });
+            this.gotoSuccPage(paramURI);
           } else {
             //预约或候补失败
-            Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
+            Toast({
+              context: this,
+              selector: "#t-toast",
+              message: resp?.data?.message,
+            });
           }
         }
       );
@@ -423,24 +439,33 @@ Page({
     }
   },
 
+  gotoSuccPage(paramURI){
+    wx.navigateTo({
+      url: `/pages/course/book/success/index${paramURI}`,
+    });
+  },
+
   //特殊课程购买逻辑
-  onSpecialConfirmTap(){
+  onSpecialConfirmTap() {
     const courseId = this.data.courseId;
     buySpecialCourse(courseId).then((resp) => {
-        if (resp?.data?.result === 0) {
-          this.setData({ showBuySpecialUI: false });
-          const { address, display_name } = this.data.course;
-          const param = { type:"special", displayName: display_name, address, };
-          const paramURI = queryString(param);
-          wx.navigateTo({
-            url: `/pages/course/book/success/index${paramURI}`,
-          });
-        } else {
-          //失败
-          Toast({ context: this, selector: "#t-toast", message: resp?.data?.message, });
-        }
+      if (resp?.data?.result === 0) {
+        this.setData({ showBuySpecialUI: false });
+        const { address, display_name } = this.data.course;
+        const param = { type: "special", displayName: display_name, address };
+        const paramURI = queryString(param);
+        wx.navigateTo({
+          url: `/pages/course/book/success/index${paramURI}`,
+        });
+      } else {
+        //失败
+        Toast({
+          context: this,
+          selector: "#t-toast",
+          message: resp?.data?.message,
+        });
       }
-    );
+    });
   },
 
   onRemarkChange(event) {
