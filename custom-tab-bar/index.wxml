@@ -1,5 +1,5 @@
 <!--custom-tab-bar/index.wxml-->
-<view class="tabar-warper">
+<view class="tabar-warper" wx:if="{{visible}}">
     <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
         <t-tab-bar-item
         wx:for="{{list}}" 

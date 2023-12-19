@@ -15,6 +15,7 @@ import globalData from "@src/global/index";
 Component({
   data: {
     value: "home",
+    visible:true,
     // activeValue:"home",
     list: [
       {
@@ -77,6 +78,7 @@ Component({
     },
 
     show() {
+      this.setData({visible:true});
       const page = getCurrentPages().pop();
       const item = this.data.list.find(
         (item) => item.path === `/${page.route}`
@@ -87,5 +89,8 @@ Component({
         });
       }
     },
+    hide(){
+      this.setData({visible:false});
+    }
   },
 });
