@@ -147,9 +147,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // if(!this.firstLoad) this.setData({showPupoUI:false });
-    this.init();
-    // this.setData({firstLoad:false});
+    wx.nextTick(()=>{
+      const app = getApp();
+      const {last,current} =app.globalData?.routes||{};
+      if(last?.path==="pages/course/book/success/index"){
+        this.setData({showPupoUI:false });
+      }
+      this.init();
+    })
+   
+    
   },
 
   async init() {
@@ -433,7 +440,7 @@ Page({
       );
     } else {
       // 无卡，跳转到购卡首页
-      wx.switchTab({
+      wx.reLaunch({
         url: `/pages/card/index`,
       });
     }
