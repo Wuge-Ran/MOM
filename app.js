@@ -4,7 +4,9 @@ import locale from "@utils/dayjs/locale/zh-cn";
 import globalData from '@src/global/index';
 
 App({
-    onLaunch() {
+    onLaunch(res) {
+        console.log(res)
+        globalData.scene = res.scene;
         dayjs.locale(locale, null, true);
         dayjs.locale("zh-cn");
         wx.cloud.init({

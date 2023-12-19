@@ -46,6 +46,23 @@ Page({
             url: "/pages/login/index",
         });
     },
+    linkToMyCard(){
+        if(this.data.userInfo.available_cards){
+            wx.navigateTo({
+            url: '/pages/personal/member-card/index',
+            })
+        } else{
+            wx.switchTab({
+                url: "/pages/card/index",
+            });
+        }
+    },
+    linkToCourse(e){
+        console.log('====e',e)
+        const course_id = e.currentTarget.dataset.courseid;
+        const url=`/pages/course/book/index?courseId=${course_id}`;
+      wx.navigateTo({ url });
+    },
     swpierChange(event) {
         const {
             detail
@@ -78,7 +95,6 @@ Page({
         this.setData({
             noMembercardVisible: false,
         });
-        // TODO：跳转到购卡页面
         wx.switchTab({
             url: "/pages/card/index",
         });
@@ -105,7 +121,7 @@ Page({
             })
         }
         // 说明已经登录
-        if (globalData.login.phoneNumber && options.type ==='scan_checkin_daypass'){
+        if (globalData.login.phoneNumber && options.type ==='scan_checkin_daypass'&&globalData.scene === 1011){
             postScanCheckin().then(({data})=>{
                 if(data.cardins){
                     this.setData({
@@ -146,7 +162,6 @@ Page({
             "===首页 onShow 触发",
             !!globalData.login.phoneNumber && !!globalData.login.token
         );
-        
 
         if (globalData.login.phoneNumber) {
             this.setData({
@@ -154,39 +169,42 @@ Page({
                 phoneNumber: globalData.login.phoneNumber,
                 avatarUrl:globalData.avatar
             });
-            getHomeData().then((res) => {
-                console.log("===getHomeData", res);
-                setTimeout(() => {
-                    let query = wx.createSelectorQuery();
-                    query
-                        .select(".userinfo")
-                        .boundingClientRect((rect) => {
-                            this.setData({
-                                topNumber:(rect.top - 70) +'px'
-                            })
-                            console.log("boundingClientRect", rect);
-                        })
-                        .exec();
-                });
-                const userInfo = res.data;
-                const swiperList = userInfo.background.map(item => {
-                    return {
-                        value: item.image_url,
-                        link: item.link,
-                        text:item.btn_text
-                    }
-                })
-                globalData.userInfo = userInfo;
-                this.setData({
-                    userInfo,
-                    swiperList
-                });
-            });
+            
         } else {
             this.setData({
                 isLogin: false,
             });
         }
+        getHomeData().then((res) => {
+            console.log("===getHomeData", res);
+            setTimeout(() => {
+                let query = wx.createSelectorQuery();
+                query
+                    .select(".userinfo")
+                    .boundingClientRect((rect) => {
+                        this.setData({
+                            topNumber:(rect.top - 70) +'px'
+                        })
+                        console.log("boundingClientRect", rect);
+                    })
+                    .exec();
+            });
+            const userInfo = res.data;
+            const swiperList = userInfo.background.map(item => {
+                return {
+                    value: item.image_url,
+                    link: item.link,
+                    text:item.btn_text
+                }
+            })
+            globalData.userInfo = userInfo;
+            this.setData({
+                userInfo,
+                swiperList
+            });
+        }).catch(err=>{
+            console.warn(err)
+        });
     },
     linkToCard() {
         console.log(212)

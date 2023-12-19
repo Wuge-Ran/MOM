@@ -35,7 +35,7 @@
 
                 </view>
             </view>
-            <view class="description-item">
+            <view class="description-item" bind:tap="linkToMyCard">
                 <view class="description-item-title">会员卡</view>
                 <view class="description-item-content">
                     <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards}}</view>
@@ -44,10 +44,10 @@
                 </view>
             </view>
         </view>
-        <view class="my-course" wx:if="{{userInfo.course}}">
+        <view class="my-course" wx:if="{{userInfo.course}}"  data-courseId="{{userInfo.course.course_id}}" bind:tap="linkToCourse">
             <view class="my-course-title">即将开始</view>
             <view class="my-course-content">
-                <image class="course-avatar" src="{{userInfo.avatarUrl||'./img/course-demo.png'}}" mode="cover"></image>
+                <image class="course-avatar" src="{{'./img/course-demo.png'}}" mode="cover"></image>
                 <view class="my-course-content-info">
                     <view class="my-course-content-title">{{userInfo.course.display_name}}</view>
                     <view class="my-course-content-message">
@@ -57,7 +57,7 @@
                         </view>
                         <view class="my-course-content-message-item course-coach">
                             <image src="./img/course-coach.png" alt="" />
-                            <view class="course-text">Leo</view>
+                            <view class="course-text">{{userInfo.course.coach_nickname}}</view>
                         </view>
                     </view>
                 </view>
@@ -75,11 +75,11 @@
         <view class="userinfo-content">
             <view class="userinfo-content-item border-right" mode="cover">
                 <image src="./img/course.png" />
-                <t-button hover-class="none">立刻约课</t-button>
+                <t-button hover-class="none" bindtap="bindInfoTap">立刻约课</t-button>
             </view>
             <view class="userinfo-content-item">
                 <image src="./img/card.png" mode="cover" />
-                <t-button hover-class="none">立即购卡</t-button>
+                <t-button hover-class="none" bindtap="bindInfoTap">立即购卡</t-button>
             </view>
         </view>
         <view class="userinfo-aboutUs">

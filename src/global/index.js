@@ -4,8 +4,8 @@ export default {
         baseUrl: "https://api.catchyrime.com",
         interval: 2 * 1000,
         maxRetries: 3,
-      
     },
+    scene:0,
     login: {
         _token: "",
         _failtures: 0,

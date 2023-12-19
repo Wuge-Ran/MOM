@@ -10,7 +10,7 @@
                         <text class="order-type">{{item.type}}</text>
                         <text class="order-time">{{item.time}}</text>
                     </view>
-                    <view class="order-list-text ">
+                    <view class="order-list-money">
                         <text class="order-status">{{item.status}}</text>
                         <text class="order-money">¥{{item.money}}</text>
                     </view>

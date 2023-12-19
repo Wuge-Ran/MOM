@@ -1223,7 +1223,7 @@ Page({
                 rockText: data.wall_grade,
                 rockValue: [data.wall_grade],
                 dateText: data.birthday,
-                dateValue: data.birthday,
+                dateValue: data.birthday??new Date('1995-01-01').getTime(),
                 heightText: data.height && data.height + ' cm',
                 heightValue: [data.height],
                 weightText: data.weight && data.weight + ' kg',

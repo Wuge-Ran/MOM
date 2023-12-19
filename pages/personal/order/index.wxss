@@ -29,6 +29,12 @@
     justify-content: space-between;
     padding: 32rpx 10rpx 32rpx 32rpx;
 }
+.order-list-money {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32rpx 32rpx 32rpx 10rpx;
+}
 .pink {
     background:#EED5D2;
 }

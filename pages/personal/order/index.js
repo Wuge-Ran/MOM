@@ -1,6 +1,7 @@
 import {
     getOrderList
 } from '@src/api/personal';
+import dayjs from "dayjs";
 
 // pages/personal/index.js
 Page({
@@ -19,14 +20,16 @@ Page({
         getOrderList().then(({
             data
         }) => {
-            
+
             const map = data.orders.map(item => {
+                const day = item.order_created_at.replace('T', ' ');
+                const newday = dayjs(day).format('YYYY-MM-DD hh:mm')
                 return {
                     id: item.cardcat_id,
                     type: item.cardcat_name,
-                    time: item.order_created_at.replace('T', ' '),
+                    time: newday,
                     status: '支付成功',
-                    money: item.order_paid_price,
+                    money: item.order_paid_price.split('.')[0],
                     curClass:item.cardcat_display_bgstyle
                 }
             })

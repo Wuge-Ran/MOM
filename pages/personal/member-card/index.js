@@ -21,7 +21,8 @@ Page({
         swiperMargin: '150rpx',
         swiperCurrent: 0,
         swiperList: [],
-        cardinsList:[]
+        cardinsList:[],
+        currentSwpierData:null
     },
     onShow(){
         getCurrentCard().then(({data})=>{
@@ -71,12 +72,15 @@ Page({
                 return item.cardins_status === 'inactive'|| item.cardins_status === 'active'
             })
             console.log('===cardinsList',cardinsList)
+            
             this.setData({
-                cardinsList
+                cardinsList,
+                currentSwpierData:cardinsList[0]
             })
         })
     },
     toLink(){
+        const {  } = this.data.currentSwpierData
         wx.navigateTo({
           url: '/pages/personal/consume/index',
         })
@@ -84,8 +88,10 @@ Page({
     // 监听swiper切换
     swiperChange(e) {
         let current = e.detail.current;
+        console.log('===current',this.data.cardinsList[current])
         this.setData({
-            swiperCurrent: current
+            swiperCurrent: current,
+            currentSwpierData:this.data.cardinsList[current]
         });
     },
     handleChange(e) {
