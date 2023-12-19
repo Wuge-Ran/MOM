@@ -20,7 +20,7 @@ Page({
   data: {
     avatarUrl: "/assets/images/avatar.png",
     courseId: "",
-    cancelBookDeadline: 5,
+    cancelBookDeadline: 50,
 
     course: {},
     cancelBookDisabledStr: "",
@@ -282,14 +282,19 @@ Page({
     let disabled = true;
     let disabledStr = "";
     const started =this.calCourseStarted();
-    const deadline = this.data.cancelBookDeadline || 5;
+
     const {
       user_can_cancel_reserve: canCancelBook,
       type,
       status,
+      attend_status,
       current_attenders: bookNum,
       start_time,
+      no_cancel_reserve_minutes,
     } = this.data.course || {};
+
+    const deadline =no_cancel_reserve_minutes || this.data.cancelBookDeadline || 50;
+
     if (canCancelBook) {
       disabled = false;
       // const isBeforefiveHourse = dayjs()
@@ -306,8 +311,8 @@ Page({
       // } else {
       //   disabledStr = "开课前5小时内，不允许取消预约";
       // }
-    } else if(status==1 && !started){
-      disabledStr = "开课前5小时内，不允许取消预约";
+    } else if(attend_status==='reserved' && !started){
+      disabledStr = `开课前${deadline}分钟内，不允许取消预约`;
     }
     console.log("calCancelBookDisabled", canCancelBook, disabled, disabledStr);
     return [disabled, disabledStr];
