@@ -1,7 +1,7 @@
 // app.js
 import dayjs from "dayjs";
 import locale from "@utils/dayjs/locale/zh-cn";
-import globalData from '@src/global/index';
+import globalData from "@src/global/index";
 
 App({
     onLaunch(res) {
@@ -15,10 +15,20 @@ App({
         })
         //获取头像
 
-        // login();
-
-    },
-    globalData: {
-        userInfo: null,
+    // login();
+    
+    wx.onAppRoute((res) => {
+      const r =this.globalData.routes;
+      r.last=r.current;
+      r.current=res;
+      console.log("onAppRoute", res,r,99999);
+    });
+  },
+  globalData: {
+    userInfo: null,
+    routes:{
+        last:null,
+        current:null,
     }
-})
+  },
+});

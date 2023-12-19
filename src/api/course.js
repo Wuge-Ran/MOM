@@ -19,7 +19,7 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
     header: {
       "to-date": toDate,
       fields:
-        "course_id, type, display_name, description, address, start_time, duration_minutes, max_attenders, current_attenders, waiting_attenders, coach_id, coach_nickname, coach_avatar_url, coach_liked_by_user, status,user_can_cancel_reserve,user_can_reserve,user_can_wait",
+        "course_id, type, display_name, description, address, start_time, duration_minutes, max_attenders, current_attenders, waiting_attenders, coach_id, coach_nickname, coach_avatar_url, coach_liked_by_user, status,user_can_cancel_reserve,user_can_reserve,user_can_wait,attend_status",
       //,address_lat,address_long
     },
   };

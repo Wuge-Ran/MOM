@@ -19,7 +19,7 @@ Page({
     errorMsg: {
       ERR_WXPAY_CANCELLED: "超时或支付取消",
       ERR_WXPAY_FAILED: "支付失败",
-      ERR_CANNOT_BUY_THAT_MANY:'您已达到购买数量上限，无法再购买',
+      ERR_CANNOT_BUY_THAT_MANY: "您已达到购买数量上限，无法再购买",
       UNKOWN: "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
     },
     cardsTypeTitle: {
@@ -84,7 +84,7 @@ Page({
             card.localType = 5;
             break;
           case "daypass":
-            if(classic==="bundle")card.localType = 2;
+            if (classic === "bundle") card.localType = 2;
             else card.localType = 3;
             break;
           case "group":
@@ -98,14 +98,14 @@ Page({
 
       switch (classic) {
         case "bundle":
-          card.times=max_consume_times?`${max_consume_times}`:"无限";
-          card.suffix='次课'
+          card.times = max_consume_times ? `${max_consume_times}` : "无限";
+          card.suffix = "次课";
           break;
         case "time":
-          card.times=max_expire_days?`${max_expire_days}`:"无限";
-          card.suffix='天'
+          card.times = max_expire_days ? `${max_expire_days}` : "无限";
+          card.suffix = "天";
           break;
-       
+
         default:
           card.localType = type;
           break;
@@ -129,7 +129,6 @@ Page({
           break;
       }
 
-
       card.logo =
         display_badge === "trial"
           ? "/assets/images/event.png"
@@ -148,17 +147,23 @@ Page({
           : display_title;
       cardsByType[localType].push(card);
     }
-    for(const key in cardsByType){
+    for (const key in cardsByType) {
       console.log(key);
     }
-    console.log(cardsByType,99999);
+    console.log(cardsByType, 99999);
     return cardsByType;
   },
 
   onCardTap(events) {
     const curCard = events?.currentTarget?.dataset?.card || {};
     console.log("onCardTap:", events, curCard);
+    this.visibleTabar(false);
     this.setData({ showPurchaseUI: true, curCard, privacyChecked: false });
+  },
+
+  visibleTabar(visible) {
+    if (visible) this.getTabBar()?.show();
+    else this.getTabBar()?.hide();
   },
 
   onPrivacyTap(event) {
@@ -167,17 +172,17 @@ Page({
   },
   onBuCardPrivacy(event) {
     wx.navigateTo({
-      url: `/pages/privacy/index?type=${'vipCards'}`,
+      url: `/pages/privacy/index?type=${"vipCards"}`,
     });
   },
   onBuCardPrivacy1(event) {
     wx.navigateTo({
-      url: `/pages/privacy/index?type=${'vipCards'}`,
+      url: `/pages/privacy/index?type=${"vipCards"}`,
     });
   },
-  
 
   onConfromUIVisiableChange(event) {
+    this.visibleTabar(true);
     this.setData({ showPurchaseUI: event.detail.visible });
   },
 
@@ -248,7 +253,9 @@ Page({
               selector: "#t-toast",
               theme: "warning",
               direction: "column",
-              message: errorMsg[data?.message]||'抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看',
+              message:
+                errorMsg[data?.message] ||
+                "抱歉，您的网络开了小差，请稍后移步我的-会员卡页面查看",
             });
           }
         });

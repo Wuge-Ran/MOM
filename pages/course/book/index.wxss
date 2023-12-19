@@ -16,6 +16,7 @@
     --td-picker-confirm-color:#C8D67A;
     --td-button-primary-bg-color:#C8D67A;
     --td-font-size-m:28rpx;
+    --td-input-vertical-padding:16rpx;
 }
 
 .header {
@@ -264,9 +265,11 @@
     border-bottom: 2rpx solid #F9F6F2;
 }
 .buy-info{
-    margin:32rpx 0;
+    margin:16rpx 0;
 }
-
+.choose-card-container{
+    padding-top: 16rpx;
+}
 .buy-info .flex-row{
     line-height: 56rpx;
     justify-content: space-between;
@@ -409,4 +412,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #fff;
   background: transparent;
   transform: translate(-50%, -50%) scale(1);
+}
+.t-input--border {
+    position: unset !important;
 }

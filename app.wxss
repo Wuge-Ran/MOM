@@ -29,6 +29,9 @@ page {
     --td-toast-radius: 16rpx;
     --td-toast-bg-color: rgba(0, 0, 0, 0.72);
     --td-popup-border-radius: 24rpx;
+    --td-picker-confirm-color:#C8D67A;
+    --td-button-primary-bg-color:#C8D67A;
+    --td-button-primary-active-bg-color:#C8D67A;
 
     /* tabbar高度 */
     --tabbar-height: 140rpx;
