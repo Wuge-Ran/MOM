@@ -47,7 +47,7 @@
         <view class="my-course" wx:if="{{userInfo.course}}"  data-courseId="{{userInfo.course.course_id}}" bind:tap="linkToCourse">
             <view class="my-course-title">即将开始</view>
             <view class="my-course-content">
-                <image class="course-avatar" src="{{'./img/course-demo.png'}}" mode="cover"></image>
+                <image class="course-avatar" src="{{userInfo.course.coach_avatar_url}}" mode="cover"></image>
                 <view class="my-course-content-info">
                     <view class="my-course-content-title">{{userInfo.course.display_name}}</view>
                     <view class="my-course-content-message">

@@ -18,9 +18,9 @@
 }
 
 .login .logo {
-  margin-top: 41%;
-  width: 418rpx;
-  height: 96rpx;
+  margin-top: 45%;
+  width: 280rpx;
+  height: 280rpx;
 }
 
 /* .login .protocol-prompt {

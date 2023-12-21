@@ -136,6 +136,7 @@
 .description-item-number {
     color: #B4CC2B;
     font-size: 80rpx;
+    font-weight: 600;
 }
 
 .description-item-content {
@@ -171,6 +172,7 @@
     width: 140rpx;
     height: 140rpx;
     margin-right: 32rpx;
+    border-radius: 50%;
 }
 
 .my-course-content-title {

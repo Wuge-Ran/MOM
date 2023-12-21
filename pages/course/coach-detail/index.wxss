@@ -41,10 +41,12 @@
     display: flex;
     background-color: #fff;
     width: 100%;
+    flex: 1;
     border-radius: 24rpx;
     box-sizing: border-box;
     overflow: hidden;
     flex-direction: column;
+    margin-bottom: 60rpx;
 }
 
 .coach-intro-head {

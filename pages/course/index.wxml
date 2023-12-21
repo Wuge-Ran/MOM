@@ -2,7 +2,7 @@
 <view class="course-contaioner" wx:if="{{dateList.length}}">
   <view class="header">
     <view class="selection-bar">
-      <view bind:tap="onBarIconClick">
+      <view class="selection-bar-box" bind:tap="onBarIconClick">
         <image class="selection-bar-icon" src="./images/select-icon.jpg" wx:if="{{!selectDetail}}" />
         <image class="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else />
       </view>

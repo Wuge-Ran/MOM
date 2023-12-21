@@ -86,3 +86,8 @@
 .no-course-text{
     margin-top: 520rpx;
 }
+
+.selection-bar-box{
+    display: flex;
+    align-items: center;
+}

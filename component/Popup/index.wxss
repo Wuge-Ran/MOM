@@ -8,6 +8,7 @@
     padding: 32rpx 32rpx 0 32rpx;
 }
 .popup-title {
+    font-size: 28rpx;
     line-height: 20px;
     margin-bottom: 16rpx;
     color:var(--neutral-color4);

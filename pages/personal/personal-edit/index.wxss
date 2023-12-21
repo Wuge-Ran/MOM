@@ -37,7 +37,11 @@
 }
 
 .logout{
-    margin: 44rpx 32rpx 0;
+    width: 686rpx;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 104rpx;
 }
 
 .t-cell__note {
@@ -45,11 +49,20 @@
 }
 
 .t-cell__title {
-    width: 172rpx !important;
+    width: 192rpx !important;
     flex: none !important;
 }
+
+.t-cell__title-text{
+    font-weight: 500 !important;
+}
+
+.t-input__label{
+    font-weight: 500 !important;
+}
+
 .t-input__wrap--prefix{
-    width: 172rpx !important;
+    width: 192rpx !important;
 }
 
 .t-cell__right {
