@@ -1,5 +1,4 @@
 /* custom-tab-bar/index.wxss */
-
 .tabar-warper {
     --td-tab-bar-bg-color: #FFF;
     --td-tab-bar-active-color: #282826;
@@ -9,5 +8,6 @@
 }
 
 .tabar-warper .t-icon-base{
-        color: #1111;
+  color: #1111;
 }
+
