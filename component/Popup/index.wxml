@@ -1,4 +1,4 @@
-<t-popup class="pop-up" visible="{{visible}}" placement="top" bind:visible-change="onCancel">
+<t-popup class="pop-up" visible="{{visible}}" placement="top" bind:visible-change="onClose">
     <view class="popup-content">
         <view class="popup-title">教练</view>
         <scroll-view scroll-y="fasle" show-scrollbar="false">

@@ -101,9 +101,7 @@
   bindchange="onWeightChange"
   bindcancel="onPickerCancel"
 >
-  <t-picker-item options="{{weightOne}}"></t-picker-item>
-  <t-picker-item options="{{weightTwo}}"></t-picker-item>
-  <t-picker-item options="{{[{label:'kg'}]}}"></t-picker-item>
+  <t-picker-item options="{{weight}}"></t-picker-item>
 
 </t-picker>
 <view class="logout">

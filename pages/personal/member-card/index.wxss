@@ -666,3 +666,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   .confirm-btn {
     background-color: #C8D67A;
   }
+
+  .white-title{
+      color: #F9F6F2;
+  }

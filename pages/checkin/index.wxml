@@ -1,0 +1,25 @@
+<view class="container checkin">
+    <view class="checkin-success" wx:if="{{checkSuccessVisible}}">
+        <image class="checkin-success-img" src="/assets/icons/success.png" mode="" />
+        <view class="checkin-success-text">签到成功</view>
+        <view class="checkin-success-info">
+            <view class="checkin-success-info-time">签到时间：{{checkInTime}}</view>
+            <view class="checkin-success-info-card">核销：{{checkInfo.cardcat_name}}</view>
+        </view>
+        <t-button class="back-to-index" hover-class="none" bindtap="bindBackTap">返回首页 ({{backIndexCount}}s)</t-button>
+    </view>
+    <view class="checkin-success" wx:if="{{noMembercardVisible}}">
+        <image class="checkin-success-img" src="/assets/icons/fail.png" mode="" />
+        <view class="checkin-success-text">签到失败</view>
+        <view class="checkin-success-info">
+            <view class="checkin-success-info-time">签到核销失败，立即购卡开启体验吧！</view>
+        </view>
+        <view class="btns">
+            <t-button class="to-card" hover-class="none" theme="light" bindtap="bindBackTap">返回首页</t-button>
+            <t-button class="to-card" hover-class="none" bindtap="onOk" >立即购卡</t-button>
+        </view>
+        
+    </view>
+
+</view>
+<image class="background-img" src="https://mellow-1321738484.cos.ap-shanghai.myqcloud.com/public/scan_checkin_background.png" alt="" />

@@ -1,11 +1,11 @@
 <t-collapse  expandMutex expandIcon>
   <t-collapse-panel header="{{config.vipCards.title}}" value="{{0}}">
-    {{config.vipCards.content}}
+    <text>{{config.vipCards.content}}</text> 
   </t-collapse-panel>
   <t-collapse-panel header="{{config.vipCourse.title}}" value="{{1}}">
-    {{config.vipCourse.content}}
+    <text>{{config.vipCourse.content}}</text> 
   </t-collapse-panel>
   <t-collapse-panel header="{{config.userPrivacy.title}}" value="{{2}}">
-    {{config.userPrivacy.content}}
+    <text>{{config.userPrivacy.content}}</text> 
   </t-collapse-panel>
 </t-collapse>

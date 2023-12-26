@@ -1,20 +1,58 @@
 .container{
     height: var(--content-without-tab-height);
+    --td-dropdown-menu-active-colorm:#B4CC2B;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .consume-detail{
     padding: 32rpx;
+    border-bottom: 1px solid #F9F6F2;
 }
 .consume-name{
     font-weight: 500;
+    font-size: 32rpx;
     margin-bottom: 24rpx;
 }
 .consume-price{
     font-weight: 500;
+    font-size: 40rpx;
 }
 
 .consume-content{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.consume-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32rpx;
+}
+
+.t-dropdown-menu::after{
+    display: none !important;
+}
+
+.consume-title-text{
+    font-size: 28rpx;
+    font-weight: 500;
+}
+
+.t-icon-check{
+    color:#B4CC2B;
+}
+.consume-list{
+    flex: 1;
+    overflow: hidden;
+}
+
+.no-consume{
+    margin-top: 300rpx;
+    text-align: center;
+    color: #71716F;
+    font-size: 28rpx;
 }

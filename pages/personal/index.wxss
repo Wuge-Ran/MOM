@@ -1,7 +1,7 @@
 /* pages/personal/index.wxss */
 .personal{
-    background: linear-gradient(180deg, #C8D67A 0%, #FFFFFF 100%);
-    padding: 0 32rpx ;
+    background: url(https://mellow-1321738484.cos.ap-shanghai.myqcloud.com/public/miniapp_profile_background.jpeg);
+    padding: 224rpx 32rpx 0;
     display: block;
 }
 
@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 48rpx;
+    color: #fff;
 }
 .personal-edit{
     width: 72rpx;

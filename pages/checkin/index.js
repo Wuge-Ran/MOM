@@ -1,44 +1,55 @@
+import dayjs from "dayjs";
 import {
-    login,
-    updatePhone,
-    getUserData
+    postScanCheckin
 } from "@src/api/user";
 import globalData from "../../src/global/index";
-import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
+    timer:null,
     data: {
-        phoneNumber: null,
-        radioStatus: false,
-        privacyRadioStatus: false,
-        authBtnDisabled: true,
-        getPhoneBtnDisabled: true,
-        showDialogConfirm: false,
-        dialogConfirmBtn: {
-            content: '确定',
-            variant: 'base',
-            disabled: true,
-            'openType': 'getPhoneNumber',
-            // 这是什么弱智用法
-            bindgetphonenumber:({
-                detail
-            }) =>{
-                console.log('===detail', this)
-                if (detail.encryptedData && detail.iv) {
-                    updatePhone(detail.encryptedData, detail.iv).then(res => {
-                        console.log('===updatePhone', res)
-                        return getUserData()
-                    }).then(res => {
-                        console.log('===getUserData', res.data.phone_number)
-                        globalData.login.phoneNumber = res.data.phone_number??'';
-                        wx.navigateBack();
-                    })
-                }
-            }
-        },
+        motto: "Hello World",
+        checkSuccessVisible: false,
+        noMembercardVisible: false,
+        checkInfo: {},
+        checkInTime: 0,
+        backIndexCount:3
     },
     onLoad() {
-        login()
+        postScanCheckin().then(({
+            data
+        }) => {
+            if (data.cardins) {
+                this.setData({
+                    checkSuccessVisible: true,
+                    checkInfo: data.cardins,
+                    checkInTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                })
+                this.timer = setInterval(()=>{
+                    if(this.data.backIndexCount === 0){
+                        clearInterval(this.timer);
+                        this.bindBackTap();
+                        return
+                    }
+                    this.setData({
+                        backIndexCount:this.data.backIndexCount -1
+                    })
+                },1000)
+            } else {
+                this.setData({
+                    noMembercardVisible: true
+                })
+            }
+        })
+    },
+    onOk(){
+        wx.switchTab({
+            url: `/pages/card/index`,
+          });
+    },
+    bindBackTap(){
+        wx.switchTab({
+            url: `/pages/index/index`,
+          });
     },
 
     // handleGetPhoneNumber(e) {

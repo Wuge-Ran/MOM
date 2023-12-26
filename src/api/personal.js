@@ -23,6 +23,16 @@ export const postAvatar = (base64) => {
     });
 }
 
+export const getCheckinList = (data) => {
+    const url = `/v1/checkin_daypass`;
+    return request.get(url,data);
+}
+
+export const getCouresCardList = (data) =>{
+    const url = `/v1/course_by_cardins_list`;
+    return request.get(url,data);
+}
+
 function generateDates() {
     // 获取今天的日期
     const today = new Date();

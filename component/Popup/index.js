@@ -91,6 +91,11 @@ Component({
             localCoachList:clearSelect,
         })
         this.triggerEvent('onOk', []);
+    },
+    onClose:function(){
+        this.setData({
+            visible:false
+        })
     }
   },
   observers: {

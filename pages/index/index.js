@@ -1,7 +1,8 @@
 import globalData from "../../src/global/index";
 import {
     getHomeData,
-    postScanCheckin
+    postScanCheckin,
+    getWxForReview
 } from "@src/api/user";
 import dayjs from "dayjs";
 const computedBehavior = require("miniprogram-computed").behavior;
@@ -23,14 +24,14 @@ Page({
         currentIndex: 0,
         checkSuccessVisible: false,
         noMembercardVisible: false,
-        avatarUrl:'',
-        topNumber:0,
-        checkInfo:{},
-        checkInTime:0
+        avatarUrl: '',
+        topNumber: 0,
+        checkInfo: {},
+        checkInTime: 0
     },
     computed: {
         timeRangeStr(data) {
-            console.log("===",data);
+            console.log("===", data);
             const {
                 start_time,
                 duration_minutes = 0
@@ -46,22 +47,24 @@ Page({
             url: "/pages/login/index",
         });
     },
-    linkToMyCard(){
-        if(this.data.userInfo.available_cards){
+    linkToMyCard() {
+        if (this.data.userInfo.available_cards) {
             wx.navigateTo({
-            url: '/pages/personal/member-card/index',
+                url: '/pages/personal/member-card/index',
             })
-        } else{
+        } else {
             wx.switchTab({
                 url: "/pages/card/index",
             });
         }
     },
-    linkToCourse(e){
-        console.log('====e',e)
+    linkToCourse(e) {
+        console.log('====e', e)
         const course_id = e.currentTarget.dataset.courseid;
-        const url=`/pages/course/book/index?courseId=${course_id}`;
-      wx.navigateTo({ url });
+        const url = `/pages/course/book/index?courseId=${course_id}`;
+        wx.navigateTo({
+            url
+        });
     },
     swpierChange(event) {
         const {
@@ -71,20 +74,20 @@ Page({
             currentIndex: detail.current,
         });
     },
-    swiperLinkTo(event){
+    swiperLinkTo(event) {
         const link = event.target.dataset.link
-        console.log('===link',link)
+        console.log('===link', link)
         const reg = /(http|https):\/\/([\w.]+\/?)\S*/ig;
-        if(link.match(reg)){
+        if (link.match(reg)) {
             wx.navigateTo({
-                url: '/pages/webview/index?webview='+link,
-                })
-          }else{
+                url: '/pages/webview/index?webview=' + link,
+            })
+        } else {
             wx.navigateTo({
                 url: link,
-              })
-          }
-        
+            })
+        }
+
     },
     oncheckSuccessTap() {
         this.setData({
@@ -105,7 +108,7 @@ Page({
         });
     },
     onLoad(options) {
-        console.log("===首页 onload 触发",options);
+        console.log("===首页 onload 触发", options);
         if (wx.requirePrivacyAuthorize) {
             wx.requirePrivacyAuthorize({
                 success: res => {
@@ -121,21 +124,23 @@ Page({
             })
         }
         // 说明已经登录
-        if (globalData.login.phoneNumber && options.type ==='scan_checkin_daypass'&&globalData.scene === 1011){
-            postScanCheckin().then(({data})=>{
-                if(data.cardins){
+        if (globalData.login.phoneNumber && options.type === 'scan_checkin_daypass' && globalData.scene === 1011) {
+            postScanCheckin().then(({
+                data
+            }) => {
+                if (data.cardins) {
                     this.setData({
-                        checkSuccessVisible:true,
-                        checkInfo:data.cardins,
-                        checkInTime:dayjs().format('YYYY-MM-DD HH:mm:ss'),
-                        userInfo:{
+                        checkSuccessVisible: true,
+                        checkInfo: data.cardins,
+                        checkInTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                        userInfo: {
                             ...this.data.userInfo,
-                            'checkin_times':this.data.userInfo.checkin_times + 1
+                            'checkin_times': this.data.userInfo.checkin_times + 1
                         }
                     })
-                }else{
+                } else {
                     this.setData({
-                        noMembercardVisible:true
+                        noMembercardVisible: true
                     })
                 }
             })
@@ -147,7 +152,7 @@ Page({
                 bottom
             }
         } = res
-        
+
         if (screenHeight && bottom) {
             let safeBottom = screenHeight - bottom
             console.log('resHeight', safeBottom);
@@ -162,15 +167,27 @@ Page({
             "===首页 onShow 触发",
             !!globalData.login.phoneNumber && !!globalData.login.token
         );
+        // const {
+        //     data
+        // } = await getWxForReview({
+        //     'miniapp-version': '1.0.0-Fj5Iw0NCHLyc6NM7ZP0tI3XhQI2gTjWR'
+        // })
+        // if (data.user_token) {
+        //     globalData.login.phoneNumber = 'test'
+        //     globalData.login.token = data.user_token;
+        // }
+        // console.log('===getWxForReview', globalData.login.phoneNumber)
 
         if (globalData.login.phoneNumber) {
+            console.log('已登录')
             this.setData({
                 isLogin: true,
                 phoneNumber: globalData.login.phoneNumber,
-                avatarUrl:globalData.avatar
+                avatarUrl: globalData.avatar
             });
-            
+
         } else {
+            console.log('未登录')
             this.setData({
                 isLogin: false,
             });
@@ -183,7 +200,7 @@ Page({
                     .select(".userinfo")
                     .boundingClientRect((rect) => {
                         this.setData({
-                            topNumber:(rect.top - 70) +'px'
+                            topNumber: (rect.top - 70) + 'px'
                         })
                         console.log("boundingClientRect", rect);
                     })
@@ -194,7 +211,7 @@ Page({
                 return {
                     value: item.image_url,
                     link: item.link,
-                    text:item.btn_text
+                    text: item.btn_text
                 }
             })
             globalData.userInfo = userInfo;
@@ -202,7 +219,7 @@ Page({
                 userInfo,
                 swiperList
             });
-        }).catch(err=>{
+        }).catch(err => {
             console.warn(err)
         });
     },

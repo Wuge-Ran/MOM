@@ -24,7 +24,7 @@ Page({
         cardinsList:[],
         currentSwpierData:null
     },
-    onShow(){
+    onLoad(){
         getCurrentCard().then(({data})=>{
             console.log('getCurrentCard:',data.cardins_list)
             const cardinsList = data.cardins_list.map(item=>{
@@ -33,11 +33,9 @@ Page({
                 let excess;
                 if(item.cardcat_type === 'daypass'){
                     if(item.cardins_expire_date === null){
-                        excess='无限天数'
-                        unit = ''
-                        return;
-                    }
-                    if(item.cardcat_class === 'time'){
+                        excess=''
+                        unit = '无限天数'
+                    }else if(item.cardcat_class === 'time'){
                         unit = '天剩余'
                         excess = dayjs(item.cardins_expire_date).diff(dayjs().format('YYYY-MM-DD'),'day')
                     }else{
@@ -69,6 +67,7 @@ Page({
                     excess
                 }
             }).filter(item=>{
+                console.log('===item',item)
                 return item.cardins_status === 'inactive'|| item.cardins_status === 'active'
             })
             console.log('===cardinsList',cardinsList)
@@ -80,9 +79,10 @@ Page({
         })
     },
     toLink(){
-        const {  } = this.data.currentSwpierData
+        console.log(this.data.currentSwpierData)
+        const { cardcat_type,cardins_id } = this.data.currentSwpierData
         wx.navigateTo({
-          url: '/pages/personal/consume/index',
+          url: `/pages/personal/consume/index?type=${cardcat_type}&id=${cardins_id}`,
         })
     },
     // 监听swiper切换

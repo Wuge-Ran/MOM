@@ -1,0 +1,62 @@
+.checkin{
+    position: absolute;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.64) 0%, rgba(0, 0, 0, 0.13) 100%);
+    height: 100vh;
+    --td-button-default-bg-color: var(--theme-color);
+    --td-button-default-border-color: var(--theme-color);
+    --td-button-font-weight:500;
+    --td-button-default-color:var(--black-color);
+    --td-button-light-color:var(--black-color);
+}
+
+.checkin-success-img{
+    width: 128rpx;
+    height: 128rpx;
+}
+
+.checkin-success,.checkin-fail{
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 32rpx;
+    margin-top: 420rpx;
+    text-align: center;
+    margin-bottom: 80rpx;
+}
+
+.checkin-success-text{
+    margin-top: 8rpx;
+    font-size: 36rpx;
+    font-weight: 600;
+}
+
+.checkin-success-info{
+    margin-top: 112rpx;
+}
+
+.checkin-success-info-card{
+    margin-top: 16rpx;
+}
+
+.background-img{
+    width: 100%;
+    height: 100vh;
+}
+
+.back-to-index{
+    width: 686rpx;
+    margin-top: auto;
+}
+.to-card{
+    width: 327rpx;
+    height: 96rpx;
+}
+
+.btns{
+    width: 686rpx;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+}

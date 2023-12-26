@@ -1,9 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-      "t-popup": "tdesign-miniprogram/popup/popup",
-      "t-row": "tdesign-miniprogram/row/row",
-      "t-col": "tdesign-miniprogram/col/col",
-      "t-button": "tdesign-miniprogram/button/button"
-    }
-  }

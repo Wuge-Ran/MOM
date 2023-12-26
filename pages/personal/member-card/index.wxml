@@ -8,7 +8,7 @@
                     <view class="swiper-item-view {{ swiperCurrent==index?'active':''}}">
                         <image mode="scaleToFill" style="width: 100%; height: 100%;" class="swiper-image " src="{{item.imgUrl}}" alt=""></image>
                         <view class="swiper-card-title">
-                            <view class="swiper-card-title-content">{{item.cardcat_name}}</view>
+                            <view class="swiper-card-title-content {{item.cardcat_display_bgstyle==='deepgreen'? 'white-title':''}}">{{item.cardcat_name}}</view>
                         </view>
                         <view class="swiper-card-point">
                             <view class="swiper-card-point-number">{{item.excess}}</view>

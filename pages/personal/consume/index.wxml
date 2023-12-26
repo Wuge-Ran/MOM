@@ -1,18 +1,19 @@
 <view class="container">
-    <view class="consume-list">
-        <view class="consume-detail">
-            <view class="consume-name">单人中级私教10次卡-续费</view>
-            <view class="consume-content">
-                <view>2023-09-09 11:11</view>
-                <view class="consume-price">¥2342</view>
-            </view>
-        </view>
-        <view class="consume-detail">
-            <view class="consume-name">单人中级私教10次卡-续费</view>
-            <view class="consume-content">
-                <view>2023-09-09 11:11</view>
-                <view class="consume-price">¥2342</view>
-            </view>
-        </view>
+    <view class="consume-title">
+        <view class="consume-title-text">消费记录</view>
+        <t-dropdown-menu arrow-icon="chevron-down-s">
+            <t-dropdown-item options="{{product.options}}" value="{{product.value}}" bindchange="onMouthChange" />
+        </t-dropdown-menu>
+
     </view>
+    <scroll-view class="consume-list" 	scroll-y="{{true}}">
+        <view class="consume-detail" wx:for="{{orderList}}">
+            <view class="consume-name">{{item.title}}</view>
+            <view class="consume-content">
+                <view>{{item.time}}</view>
+                <view class="consume-price">{{item.person}}</view>
+            </view>
+        </view>
+        <view wx:if="{{!orderList.length}}" class="no-consume">暂无消费记录</view>
+    </scroll-view>
 </view>

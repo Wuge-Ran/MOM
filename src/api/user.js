@@ -44,3 +44,8 @@ export const login = function () {
     const url =`/v1/scan_checkin_daypass`;
     return request.post(url);
   }
+
+  export const getWxForReview = (data) =>{
+      const url = `/v1/wxuser_for_review`;
+      return request.get(url,data);
+  }

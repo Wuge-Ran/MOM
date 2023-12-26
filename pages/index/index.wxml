@@ -91,15 +91,4 @@
         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
 
     </view>
-    <t-popup class="check-success" visible="{{checkSuccessVisible}}" bind:visible-change="onVisibleChange" placement="center">
-        <view class="popup-header">
-            <image class="popup-header-img" src="./img/success.png" mode="aspectFill" />
-            <view class="popup-header-text">签到成功</view>
-        </view>
-        <view class="popup-content">
-            <view class="popup-content-text">您于{{checkInTime}}使用{{checkInfo.cardcat_name}}成功签到1次</view>
-            <t-button bind:tap="oncheckSuccessTap" hover-class="none" block>确认</t-button>
-        </view>
-    </t-popup>
-    <no-membercard-popup visible="{{noMembercardVisible}}" bind:onOk="linkToCard" bind:onCancel="onMembercardCancel" />
 </view>
