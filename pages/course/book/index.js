@@ -20,7 +20,7 @@ Page({
   data: {
     avatarUrl: "/assets/images/avatar.png",
     courseId: "",
-    cancelBookDeadline: 50,
+    cancelBookDeadline: 5,
 
     course: {},
     cancelBookDisabledStr: "",
@@ -30,7 +30,7 @@ Page({
     // 底部按钮状态
     status: {},
     timeStr: "",
-    firstLoad:true,
+    firstLoad: true,
 
     //控制取消预约或取消候补弹窗是否展示
     showDialogConfirm: false,
@@ -57,6 +57,11 @@ Page({
     //特殊课程购买弹窗
     showBuySpecialUI: false,
     privacyChecked: false,
+
+    //课程取消通知id
+    cancelId: "",
+    //课程候补成功通知id
+    reservedId: "",
   },
 
   computed: {
@@ -147,16 +152,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    wx.nextTick(()=>{
+    wx.nextTick(() => {
       const app = getApp();
-      const {last,current} =app.globalData?.routes||{};
-      if(last?.path==="pages/course/book/success/index"){
-        this.setData({showPupoUI:false });
+      const { last, current } = app.globalData?.routes || {};
+      if (last?.path === "pages/course/book/success/index") {
+        this.setData({ showPupoUI: false });
       }
       this.init();
-    })
-   
-    
+    });
   },
 
   async init() {
@@ -179,6 +182,11 @@ Page({
 
   async getCourseDetail(courseId) {
     const resp = (await getCourseById(courseId))?.data;
+
+    const {
+      wxsubmsg_template_course_cancelled: cancelId,
+      wxsubmsg_template_course_waiting_to_reserved: reservedId,
+    } = resp || {};
     const course = resp?.course || [];
     const cardsOrigin = resp?.cardins_list || [];
     const cards = cardsOrigin.map((card) => ({
@@ -187,8 +195,14 @@ Page({
       ...card,
     }));
     const [fistCard] = cards;
-    console.log("getCourseDetail:", course, cards);
-    this.setData({ course, cards, choosedCard: fistCard });
+    // console.log("getCourseDetail:", course, cards);
+    this.setData({
+      course,
+      cards,
+      choosedCard: fistCard,
+      cancelId,
+      reservedId,
+    });
   },
 
   calCourseStarted() {
@@ -281,7 +295,7 @@ Page({
   calCancelBookDisabled() {
     let disabled = true;
     let disabledStr = "";
-    const started =this.calCourseStarted();
+    const started = this.calCourseStarted();
 
     const {
       user_can_cancel_reserve: canCancelBook,
@@ -290,11 +304,11 @@ Page({
       attend_status,
       current_attenders: bookNum,
       start_time,
-      no_cancel_reserve_minutes,
+      no_cancel_reserve_hours,
     } = this.data.course || {};
 
-    const deadline =no_cancel_reserve_minutes || this.data.cancelBookDeadline || 50;
-
+    const deadline =
+      no_cancel_reserve_hours || this.data.cancelBookDeadline || 5;
     if (canCancelBook) {
       disabled = false;
       // const isBeforefiveHourse = dayjs()
@@ -311,10 +325,10 @@ Page({
       // } else {
       //   disabledStr = "开课前5小时内，不允许取消预约";
       // }
-    } else if(attend_status==='reserved' && !started){
-      disabledStr = `开课前${deadline}分钟内，不允许取消预约`;
+    } else if (attend_status === "reserved" && !started) {
+      disabledStr = `开课前${deadline}小时内，不允许取消预约`;
     }
-    console.log("calCancelBookDisabled", canCancelBook, disabled, disabledStr);
+    console.log("calCancelBookDisabled",deadline, canCancelBook, disabled, disabledStr);
     return [disabled, disabledStr];
   },
 
@@ -404,45 +418,11 @@ Page({
   },
 
   //购卡或预约二次确认
-  onConfirmTap1() {
+  async onConfirmTap1() {
+    //有卡，预约或候补流程
     if (this.data.cards.length > 0) {
-      //有卡，预约或候补
-      const courseId = this.data.courseId;
-      const {
-        user_can_reserve: canBook,
-        user_can_wait: canWait,
-        status,
-        waiting_attenders,
-      } = this.data?.course || {};
-      const requestRunc = canBook ? book : wait;
-      const type = canBook ? "booked" : "wait";
-      const waitPeo = canBook ? 0 : waiting_attenders + 1;
-      requestRunc(courseId, this.data.choosedCard.value, this.data.remark).then(
-        (resp) => {
-          if (resp?.data?.result === 0) {
-            //预约或候补成功
-            this.setData({ showPurchaseUI: false });
-            const { address, coach_nickname, display_name } = this.data.course;
-            const param = {
-              type,
-              displayName: display_name,
-              coachNickname: coach_nickname,
-              address,
-              time: this.data.timeStr,
-              waitPeo,
-            };
-            const paramURI = queryString(param);
-            this.gotoSuccPage(paramURI);
-          } else {
-            //预约或候补失败
-            Toast({
-              context: this,
-              selector: "#t-toast",
-              message: resp?.data?.message,
-            });
-          }
-        }
-      );
+      //由于微信机制，提前弹出订阅弹窗，用户操作后预约或候补
+      const info = await this.subscribe();
     } else {
       // 无卡，跳转到购卡首页
       wx.reLaunch({
@@ -451,7 +431,69 @@ Page({
     }
   },
 
-  gotoSuccPage(paramURI){
+  subscribe() {
+    const { user_can_wait: canWait } = this.data?.course || {};
+    const { cancelId,reservedId } = this.data;
+    const tmplIds = [cancelId];
+    if (canWait) tmplIds.push(reservedId);
+    wx.requestSubscribeMessage({
+     tmplIds,
+      complete: (res)=> {
+        console.log('complete',res);
+        const cancelMsg=res?.[cancelId];
+        const reservedMsg =res?.[reservedId]; 
+        // 候补或购卡
+        this.reverseOrWaitingCourse(cancelMsg,reservedMsg);
+      },
+    });
+  },
+
+  async reverseOrWaitingCourse(cancelMsg,reservedMsg) {
+    const courseId = this.data.courseId;
+    const {
+      user_can_reserve: canBook,
+      user_can_wait: canWait,
+      status,
+      waiting_attenders,
+      min_attenders:minAttenders,
+      no_cancel_reserve_hours:cancelHours
+    } = this.data?.course || {};
+    const requestRunc = canBook ? book : wait;
+    const type = canBook ? "booked" : "wait";
+    const waitPeo = canBook ? 0 : waiting_attenders + 1;
+    const resp = await requestRunc(
+      courseId,
+      this.data.choosedCard.value,
+      this.data.remark,
+      cancelMsg,
+      reservedMsg
+    );
+    if (resp?.data?.result === 0) {
+      //预约或候补成功
+      this.setData({ showPurchaseUI: false });
+      const { address, coach_nickname, display_name } = this.data.course;
+      const param = {
+        type,
+        displayName: display_name,
+        coachNickname: coach_nickname,
+        address,
+        time: this.data.timeStr,
+        waitPeo,
+        cancelHours,
+        minAttenders,
+      };
+      const paramURI = queryString(param);
+      this.gotoSuccPage(paramURI);
+    } else {
+      //预约或候补失败
+      Toast({
+        context: this,
+        selector: "#t-toast",
+        message: resp?.data?.message,
+      });
+    }
+  },
+  gotoSuccPage(paramURI) {
     wx.navigateTo({
       url: `/pages/course/book/success/index${paramURI}`,
     });

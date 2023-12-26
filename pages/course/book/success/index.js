@@ -5,22 +5,48 @@ Page({
    */
   data: {
     type: "",
-    successTitle:"",
+    successTitle: "",
     displayName: "",
     coachNickname: "",
     address: "",
     time: "",
-    waitNum:0,
+    waitNum: 0,
+    cancelHours: 5,
+    minAttenders: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const { type, displayName,coachNickname,address,time,waitPeo} = options;
-    const successTitle= type==="booked"?"预约成功":(type==="wait"?"候补成功":"报名成功")
-    const waitNum =Number(waitPeo||0);
-    this.setData({type,successTitle, displayName,coachNickname,address,time,waitNum});
+    const {
+      type,
+      displayName,
+      coachNickname,
+      address,
+      time,
+      waitPeo,
+      cancelHours,
+      minAttenders,
+    } = options;
+    const successTitle =
+      type === "booked"
+        ? "预约成功"
+        : type === "wait"
+        ? "候补成功"
+        : "报名成功";
+    const waitNum = Number(waitPeo || 0);
+    this.setData({
+      type,
+      successTitle,
+      displayName,
+      coachNickname,
+      address,
+      time,
+      waitNum,
+      cancelHours,
+      minAttenders,
+    });
   },
 
   /**

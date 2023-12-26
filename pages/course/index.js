@@ -22,6 +22,8 @@ Page({
     courseType: "group, open",
     coachIds: [],
     coachList: [],
+    refreshTimer:undefined,
+    refreshInterval:15*1000,
   },
 
   /**
@@ -34,16 +36,35 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
+  async onShow() {
     this.getTabBar()?.show();
     this.updateCourse();
     this.getCoach();
+    this.setRefreshTimer();
+  },
+  onHide(){
+    // console.log('clearInterval',this.data.refreshTimer);
+    clearInterval(this.data?.refreshTimer);
+    this.data.refreshInterval=undefined;
   },
 
-  async init() {
+  onUnload(){
+    console.log('clearInterval',this.data.refreshTimer);
+    clearInterval(this.data?.refreshTimer);
+    this.data.refreshInterval=undefined;
+  },
+  setRefreshTimer(){
+    const timerId = this.data.refreshTimer;
+    if(timerId) clearInterval(timerId);
+    this.data.refreshTimer =setInterval(()=>{
+      this.onRefresh();
+    },this.data.refreshInterval)
+  },
+
+  async init() {    
     await this.getCalendar();
     this.updateCourse();
-    
+
     console.log('===getDayOfWeek',getDayOfWeek('2023-12-11'))
   },
 

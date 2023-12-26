@@ -29,15 +29,17 @@ Component({
     },
 
     status(data) {
-      const { status } = data.props;
+      const { status,user_can_reserve:canBook,user_can_wait:canWait } = data.props;
       let statusInfo = { btnStr: "", icon: "" };
       if (data.expired) {
         statusInfo.btnStr = "已截止";
       } else{
-        if (data.canBook) {
+        if (canBook) {
           statusInfo.btnStr = "预约";
-        } else {
+        } else if(canWait) {
           statusInfo.btnStr = "候补";
+        }else {
+          statusInfo.btnStr = "查看";
         }
         if (status > 0) statusInfo.icon = "/assets/images/booked.png";
         else if (status < 0) statusInfo.icon = "/assets/images/queuing.png";
