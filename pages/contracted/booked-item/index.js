@@ -19,7 +19,7 @@ Component({
       const { start_time, duration_minutes = 0 } = data.props;
       const startDate = dayjs(start_time);
       const endDate = startDate.add(duration_minutes, "m");
-      return `${startDate.format("HH:mm")}-${endDate.format("HH:mm")}`;
+      return `${startDate.format("M月D日 HH:mm")}-${endDate.format("HH:mm")}`;
     },
 
     status(data) {

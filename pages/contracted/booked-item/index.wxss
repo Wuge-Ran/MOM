@@ -72,6 +72,7 @@
 }
 
 .course-time {
+    font-size: 28rpx;
     height: 44rpx;
     line-height: 44rpx;
     color: #7D8E64;
