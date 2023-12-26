@@ -1,7 +1,7 @@
 import request from "../network/request";
 import globalData from "../global/index";
 import dayjs from "dayjs";
-import {encode as encodeBase64} from '@utils/base64';
+import { encode as encodeBase64 } from "@utils/base64";
 
 export const getCourseByDate = (courseType, coachIds) => {
   const url = `/v1/course_by_date`;
@@ -13,7 +13,11 @@ export const getCourseList = (data) => {
   return request.get(url, data);
 };
 
-export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
+export const getCoursesByAllFields = (
+  fromDate = "",
+  toDate = "",
+  status = ""
+) => {
   const url = `/v1/course_list`;
   const options = {
     header: {
@@ -23,9 +27,9 @@ export const getCoursesByAllFields = (fromDate="", toDate="",status="") => {
       //,address_lat,address_long
     },
   };
-  if(fromDate)options.header["from-date"]=fromDate;
-  if(status)options.header["status"]=status;
-  return request.get(url, {}, options,false);
+  if (fromDate) options.header["from-date"] = fromDate;
+  if (status) options.header["status"] = status;
+  return request.get(url, {}, options, false);
 };
 
 export const getCourseById = (courseId) => {
@@ -62,20 +66,34 @@ export const cancelWait = (id) => {
   return request.delete("/v1/wait_course", { "course-id": id });
 };
 
-export const book = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":encodeBase64(remark) };
+export const book = (courseId, cardId, remark, cancelMsg) => {
+  const data = {
+    "course-id": courseId,
+    "cardins-id": cardId,
+    "checkin-remarks": encodeBase64(remark),
+    "wxsubmsg-course-cancelled": cancelMsg,
+  };
   return request.post("/v1/reserve_course", data);
 };
 
-export const wait = (courseId, cardId, remark) => {
-  const data = { "course-id": courseId ,"cardins-id":cardId,"checkin-remarks":encodeBase64(remark) };
+export const wait = (courseId, cardId, remark, cancelMsg, reservedMsg) => {
+  const data = {
+    "course-id": courseId,
+    "cardins-id": cardId,
+    "checkin-remarks": encodeBase64(remark),
+    "wxsubmsg-course-cancelled": cancelMsg,
+    "wxsubmsg-course-waiting-to-reserved": reservedMsg,
+  };
   return request.post("/v1/wait_course", data);
 };
 
 export const getCourseRecord = (status) => {
-  return getCoursesByAllFields(undefined,dayjs().add(1,"M").format("YYYY-MM-DD"),status)
+  return getCoursesByAllFields(
+    undefined,
+    dayjs().add(1, "M").format("YYYY-MM-DD"),
+    status
+  );
 };
-
 
 export const buySpecialCourse = (courseId) => {
   const data = { "course-id": courseId };
