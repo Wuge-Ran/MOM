@@ -19,7 +19,10 @@
     <view class="course-desc">
       <view class="course-desc-title">温馨提示：</view>
       <view  wx:if="{{type==='special'}}" class="course-desc-detail">报名成功后不可取消，课程信息将会在小程序已约页面更新</view>
-      <view wx:else class="course-desc-detail">开课前5小时内，不允许取消预约</view>
+      <view wx:else class="course-desc-detail">
+        <view >开课前{{cancelHours}}小时内，不允许取消预约</view>
+        <view >成功开课需报名满{{minAttenders}}人，请您留意小程序消息通知</view>
+      </view>
     </view>
   </view>
 </view>

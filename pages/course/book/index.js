@@ -304,12 +304,11 @@ Page({
       attend_status,
       current_attenders: bookNum,
       start_time,
-      no_cancel_reserve_minutes,
+      no_cancel_reserve_hours,
     } = this.data.course || {};
 
     const deadline =
-      no_cancel_reserve_minutes || this.data.cancelBookDeadline || 5;
-
+      no_cancel_reserve_hours || this.data.cancelBookDeadline || 5;
     if (canCancelBook) {
       disabled = false;
       // const isBeforefiveHourse = dayjs()
@@ -327,9 +326,9 @@ Page({
       //   disabledStr = "开课前5小时内，不允许取消预约";
       // }
     } else if (attend_status === "reserved" && !started) {
-      disabledStr = `开课前${deadline}分钟内，不允许取消预约`;
+      disabledStr = `开课前${deadline}小时内，不允许取消预约`;
     }
-    console.log("calCancelBookDisabled", canCancelBook, disabled, disabledStr);
+    console.log("calCancelBookDisabled",deadline, canCancelBook, disabled, disabledStr);
     return [disabled, disabledStr];
   },
 
@@ -456,6 +455,8 @@ Page({
       user_can_wait: canWait,
       status,
       waiting_attenders,
+      min_attenders:minAttenders,
+      no_cancel_reserve_hours:cancelHours
     } = this.data?.course || {};
     const requestRunc = canBook ? book : wait;
     const type = canBook ? "booked" : "wait";
@@ -478,6 +479,8 @@ Page({
         address,
         time: this.data.timeStr,
         waitPeo,
+        cancelHours,
+        minAttenders,
       };
       const paramURI = queryString(param);
       this.gotoSuccPage(paramURI);
