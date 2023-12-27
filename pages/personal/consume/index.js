@@ -13,56 +13,8 @@ Page({
     data: {
         orderList: [],
         product: {
-            value: dayjs().month() + 1,
-            options: [{
-                    "value": 1,
-                    "label": "1月"
-                },
-                {
-                    "value": 2,
-                    "label": "2月"
-                },
-                {
-                    "value": 3,
-                    "label": "3月"
-                },
-                {
-                    "value": 4,
-                    "label": "4月"
-                },
-                {
-                    "value": 5,
-                    "label": "5月"
-                },
-                {
-                    "value": 6,
-                    "label": "6月"
-                },
-                {
-                    "value": 7,
-                    "label": "7月"
-                },
-                {
-                    "value": 8,
-                    "label": "8月"
-                },
-                {
-                    "value": 9,
-                    "label": "9月"
-                },
-                {
-                    "value": 10,
-                    "label": "10月"
-                },
-                {
-                    "value": 11,
-                    "label": "11月"
-                },
-                {
-                    "value": 12,
-                    "label": "12月"
-                }
-            ],
+            value: '2023-12',
+            options: [],
         },
 
     },
@@ -76,12 +28,29 @@ Page({
         this.id = options.id;
         // if()
         const month = dayjs().month() + 1;
-        this.getData(this.getMonthRange(month))
+        const year = dayjs().year() ;
+        // 获取当前月份
+        const list = []
+        const curTime = `${year}-${month}`
+        // 输出之前一年的月份和年份
+        for (let i = 0; i < 12; i++) {
+            const month = dayjs().subtract(i, 'month').format('MM');
+            const year = dayjs().subtract(i, 'month').format('YYYY');
+            console.log(`${year}年${month}月`);
+            list.push({
+                "value": `${year}-${month}`,
+                "label": `${year}年${month}月`
+            })
+        }
+        this.setData({
+            'product.value': curTime,
+            'product.options': list,
+        });
+        this.getData(this.getMonthRange(curTime))
     },
-    getMonthRange(month) {
-        const year = dayjs().year(); // 当前年份
-        const startOfMonth = dayjs(`${year}-${month}`).startOf('month').format('YYYY-MM-DD');
-        const endOfMonth = dayjs(`${year}-${month}`).endOf('month').format('YYYY-MM-DD');
+    getMonthRange(curTime) {
+        const startOfMonth = dayjs(curTime).startOf('month').format('YYYY-MM-DD');
+        const endOfMonth = dayjs(curTime).endOf('month').format('YYYY-MM-DD');
         return [startOfMonth, endOfMonth];
     },
     getData(date) {

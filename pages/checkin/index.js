@@ -5,16 +5,22 @@ import {
 import globalData from "../../src/global/index";
 
 Page({
-    timer:null,
+    timer: null,
     data: {
         motto: "Hello World",
         checkSuccessVisible: false,
         noMembercardVisible: false,
         checkInfo: {},
         checkInTime: 0,
-        backIndexCount:3
+        backIndexCount: 3
     },
     onLoad() {
+        if (!globalData.login.token) {
+            wx.switchTab({
+                url: `/pages/index/index`,
+            });
+            return
+        }
         postScanCheckin().then(({
             data
         }) => {
@@ -24,16 +30,16 @@ Page({
                     checkInfo: data.cardins,
                     checkInTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
                 })
-                this.timer = setInterval(()=>{
-                    if(this.data.backIndexCount === 0){
+                this.timer = setInterval(() => {
+                    if (this.data.backIndexCount === 0) {
                         clearInterval(this.timer);
                         this.bindBackTap();
                         return
                     }
                     this.setData({
-                        backIndexCount:this.data.backIndexCount -1
+                        backIndexCount: this.data.backIndexCount - 1
                     })
-                },1000)
+                }, 1000)
             } else {
                 this.setData({
                     noMembercardVisible: true
@@ -41,15 +47,16 @@ Page({
             }
         })
     },
-    onOk(){
+    onOk() {
+        clearInterval(this.timer)
         wx.switchTab({
             url: `/pages/card/index`,
-          });
+        });
     },
-    bindBackTap(){
+    bindBackTap() {
         wx.switchTab({
             url: `/pages/index/index`,
-          });
+        });
     },
 
     // handleGetPhoneNumber(e) {
@@ -64,7 +71,7 @@ Page({
     //             return getUserData()
     //         }).then(res => {
     //             console.log('===getUserData', res)
-                
+
     //             this.setData({
     //                 phoneNumber: res.data.phone_number
     //             })

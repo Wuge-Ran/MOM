@@ -115,6 +115,13 @@
 .swiper-card-disable{
     position: absolute;
     left: 12rpx;
+    bottom: 10rpx;
+    color: #71716F;
+    font-size: 16rpx;
+}
+.swiper-card-use{
+    position: absolute;
+    left: 12rpx;
     bottom: 7rpx;
     color: #71716F;
     font-size: 16rpx;

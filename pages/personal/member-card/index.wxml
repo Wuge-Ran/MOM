@@ -17,6 +17,11 @@
                         <view class="swiper-card-disable" wx:if="{{item.cardins_status === 'inactive'}}">
                          *未开卡
                         </view>
+                        <view class="swiper-card-use {{item.cardcat_display_bgstyle==='deepgreen'? 'white-title':''}}"
+                        wx:if="{{item.cardins_expire_date}}"
+                        >
+                         有效期至：{{item.cardins_expire_date}}
+                        </view>
                     </view>
                 </swiper-item>
             </block>

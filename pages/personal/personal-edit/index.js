@@ -477,7 +477,7 @@ Page({
         }) => {
             const [w1, w2] = data.weight?.split('.') ?? []
             this.setData({
-                userAvatar: globalData.userInfo.avatar_fileid,
+                userAvatar: globalData.login.avatarId,
                 nicknameValue: data.nickname || '微信用户',
                 genderText: data.gender,
                 genderValue: [data.gender],

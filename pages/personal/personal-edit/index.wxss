@@ -6,11 +6,10 @@
 .avatar-wrapper {
     padding: 0;
     width: 140rpx !important;
-    border-radius: 8px;
     border-radius: 50%;
     margin-top: 48rpx;
     margin-bottom: 16rpx;
-
+    border: 1px solid #D9D9D9;
 }
 
 .avatar {
@@ -68,4 +67,9 @@
 .t-cell__right {
     margin-left: auto !important;
 
+}
+
+button::after{
+    border: none !important;
+    border-radius:50%!important;
 }
