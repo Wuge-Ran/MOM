@@ -13,7 +13,7 @@
           <view  class="card-times">{{item.times}}<span class="card-times-sufix">{{item.suffix}}</span></view>
           <view class="price-info">
             <span class="price {{item.type==='group'?'group-price':''}}">￥{{item.price}}</span>
-            <span class="per-price {{item.type==='group'?'group-per-price':''}}">￥{{(item.display_list_price)}}</span>
+            <span class="per-price {{item.type==='group'?'group-per-price':''}}" wx:if="{{item.display_list_price}}">￥{{(item.display_list_price)}}</span>
           </view>
         </view>
          <view class="hint {{item.type==='group'?'group-hint':''}}">{{item.display_footnote}}</view>
@@ -29,7 +29,7 @@
   <view class="reconfrom-container">
     <view class="reconfrom-body flex-cloumn">
       <view class="buy-title">{{curCard.title}}</view>
-      <view class="price">￥{{curCard.price}}<span class="price-origin">￥{{curCard.display_list_price}}</span></view>
+      <view class="price">￥{{curCard.price}}<span class="price-origin" wx:if="{{curCard.display_list_price}}">￥{{curCard.display_list_price}}</span></view>
       <view class="flex-row">
         <view>使用期限</view>
         <view>{{curCard.useLimts}} 天</view>

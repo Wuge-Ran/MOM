@@ -6,7 +6,7 @@
     <view class="succ-title">{{successTitle}}</view>
   </view>
   <view class="header">
-    <image class="header-bg" src="/assets/images/course-bg.png" />
+    <image class="header-bg" src="/assets/images/course-bg.jpg" />
   </view>
 
   <!-- </view> -->
