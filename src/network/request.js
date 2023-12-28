@@ -45,23 +45,26 @@ const request = function (url, data, options = {}, showLoading = true, chekLogin
                 }
                 //假定401是没有登录或登录过期，则先登录再调用接口
                 else if (res.statusCode === 401) {
-                    if (
-                        chekLogin &&
-                        globalData.login.failtures <= globalData.request.maxRetries
-                    ) {
-                        login()
-                            .then(() => {
-                                // 间隔一定时间并调用有限次数，防止死锁
-                                globalData.login.failtures = 0;
-                                setTimeout(() => {
-                                    request();
-                                }, globalData.request.interval || 2 * 1000);
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                                globalData.login.failtures++;
-                            });
-                    }
+                    console.warn('凭证失效，请重新登录');
+                    // 跳转到登录页
+                    wx.navigateTo({ url: "/pages/login/index", });
+                    // if (
+                    //     chekLogin &&
+                    //     globalData.login.failtures <= globalData.request.maxRetries
+                    // ) {
+                    //     login()
+                    //         .then(() => {
+                    //             // 间隔一定时间并调用有限次数，防止死锁
+                    //             globalData.login.failtures = 0;
+                    //             setTimeout(() => {
+                    //                 request();
+                    //             }, globalData.request.interval || 2 * 1000);
+                    //         })
+                    //         .catch((error) => {
+                    //             console.error(error);
+                    //             globalData.login.failtures++;
+                    //         });
+                    // }
                 } else {
                     //  Toast(res.data.msg);
                     console.warn(res);
