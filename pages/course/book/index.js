@@ -389,10 +389,12 @@ Page({
   },
 
   onMapTap() {
-    const { address_lat = 0, address_long = 0 } = this.data.course || {};
+    const { address_lat = 0, address_long = 0,address } = this.data.course || {};
     wx.openLocation({
       latitude: Number(address_lat),
       longitude: Number(address_long),
+      name:address,
+      address:'北京市朝阳区506创新园7号楼',
       scale: 18,
       complete: (res) => {
         console.log("wx.openLocation", res);
