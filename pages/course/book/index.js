@@ -62,6 +62,7 @@ Page({
     cancelId: "",
     //课程候补成功通知id
     reservedId: "",
+    bgUrl:'https://mellow-1321738484.cos.ap-shanghai.myqcloud.com/public/FNRf12QnjGrxcJDK8A0NIUidUwHCauA4/bg2.jpeg',
   },
 
   computed: {
