@@ -7,7 +7,7 @@
                 <view>{{coachInfo.nickname}}</view>
                 <image class="like-icon" src="{{isLike?'./img/like.png':'./img/dislike.png'}}" mode="aspectFill" bind:tap="onIconTap" />
             </view>
-            <view class="coach-intro-content-intro">{{coachInfo.short_description}}</view>
+            <text class="coach-intro-content-intro">{{coachInfo.short_description}}</text>
         </view>
     </view>
     <view class="coach-course">

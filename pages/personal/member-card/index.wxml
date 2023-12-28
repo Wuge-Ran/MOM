@@ -2,7 +2,7 @@
 <view class="container" >
     <view class="member-card" wx:if="{{cardinsList.length}}">
     <view class="swiper-view">
-        <swiper class="swipers swiper-box" circular="{{true}}" previous-margin="{{swiperMargin}}" autoplay="{{autoplay}}" duration="500" bindchange="swiperChange">
+        <swiper class="swipers swiper-box" circular="{{false}}" previous-margin="{{swiperMargin}}" autoplay="{{autoplay}}" duration="500" bindchange="swiperChange">
             <block wx:for="{{cardinsList}}" wx:for-item="item" wx:key="id">
                 <swiper-item class="swiper-item" bindtap="toDetail" data-proid="{{item.id}}" style="text-align: center;">
                     <view class="swiper-item-view {{ swiperCurrent==index?'active':''}}">

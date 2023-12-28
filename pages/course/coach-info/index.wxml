@@ -1,17 +1,5 @@
 <view class="coach-info">
-    <t-swiper
-        height="750rpx"
-        current="{{current}}"
-        autoplay="{{autoplay}}"
-        duration="{{duration}}"
-        interval="{{interval}}"
-        navigation="{{ { type: 'dots' } }}"
-        list="{{coachInfo.photo_urls}}"
-        bind:click="onTap"
-        bind:change="onChange"
-        bind:image-load="onImageLoad"
-    >
-    </t-swiper>
+    <image class="coach-backgounrd" src="{{coachInfo.avatar_url}}" mode="aspectFill"/>
 
     <view class="coach-info-bottom">
         <view class="coach-info-avatar">

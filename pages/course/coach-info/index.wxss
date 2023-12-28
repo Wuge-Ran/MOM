@@ -7,6 +7,11 @@
   padding: 40rpx 32rpx;
 }
 
+.coach-backgounrd{
+    width: 100%;
+    height: 750rpx;
+}
+
 .coach-info-avatar {
   display: flex;
   align-items: center;

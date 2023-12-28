@@ -32,12 +32,18 @@ Page({
                 let unit;
                 let excess;
                 if(item.cardcat_type === 'daypass'){
-                    if(item.cardins_expire_date === null){
+                    if(item.cardcat_max_expire_days === null){
                         excess=''
                         unit = '无限天数'
                     }else if(item.cardcat_class === 'time'){
-                        unit = '天剩余'
-                        excess = dayjs(item.cardins_expire_date).diff(dayjs().format('YYYY-MM-DD'),'day')
+                        if(item.cardins_status === 'inactive'){
+                            unit = '天剩余'
+                            excess = item.cardcat_max_expire_days
+                        }else{
+                            unit = '天剩余'
+                            excess = dayjs(item.cardins_expire_date).diff(dayjs().format('YYYY-MM-DD'),'day')
+                        }
+                        
                     }else{
                         unit = '次剩余'
                         excess = item.cardins_max_consume_times - item.cardins_consume_times
