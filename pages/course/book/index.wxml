@@ -2,7 +2,7 @@
 <!--pages/course/index.wxml-->
 <view class="contaioner">
   <view class="header">
-    <image class="header-bg" src="/assets/images/course-bg.jpg" />
+    <image class="header-bg" src="{{bgUrl}}" />
   </view>
 
   <view class="notification" wx:if="{{cancelBookDisabledStr}}">

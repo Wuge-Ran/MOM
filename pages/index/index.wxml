@@ -10,7 +10,7 @@
                         data-link="{{item.link}}"
                         bind:tap="swiperLinkTo"
                         >{{item.text}}</view>
-                        <image src="{{item.value}}" mode="cover" />
+                        <image src="{{item.value}}" mode="widthFix" />
                     </view>
                 </swiper-item>
             </block>
@@ -30,7 +30,7 @@
             <view class="description-item border-right">
                 <view class="description-item-title">已到店</view>
                 <view class="description-item-content">
-                    <view class="description-item-number {{userInfo.checkin_times?'':'gray'}}">{{userInfo.checkin_times}}</view>
+                    <view class="description-item-number {{userInfo.checkin_times?'':'gray'}}">{{userInfo.checkin_times||'0'}}</view>
                     <view class="description-item-unit">次</view>
 
                 </view>
@@ -38,7 +38,7 @@
             <view class="description-item" bind:tap="linkToMyCard">
                 <view class="description-item-title">会员卡</view>
                 <view class="description-item-content">
-                    <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards}}</view>
+                    <view class="description-item-number {{userInfo.available_cards?'':'gray'}}">{{userInfo.available_cards||'0'}}</view>
                     <view class="description-item-unit"> 张</view>
                     <image wx:if="{{!userInfo.available_cards}}" bind:tap="linkToCard" class="description-item-buy" src="./img/buy-card.png" mode="" />
                 </view>

@@ -34,7 +34,7 @@ const request = function (url, data, options = {}, showLoading = true, chekLogin
                 ...data,
                 "user-token": userToken,
                 "wxuser-token": userToken,
-                "X-WX-SERVICE": "mellow",
+                "X-WX-SERVICE": "mellow-dev",
                 "content-type": "application/json",
             },
             data:bodyParmas,
