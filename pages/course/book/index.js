@@ -394,7 +394,7 @@ Page({
       latitude: Number(address_lat),
       longitude: Number(address_long),
       name:address,
-      address:'地址：北京市朝阳区506创新园7号楼',
+      address:'北京市朝阳区506创新园7号楼',
       scale: 18,
       complete: (res) => {
         console.log("wx.openLocation", res);
