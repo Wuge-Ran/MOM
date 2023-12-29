@@ -73,7 +73,7 @@
                 "pagePath": "pages/card/index",
                 "iconPath": "/assets/icons/card.png",
                 "selectedIconPath": "/assets/icons/card-active.png",
-                "text": "会员卡"
+                "text": "卡类课包"
             },
             {
                 "pagePath": "pages/personal/index",

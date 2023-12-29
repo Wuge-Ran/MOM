@@ -41,7 +41,7 @@ Component({
       },
       {
         value: "card",
-        label: "会员卡",
+        label: "卡类课包",
         icon: card,
         activeIcon: cardActive,
         path: "/pages/card/index",
