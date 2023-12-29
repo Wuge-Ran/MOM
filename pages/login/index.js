@@ -5,7 +5,7 @@ import {
 } from "@src/api/user";
 import globalData from "../../src/global/index";
 import Toast from 'tdesign-miniprogram/toast/index';
-
+let isLogin=false;
 Page({
     data: {
         phoneNumber: null,
@@ -14,6 +14,7 @@ Page({
         authBtnDisabled: true,
         getPhoneBtnDisabled: true,
         showDialogConfirm: false,
+        isLogin:false,
         dialogConfirmBtn: {
             content: '确定',
             variant: 'base',
@@ -29,6 +30,7 @@ Page({
                         console.log('===updatePhone', res)
                         return getUserData()
                     }).then(res => {
+                        isLogin=true;
                         console.log('===getUserData', res.data.phone_number)
                         globalData.login.phoneNumber = res.data.phone_number??'';
                         wx.navigateBack();
@@ -38,7 +40,16 @@ Page({
         },
     },
     onLoad() {
+        isLogin=false;
         login()
+    },
+
+    onUnload(){
+        console.log('onUnload');
+        if(!isLogin){
+            globalData.login.token="";
+            globalData.login.phoneNumber="";
+        } 
     },
 
     // handleGetPhoneNumber(e) {
