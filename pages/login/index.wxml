@@ -10,7 +10,7 @@
   <view class="bottom">
     <button class="auth {{authBtnDisabled?'auth-disabled': 'auth-active'}}" bind:tap="onAuth">一键登录</button>
     <radio class="checkbox-protocol-prompt" bind:tap="onRadioChange" checked="{{radioStatus}}">我已阅读并同意
-      <span class="privacy" bind:tap="onPrivacy">《协议条款》</span>
+      <span class="privacy" bind:tap="onPrivacy">《用户隐私协议》</span>
     </radio>
   </view>
   <t-toast id="t-toast" />

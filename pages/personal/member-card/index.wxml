@@ -14,7 +14,7 @@
                             <view class="swiper-card-point-number">{{item.excess}}</view>
                             <view class="swiper-card-point-unit">{{item.unit}}</view>
                         </view>
-                        <view class="swiper-card-disable" wx:if="{{item.cardins_status === 'inactive'}}">
+                        <view class="swiper-card-disable {{item.cardcat_display_bgstyle==='deepgreen'? 'white-title':''}}" wx:if="{{item.cardins_status === 'inactive'}}">
                          *未开卡
                         </view>
                         <view class="swiper-card-use {{item.cardcat_display_bgstyle==='deepgreen'? 'white-title':''}}"

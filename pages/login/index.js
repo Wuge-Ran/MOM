@@ -144,6 +144,9 @@ Page({
 
     onPrivacy() {
         //打开一键登录绑定协议页面
+        wx.navigateTo({
+          url: '/pages/login/text/index',
+        })
     },
     onPhonePrivacy() {
         //打开获取手机号授权绑定协议页面

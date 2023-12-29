@@ -37,12 +37,16 @@
 
 .logout{
     width: 686rpx;
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0);
-    bottom: 104rpx;
+    margin: auto auto 20rpx auto;
+    /* position: fixed; */
 }
-
+.personal-edit{
+    display: flex;
+    flex-direction: column;
+}
+.personal-edit-info{
+    margin-bottom: 20rpx;
+}
 .t-cell__note {
     justify-content: flex-start !important;
 }

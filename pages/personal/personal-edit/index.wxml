@@ -1,6 +1,7 @@
 <!--pages/personal-edit/index.wxml-->
-<view class="container">
-<view class="avatar-name">
+<view class="container personal-edit">
+<view class="personal-edit-info">
+    <view class="avatar-name">
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
         <image class="avatar" src="{{userAvatar}}"></image>
     </button>
@@ -104,6 +105,8 @@
   <t-picker-item options="{{weight}}"></t-picker-item>
 
 </t-picker>
+</view>
+
 <view class="logout">
     <t-button bind:tap="onLogoutTap" hover-class="none" block>退出登录</t-button>
 </view>

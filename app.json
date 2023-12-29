@@ -21,7 +21,8 @@
         "pages/personal/consume/index",
         "pages/personal/privacy/index",
         "pages/webview/index",
-        "pages/privacy/index"
+        "pages/privacy/index",
+        "pages/login/text/index"
 
     ],
     "window": {

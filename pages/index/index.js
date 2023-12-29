@@ -83,9 +83,18 @@ Page({
                 url: '/pages/webview/index?webview=' + link,
             })
         } else {
-            wx.navigateTo({
-                url: link,
-            })
+            const links = ['pages/index/index','pages/course/index','pages/contracted/index','pages/card/index','pages/personal/index'];
+            const isTab = links.some(item => link.indexOf(item) !== -1);
+            if(isTab){
+                wx.switchTab({
+                  url: link,
+                })
+            }else{
+                wx.navigateTo({
+                    url: link,
+                })
+            }
+            
         }
 
     },
@@ -188,9 +197,13 @@ Page({
 
         } else {
             console.log('未登录')
+            wx.clearStorageSync();
+            globalData.login.phoneNumber = '';
+            globalData.login.token = ''
             this.setData({
                 isLogin: false,
             });
+
         }
         getHomeData().then((res) => {
             console.log("===getHomeData", res);

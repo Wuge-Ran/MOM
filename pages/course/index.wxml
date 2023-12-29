@@ -7,7 +7,7 @@
         <image class="selection-bar-icon" src="./images/select-icon-active.jpg" wx:else />
       </view>
       <text class="selection-bar-text">{{selectDetail}}</text>
-      <pop-up coachList="{{coachList}}" visible="{{visible}}" bind:onOk="onOk" />
+      <pop-up coachList="{{coachList}}" visible="{{visible}}" bind:onOk="onOk" selectDetail="{{selectDetail}}"/>
     </view>
     <date-piker bind:dateChange="onDateChange" list="{{dateList}}" marginRight="44rpx"></date-piker>
 

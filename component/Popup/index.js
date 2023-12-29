@@ -8,6 +8,10 @@ Component({
     visible:{
         type:Boolean,
         value:false
+    },
+    selectDetail:{
+        type: String,
+        value:''
     }
   },
 
@@ -100,12 +104,18 @@ Component({
   },
   observers: {
     'coachList': function(newVal) {
-      this.setData({
-        localCoachList: newVal.map(item=>({
-            ...item,
-            select:false
-        }))
-      });
+        console.log(this.data.selectDetail,'2222');
+        const selectDetailArr = this.data.selectDetail.split('，')||[];
+        console.log(selectDetailArr,'selectDetailArr',newVal);
+        this.setData({
+            localCoachList: newVal.map(item=>{
+                console.log(selectDetailArr.includes(item.name));
+                return {
+                    ...item,
+                    select:selectDetailArr.includes(item.name)
+                }
+            })
+        });
     }
   },
 });
