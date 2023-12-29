@@ -99,15 +99,22 @@ Page({
       switch (classic) {
         case "bundle":
           card.times = max_consume_times ? `${max_consume_times}` : "无限";
-          card.suffix = "次课";
           break;
         case "time":
           card.times = max_expire_days ? `${max_expire_days}` : "无限";
-          card.suffix = "天";
           break;
 
         default:
-          card.localType = type;
+          // card.localType = type;
+          break;
+      }
+
+      switch (type) {
+        case "daypass":
+          card.suffix = classic === "bundle" ? "次" : "天";
+          break;
+        default:
+          card.suffix = "节课";
           break;
       }
 
@@ -125,7 +132,7 @@ Page({
           card.bgImg = "/assets/images/group-card.png";
           break;
         default:
-          card.localType = type;
+          // card.localType = type;
           break;
       }
 
@@ -147,7 +154,7 @@ Page({
           : display_title;
       cardsByType[localType].push(card);
     }
-    
+
     return cardsByType;
   },
 

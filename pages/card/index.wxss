@@ -193,6 +193,11 @@
   padding-bottom: 32rpx;
   border-bottom: 2rpx solid #F9F6F2;
   line-height: 40rpx;
+  align-items: center;
+}
+.rule-title{
+  flex:0 0 auto;
+  width: 160rpx;
 }
 
 .privacy {

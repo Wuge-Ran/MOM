@@ -35,12 +35,12 @@
         <view>{{curCard.useLimts}} 天</view>
       </view>
       <view class="flex-row limits">
-        <!-- <view>使用规则</view>
-        <view>仅限持卡者本人使用，单日仅限使用1次</view> -->
+        <view class='rule-title'>使用规则</view>
+        <text>{{curCard.description}}</text>
       </view>
       <view class="privacy" wx:if="{{canBuy}}">
         <checkbox bind:tap="onPrivacyTap" checked="{{privacyChecked}}"></checkbox>
-        <span calss="privacy-char">我已阅读并同意<span class="privacy-btn" bind:tap="onBuCardPrivacy">购卡协议</span>、<span class="privacy-btn" bind:tap="onBuCardPrivacy1">会员卡/课程卡使用须知</span>。</span>
+        <span calss="privacy-char">我已阅读并同意<span class="privacy-btn" bind:tap="onBuCardPrivacy">购卡购课协议</span>、<span class="privacy-btn" bind:tap="onBuCardPrivacy1">卡类课包使用须知</span>。</span>
       </view>
       <view wx:else class="no-card">很抱歉，您不满足此卡的购买条件，请购买其它卡种。</view>
     </view>

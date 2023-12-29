@@ -74,7 +74,7 @@
           </view>
           <view class="flex-row remark-info">
             <span>备注</span>
-            <t-input maxlength="{{50}}" align="right" bind:change="onRemarkChange" value="{{remark}}" >
+            <t-input maxlength="{{50}}" align="right" bind:change="onRemarkChange" value="{{remark}}" placeholder="请填写备注信息">
             </t-input>
           </view>
         </view>
