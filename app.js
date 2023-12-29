@@ -20,7 +20,15 @@ App({
       const r =this.globalData.routes;
       r.last=r.current;
       r.current=res;
-      console.log("onAppRoute", res,r,99999);
+
+      //清除course轮询，只怪微信不触发onHide和onUnload
+      if( r?.last?.path=== "pages/course/index"){
+        if(globalData.course.timer){
+          clearInterval(globalData.course.timer);
+          globalData.course.timer=undefined;
+          console.log('clearCourseInterval');
+        }
+      }
     });
   },
   globalData: {

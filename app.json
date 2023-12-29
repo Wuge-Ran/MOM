@@ -4,6 +4,7 @@
         "pages/course/book/index",
         "pages/logs/logs",
         "pages/card/index",
+        "pages/card-unlogin/index",
         "pages/contracted/index",
         "pages/course/index",
         "pages/course/coach-detail/index",

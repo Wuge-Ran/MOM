@@ -75,7 +75,7 @@ Page({
         });
     },
     swiperLinkTo(event) {
-        const link = event.target.dataset.link
+        let link = event.target.dataset.link
         console.log('===link', link)
         const reg = /(http|https):\/\/([\w.]+\/?)\S*/ig;
         if (link.match(reg)) {
@@ -83,6 +83,10 @@ Page({
                 url: '/pages/webview/index?webview=' + link,
             })
         } else {
+            // 补丁，未登录且为会员卡页面则跳转到未登录的会员卡页面
+            if(!globalData.login.token && link.indexOf('pages/card/index') !== -1){
+                link='/pages/card-unlogin/index';
+            }
             const links = ['pages/index/index','pages/course/index','pages/contracted/index','pages/card/index','pages/personal/index'];
             const isTab = links.some(item => link.indexOf(item) !== -1);
             if(isTab){
@@ -92,6 +96,9 @@ Page({
             }else{
                 wx.navigateTo({
                     url: link,
+                    complete:(res)=>{
+                      console.log(res);
+                    }
                 })
             }
             

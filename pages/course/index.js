@@ -5,6 +5,7 @@ import {
   getCoachList,
 } from "@src/api/course";
 import { getNextDay, getDayOfWeek } from "@utils/util";
+import globalData from "@src/global/index";
 
 Page({
   /**
@@ -22,7 +23,6 @@ Page({
     courseType: "group, open",
     coachIds: [],
     coachList: [],
-    refreshTimer:undefined,
     refreshInterval:15*1000,
   },
 
@@ -42,21 +42,23 @@ Page({
     this.getCoach();
     this.setRefreshTimer();
   },
+
   onHide(){
-    // console.log('clearInterval',this.data.refreshTimer);
-    clearInterval(this.data?.refreshTimer);
-    this.data.refreshInterval=undefined;
+    console.log('clearInterval',globalData.course.timer);
+    clearInterval(globalData.course.timer);
+    globalData.course.timer=undefined;
   },
 
   onUnload(){
-    console.log('clearInterval',this.data.refreshTimer);
-    clearInterval(this.data?.refreshTimer);
-    this.data.refreshInterval=undefined;
+    console.log('clearInterval',globalData.course.timer);
+    clearInterval(globalData.course.timer);
+    globalData.course.timer=undefined;
   },
+
   setRefreshTimer(){
-    const timerId = this.data.refreshTimer;
+    const timerId = globalData.course.timer;
     if(timerId) clearInterval(timerId);
-    this.data.refreshTimer =setInterval(()=>{
+    globalData.course.timer =setInterval(()=>{
       this.onRefresh();
     },this.data.refreshInterval)
   },
@@ -189,7 +191,6 @@ Page({
           (item) => this.data.coachIds.indexOf(item.coach_id) !== -1
         )
       : courses;
-    console.log("updateCourse:",coursesAllType, courses, filterCourses);
     this.setData({ triggered: false,courses, filterCourses });
   },
 });

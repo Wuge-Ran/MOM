@@ -5,6 +5,18 @@ export default {
         interval: 2 * 1000,
         maxRetries: 3,
     },
+    
+    course:{
+        _timer:undefined,
+        get timer() {
+            return this._timer;
+        },
+        set timer(val) {
+            if (this._timer !== val) {
+                this._timer = val;
+            }
+        },
+    },
     scene:0,
     login: {
         _token: "",

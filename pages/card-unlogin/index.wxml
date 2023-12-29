@@ -1,0 +1,51 @@
+<scroll-view class="container" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
+<view class="content">
+  <!-- 卡片列表 -->
+  <view class="cards-container" wx:for="{{cardsByType}}" wx:for-index='key' wx:key="key" wx:for-item="cards">
+    <view class="title">{{cardsTypeTitle[key]}}</view>
+    <scroll-view class="scroll-view" scroll-x="{{true}}" scroll-y="{{false}}" show-scrollbar="{{false}}" enhanced="{{true}}">
+      <view class="card-container" wx:for="{{cards}}" data-card="{{item}}" wx:key="id" bind:tap="onCardTap">
+        <image class="card-bg" src="{{item.bgImg}}"></image>
+        <image class="card-event" wx:if="{{item.logo}}" src="{{item.logo}}"></image>
+        <view class="card-info">
+          <view class="card-title {{item.type==='group'?'group-card-title':''}}">{{item.title}}</view>
+          <view  class="card-times">{{item.times}}<span class="card-times-sufix">{{item.suffix}}</span></view>
+          <view class="price-info">
+            <span class="price {{item.type==='group'?'group-price':''}}">￥{{item.price}}</span>
+            <span class="per-price {{item.type==='group'?'group-per-price':''}}" wx:if="{{item.display_list_price}}">￥{{(item.display_list_price)}}</span>
+          </view>
+        </view>
+         <view class="hint {{item.type==='group'?'group-hint':''}}">{{item.display_footnote}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  </view>
+</scroll-view>
+
+<!-- 购卡底部弹窗 -->
+<t-popup visible="{{showPurchaseUI}}" bind:visible-change="onConfromUIVisiableChange" placement="bottom">
+  <view class="reconfrom-container">
+    <view class="reconfrom-body flex-cloumn">
+      <view class="buy-title">{{curCard.title}}</view>
+      <view class="price">￥{{curCard.price}}<span class="price-origin" wx:if="{{curCard.display_list_price}}">￥{{curCard.display_list_price}}</span></view>
+      <view class="flex-row">
+        <view>使用期限</view>
+        <view>{{curCard.useLimts}} 天</view>
+      </view>
+      <view class="flex-row limits">
+        <view class='rule-title'>使用规则</view>
+        <text>{{curCard.description}}</text>
+      </view>
+      <view class="privacy" wx:if="{{canBuy}}">
+        <checkbox bind:tap="onPrivacyTap" checked="{{privacyChecked}}"></checkbox>
+        <span calss="privacy-char">我已阅读并同意<span class="privacy-btn" bind:tap="onBuCardPrivacy">购卡购课协议</span>、<span class="privacy-btn" bind:tap="onBuCardPrivacy1">卡类课包使用须知</span>。</span>
+      </view>
+      <view wx:else class="no-card">很抱歉，您不满足此卡的购买条件，请购买其它卡种。</view>
+    </view>
+    <view class="bottom-contaioner confirm-bottom-contaioner">
+      <button class="btn btn-borde-rnone {{canBuy && privacyChecked?'confirm-btn':'btn-disabled'}}" disabled="{{!canBuy ||!privacyChecked}}" bind:tap="onConfirmTap">立即购卡</button>
+    </view>
+  </view>
+</t-popup>
+<t-toast id="t-toast" />

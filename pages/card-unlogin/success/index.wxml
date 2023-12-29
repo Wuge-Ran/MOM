@@ -1,0 +1,37 @@
+<!--pages/card/index.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="success-icon" src="/assets/icons/success.png"></image>
+  <view class="succ-title">购买成功</view>
+  </view>
+  <!-- 成功图标 -->
+
+
+  <!-- <view class="card-root"> -->
+  <!-- 会员卡 -->
+  <view class="card-container succ-card" bind:tap="onCardTap">
+   <image class="card-bg" src="{{card.bgImg}}"></image>
+        <image class="card-event" wx:if="{{card.logo}}" src="{{card.logo}}"></image>
+        <view class="card-info">
+          <view class="card-title {{card.type==='group'?'group-card-title':''}}">{{card.title}}</view>
+          <view  class="card-times">{{card.times}}<span class="card-times-sufix">{{card.suffix}}</span></view>
+          <view class="price-info">
+            <span class="price {{card.type==='group'?'group-price':''}}">￥{{card.price}}</span>
+            <span class="per-price {{card.type==='group'?'group-per-price':''}}">￥{{(card.display_list_price)}}</span>
+          </view>
+        </view>
+         <view class="hint {{card.type==='group'?'group-hint':''}}">{{card.display_footnote}}</view>
+       
+  </view>
+  <view class="succ-desc">
+    <view class="buy-title">{{card.name}}</view>
+    <view class="user-limit">使用期限：{{card.useLimts}}天</view>
+  </view>
+  </view>
+<!-- </view> -->
+
+ <!-- 按钮 -->
+<view class="bottom-contaioner display-absolute">
+  <button class="btn cancel-btn btn-borde-rnone" bind:tap="onContinueTap">继续购买</button>
+  <button class="btn confirm-btn btn-borde-rnone" bind:tap="onConfirmTap">立即约课</button>
+</view>
