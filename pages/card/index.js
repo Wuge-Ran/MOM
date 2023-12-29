@@ -147,10 +147,7 @@ Page({
           : display_title;
       cardsByType[localType].push(card);
     }
-    for (const key in cardsByType) {
-      console.log(key);
-    }
-    console.log(cardsByType, 99999);
+    
     return cardsByType;
   },
 
