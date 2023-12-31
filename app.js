@@ -3,6 +3,27 @@ import dayjs from "dayjs";
 import locale from "@utils/dayjs/locale/zh-cn";
 import globalData from "@src/global/index";
 
+(function(){
+  var PageTmp = Page;
+  Page =function (pageConfig) {
+    // 设置全局默认分享
+    pageConfig = Object.assign({
+      onShareAppMessage:function () {
+        return {
+          path:'pages/index/index',
+        };
+      },
+      onShareTimeline:function () {
+        return {
+          title:'Mellow Climbing Gym',
+          path:'pages/index/index',
+        };
+      },
+    },pageConfig);
+    PageTmp(pageConfig);
+  };
+})();
+
 App({
     onLaunch(res) {
 
