@@ -38,8 +38,8 @@
 >
   <t-picker-item options="{{boulder}}"></t-picker-item>
 </t-picker>
-<!--大岩壁水平--> 
-<t-cell title="大岩壁水平" arrow hover data-key="rock" note="{{rockText}}"  bind:click="onPickerTap" />
+<!--难度水平--> 
+<t-cell title="难度水平" arrow hover data-key="rock" note="{{rockText}}"  bind:click="onPickerTap" />
 <t-picker
   visible="{{rockVisible}}"
   value="{{rockValue}}"
