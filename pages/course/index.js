@@ -38,6 +38,7 @@ Page({
    */
   async onShow() {
     this.getTabBar()?.show();
+    await this.getCalendar();
     this.updateCourse();
     this.getCoach();
     this.setRefreshTimer();

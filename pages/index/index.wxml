@@ -73,16 +73,16 @@
             <text class="userinfo-nickname">{{phoneNumber||'您好，请登录'}}</text>
         </view>
         <view class="userinfo-content">
-            <view class="userinfo-content-item border-right" mode="cover">
+            <view class="userinfo-content-item border-right" bindtap="bindInfoCourse" mode="cover">
                 <image src="./img/course.png" />
-                <t-button hover-class="none" bindtap="bindInfoTap">立刻约课</t-button>
+                <t-button hover-class="none" bindtap="bindInfoCourse">立刻约课</t-button>
             </view>
-            <view class="userinfo-content-item">
+            <view class="userinfo-content-item" bindtap="bindInfoCard">
                 <image src="./img/card.png" mode="cover" />
-                <t-button hover-class="none" bindtap="bindInfoTap">立即购卡</t-button>
+                <t-button hover-class="none" bindtap="bindInfoCard">立即购卡</t-button>
             </view>
         </view>
-        <view class="userinfo-aboutUs">
+        <view class="userinfo-aboutUs" data-link="{{userInfo.about_us}}" bind:tap="swiperLinkTo">
             <image class="userinfo-aboutUs-img" src="./img/about-us.png" mode="cover" />
             <view class="userinfo-aboutUs-text">关于我们</view>
             <image class="userinfo-aboutUs-btn" src="./img/about-us-btn.png" mode="cover" />

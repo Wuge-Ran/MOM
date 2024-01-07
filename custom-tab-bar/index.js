@@ -65,7 +65,6 @@ Component({
 
   methods: {
     onChange(e) {
-
         const activeValue = e.detail.value;
         const item = this.data.list.find((item) => item.value == activeValue);
         wx.switchTab({ url: item.path, });

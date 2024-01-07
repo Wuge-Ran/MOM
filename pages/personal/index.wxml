@@ -2,8 +2,8 @@
 <scroll-view class="container personal" scroll-y="{{true}}" 	show-scrollbar="{{false}}" enhanced>
     <image class="personal-logo" src="./img/personal-logo.png" mode="aspectFit" alt="" />
     <view class="personal-info" data-link="/pages/personal/personal-edit/index" bind:tap="linkTo">
-        <image class="personal-info-avatar" src="{{userInfo.avatar_fileid}}" />
-        <view>{{userInfo.nickname}}</view>
+        <image class="personal-info-avatar" src="{{userInfo.avatar_fileid||'../index/img/default.png'}}" />
+        <view>{{userInfo.nickname||'您好，请登录'}}</view>
     </view>
     <view class="personal-center">
         <t-cell title="会员卡" hover arrow data-link="/pages/personal/member-card/index" bind:tap="linkTo">
@@ -21,7 +21,7 @@
                 <image class="personal-item-img" src="./img/personal-info.png" mode="aspectFit" />
             </view>
         </t-cell>
-        <t-cell title="用户协议" data-link="/pages/personal/privacy/index" bind:tap="linkTo" hover arrow>
+        <t-cell title="用户协议" data-link="/pages/personal/privacy/index" data-nologin="{{true}}" bind:tap="linkTo" hover arrow>
             <view class="personal-item" slot="left-icon">
                 <image class="personal-item-img" src="./img/user.png" mode="aspectFit" />
             </view>

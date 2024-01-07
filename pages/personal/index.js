@@ -1,5 +1,7 @@
 // pages/personal/index.js
-import {getUserInfo} from '@src/api/personal';
+import {
+    getUserInfo
+} from '@src/api/personal';
 import globalData from '@src/global/index';
 
 Page({
@@ -8,8 +10,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userInfo:null,
-        avatarUrl:null
+        userInfo: null,
+        avatarUrl: null
     },
 
 
@@ -25,10 +27,19 @@ Page({
      */
     onShow() {
         this.getTabBar()?.show();
-        getUserInfo().then(({data})=>{
+        const {
+            phoneNumber,
+            token
+        } = globalData?.login || {};
+        if (!phoneNumber || !token) { // 跳转到登录页
+            return;
+        }
+        getUserInfo().then(({
+            data
+        }) => {
             console.log(data)
             this.setData({
-                userInfo:data
+                userInfo: data
             })
         })
     },
@@ -54,11 +65,19 @@ Page({
 
     },
 
-    linkTo(e){
+    linkTo(e) {
+        const nologin = e.currentTarget.dataset.nologin;
+        console.log('===e.currentTarget.dataset',e.currentTarget.dataset)
+        if (!nologin&&(!globalData.login.token || !globalData.login.phoneNumber)) {
+            wx.navigateTo({
+                url: '/pages/login/index',
+            })
+            return;
+        }
         const link = e.currentTarget.dataset.link;
         console.log(link)
         wx.navigateTo({
-          url: link,
+            url: link,
         })
     },
 

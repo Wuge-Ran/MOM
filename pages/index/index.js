@@ -47,6 +47,16 @@ Page({
             url: "/pages/login/index",
         });
     },
+    bindInfoCourse(){
+        wx.switchTab({
+            url: "/pages/course/index",
+        });
+    },
+    bindInfoCard(){
+        wx.switchTab({
+            url: "/pages/card/index",
+        });
+    },
     linkToMyCard() {
         if (this.data.userInfo.available_cards) {
             wx.navigateTo({
