@@ -65,16 +65,10 @@ Component({
 
   methods: {
     onChange(e) {
-      const { phoneNumber, token } = globalData?.login || {};
-      if (!phoneNumber || !token) { // 跳转到登录页
-        wx.navigateTo({ url: "/pages/login/index", });
-      }
-      else{// 跳转到具体页面
+
         const activeValue = e.detail.value;
         const item = this.data.list.find((item) => item.value == activeValue);
         wx.switchTab({ url: item.path, });
-      }
-      
     },
 
     show() {
