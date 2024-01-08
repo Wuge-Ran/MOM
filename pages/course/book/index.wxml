@@ -1,6 +1,5 @@
 <!--pages/course/book/index.wxml-->
-<!--pages/course/index.wxml-->
-<view class="contaioner">
+<view class="contaioner" wx:if="{{course}}">
   <view class="header">
     <image class="header-bg" src="{{bgUrl}}" />
   </view>
@@ -122,6 +121,8 @@
       </view>
     </view>
   </t-popup>
+</view>
+<view wx:else>
 
 </view>
 
