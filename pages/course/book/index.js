@@ -22,7 +22,7 @@ Page({
     courseId: "",
     cancelBookDeadline: 5,
 
-    course: {},
+    course: undefined,
     cancelBookDisabledStr: "",
     cancelBookDisabled: true,
     started: true,
