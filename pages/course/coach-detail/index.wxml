@@ -11,8 +11,8 @@
         </view>
     </view>
     <view class="coach-course">
-        <t-tabs defaultValue="group" bind:change="onTabsChange" t-class="type-tabs">
-            <t-tab-panel label="团课" value="group" />
+        <t-tabs defaultValue="group,open" bind:change="onTabsChange" t-class="type-tabs">
+            <t-tab-panel label="团课" value="group,open" />
             <t-tab-panel label="私教" value="privatelv1,privatelv2" />
         </t-tabs>
 

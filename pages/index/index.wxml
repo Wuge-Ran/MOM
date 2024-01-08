@@ -64,11 +64,11 @@
             </view>
         </view>
     </view>
-    <view class="userinfo" bindtap="bindInfoTap" wx:else>
+    <view class="userinfo" wx:else>
         <view class="my-dot-list">
             <view class="my-dot-item {{currentIndex===index?'active-dot':''}}" wx:for="{{swiperList}}" wx:key="*this"></view>
         </view>
-        <view class="userinfo-logo">
+        <view class="userinfo-logo" bindtap="bindInfoTap">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl||'./img/default.png'}}" mode="cover"></image>
             <text class="userinfo-nickname">{{phoneNumber||'您好，请登录'}}</text>
         </view>
@@ -83,9 +83,9 @@
             </view>
         </view>
         <view class="userinfo-aboutUs" data-link="{{userInfo.about_us}}" bind:tap="swiperLinkTo">
-            <image class="userinfo-aboutUs-img" src="./img/about-us.png" mode="cover" />
-            <view class="userinfo-aboutUs-text">关于我们</view>
-            <image class="userinfo-aboutUs-btn" src="./img/about-us-btn.png" mode="cover" />
+            <image class="userinfo-aboutUs-img" data-link="{{userInfo.about_us}}" src="./img/about-us.png" mode="cover" />
+            <view class="userinfo-aboutUs-text" data-link="{{userInfo.about_us}}">关于我们</view>
+            <image class="userinfo-aboutUs-btn" data-link="{{userInfo.about_us}}" src="./img/about-us-btn.png" mode="cover" />
         </view>
 
         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->

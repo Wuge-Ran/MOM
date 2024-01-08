@@ -23,6 +23,20 @@ Component({
             curIndex:index
         })
         this.triggerEvent('dateChange', date)
-    }
+    },
+    lifetimes: {
+        created() {
+         
+        },
+        attached() {
+         console.log(12321)
+        },
+        moved() {
+    
+        },
+        detached() {
+    
+        },
+      },
   },
 });

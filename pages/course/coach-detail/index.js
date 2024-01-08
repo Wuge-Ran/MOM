@@ -19,7 +19,7 @@ Page({
     filterCourseList: [],
     coachInfo: null,
     coachId: null,
-    courseType: "group",
+    courseType: "group,open",
   },
 
   /**
@@ -31,7 +31,7 @@ Page({
     this.setData({
       coachId: id,
     });
-    this.getInitInfo(id, "group");
+    this.getInitInfo(id, this.data.courseType);
   },
 
   getInitInfo(id, type) {

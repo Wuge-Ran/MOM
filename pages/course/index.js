@@ -38,7 +38,7 @@ Page({
    */
   async onShow() {
     this.getTabBar()?.show();
-    await this.getCalendar();
+    await this.getCalendar(true);
     this.updateCourse();
     this.getCoach();
     this.setRefreshTimer();
@@ -74,14 +74,17 @@ Page({
   /**
    *获取日历
    */
-  async getCalendar() {
+  async getCalendar(isSet) {
     const dateList = [];
     const { courseType, coachIds } = this.data;
     const coachIdStr = coachIds.join(",");
     const { data } = await getCourseByDate(courseType, coachIdStr);
     let curDay = data.today;
     // 设置当前日期
-    this.setData({ curDay });
+    if(!isSet){
+        this.setData({ curDay });
+    }
+    
     data.future_courses.forEach((item) => {
       dateList.push({
         date: curDay,

@@ -9,7 +9,7 @@
       <text class="selection-bar-text">{{selectDetail}}</text>
       <pop-up coachList="{{coachList}}" visible="{{visible}}" bind:onOk="onOk" selectDetail="{{selectDetail}}"/>
     </view>
-    <date-piker bind:dateChange="onDateChange" list="{{dateList}}" marginRight="44rpx"></date-piker>
+    <date-piker bind:dateChange="onDateChange"  list="{{dateList}}" marginRight="44rpx"></date-piker>
 
     <view class="notification" wx:if="{{message}}">
       <image class="notification-icon" src="/assets/icons/message.png" />
