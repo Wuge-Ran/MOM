@@ -22,7 +22,7 @@ Page({
     courseId: "",
     cancelBookDeadline: 5,
 
-    course: undefined,
+    course: {},
     cancelBookDisabledStr: "",
     cancelBookDisabled: true,
     started: true,
@@ -54,6 +54,8 @@ Page({
     // selectKeys:{value:"id",label:"name"},
     remark: "",
 
+    loading: true,
+
     //特殊课程购买弹窗
     showBuySpecialUI: false,
     privacyChecked: false,
@@ -62,9 +64,9 @@ Page({
     cancelId: "",
     //课程候补成功通知id
     reservedId: "",
-    bgUrl:'https://mellow-1321738484.cos.ap-shanghai.myqcloud.com/public/FNRf12QnjGrxcJDK8A0NIUidUwHCauA4/bg2.jpeg',
+    bgUrl:
+      "https://mellow-1321738484.cos.ap-shanghai.myqcloud.com/public/FNRf12QnjGrxcJDK8A0NIUidUwHCauA4/bg2.jpeg",
   },
-
   computed: {
     timeRangeStr(data) {
       const { start_time, duration_minutes = 0 } = data.course || {};
@@ -90,7 +92,7 @@ Page({
 
     reConfirmBuyStr(data) {
       let str = "";
-      const { current_attenders, max_attenders } = data.course;
+      const { current_attenders, max_attenders } = data.course || {};
       if (data.cards.length > 0) {
         if (current_attenders < max_attenders) str = "确认预约";
         else str = "确认候补";
@@ -129,13 +131,13 @@ Page({
 
     showBookStr(data) {
       const { type } = data.course || {};
-      return type !== "private" && type !== "special";
+      return !type?.includes("private") && type !== "special";
       // return false;
     },
 
     showWaitStr(data) {
       const { type, user_can_wait } = data.course || {};
-      return user_can_wait && type !== "private" && type !== "special";
+      return user_can_wait && !type?.includes("private") && type !== "special";
       // return false;
     },
   },
@@ -153,6 +155,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.setData({ loading: true });
     wx.nextTick(() => {
       const app = getApp();
       const { last, current } = app.globalData?.routes || {};
@@ -171,14 +174,19 @@ Page({
     const [cancelBookDisabled, cancelBookDisabledStr] =
       this.calCancelBookDisabled();
     const status = this.calStatus(started, cancelBookDisabled);
-    this.setData({
-      started,
-      status,
-      cancelBookDisabledStr,
-      cancelBookDisabled,
-      showBuySpecialUI: type === "special",
-      showPurchaseUI: this.data.showPupoUI && type !== "special",
-    });
+    this.setData(
+      {
+        started,
+        status,
+        cancelBookDisabledStr,
+        cancelBookDisabled,
+        showBuySpecialUI: type === "special",
+        showPurchaseUI: this.data.showPupoUI && type !== "special",
+      },
+      () => {
+        this.setData({ loading: false });
+      }
+    );
   },
 
   async getCourseDetail(courseId) {
@@ -329,7 +337,13 @@ Page({
     } else if (attend_status === "reserved" && !started) {
       disabledStr = `开课前${deadline}小时内，不允许取消预约`;
     }
-    console.log("calCancelBookDisabled",deadline, canCancelBook, disabled, disabledStr);
+    console.log(
+      "calCancelBookDisabled",
+      deadline,
+      canCancelBook,
+      disabled,
+      disabledStr
+    );
     return [disabled, disabledStr];
   },
 
@@ -389,12 +403,16 @@ Page({
   },
 
   onMapTap() {
-    const { address_lat = 0, address_long = 0,address } = this.data.course || {};
+    const {
+      address_lat = 0,
+      address_long = 0,
+      address,
+    } = this.data.course || {};
     wx.openLocation({
       latitude: Number(address_lat),
       longitude: Number(address_long),
-      name:address,
-      address:'北京市朝阳区506创新园7号楼',
+      name: address,
+      address: "北京市朝阳区506创新园7号楼",
       scale: 18,
       complete: (res) => {
         console.log("wx.openLocation", res);
@@ -436,30 +454,30 @@ Page({
 
   subscribe() {
     const { user_can_wait: canWait } = this.data?.course || {};
-    const { cancelId,reservedId } = this.data;
+    const { cancelId, reservedId } = this.data;
     const tmplIds = [cancelId];
     if (canWait) tmplIds.push(reservedId);
     wx.requestSubscribeMessage({
-     tmplIds,
-      complete: (res)=> {
-        console.log('complete',res);
-        const cancelMsg=res?.[cancelId];
-        const reservedMsg =res?.[reservedId]; 
+      tmplIds,
+      complete: (res) => {
+        console.log("complete", res);
+        const cancelMsg = res?.[cancelId];
+        const reservedMsg = res?.[reservedId];
         // 候补或购卡
-        this.reverseOrWaitingCourse(cancelMsg,reservedMsg);
+        this.reverseOrWaitingCourse(cancelMsg, reservedMsg);
       },
     });
   },
 
-  async reverseOrWaitingCourse(cancelMsg,reservedMsg) {
+  async reverseOrWaitingCourse(cancelMsg, reservedMsg) {
     const courseId = this.data.courseId;
     const {
       user_can_reserve: canBook,
       user_can_wait: canWait,
       status,
       waiting_attenders,
-      min_attenders:minAttenders,
-      no_cancel_reserve_hours:cancelHours
+      min_attenders: minAttenders,
+      no_cancel_reserve_hours: cancelHours,
     } = this.data?.course || {};
     const requestRunc = canBook ? book : wait;
     const type = canBook ? "booked" : "wait";
