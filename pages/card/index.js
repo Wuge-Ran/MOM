@@ -81,6 +81,9 @@ Page({
         switch (type) {
           case "privatelv1":
           case "privatelv2":
+          case "trialprivate":
+          case "teenprivatelv1":
+          case "teenprivatelv2":
             card.localType = 5;
             break;
           case "daypass":
@@ -88,6 +91,8 @@ Page({
             else card.localType = 3;
             break;
           case "group":
+          case "teengroup":
+          case "trialgroup":
             card.localType = 4;
             break;
           default:

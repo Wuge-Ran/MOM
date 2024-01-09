@@ -1,5 +1,5 @@
 <!--pages/course/book/index.wxml-->
-<view class="contaioner" wx:if="{{course}}">
+<view class="contaioner" wx:if="{{!loading}}">
   <view class="header">
     <image class="header-bg" src="{{bgUrl}}" />
   </view>
@@ -100,8 +100,7 @@
               <t-picker-item options="{{cards}}"></t-picker-item>
   </t-picker>
 
-
-    <!-- 顶绳/先锋/野攀购买底部弹窗 -->
+  <!-- 顶绳/先锋/野攀购买底部弹窗 -->
   <t-popup visible="{{showBuySpecialUI}}" bind:visible-change="onSpecialUIVisiableChange" placement="bottom">
     <view class="special">
       <view class="reconfrom-body flex-cloumn">
@@ -122,8 +121,6 @@
     </view>
   </t-popup>
 </view>
-<view wx:else>
-
-</view>
+<view wx:else></view>
 
 <t-toast id="t-toast" />
