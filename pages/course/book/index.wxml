@@ -36,7 +36,7 @@
     </view>
     <view class="course-desc">
       <view class="course-desc-title">课程介绍</view>
-      <view class="course-desc-detail">{{course.description}}</view>
+      <text class="course-desc-detail">{{course.description}}</text>
        <view wx:if="{{type==='special'}}" class="course-desc-detail">课时：2h/节*2节</view>
        <view wx:if="{{type==='special'}}" class="course-desc-detail">费用：600/人</view>
        <view wx:if="{{type==='special'}}" class="course-desc-detail">此课程付款成功即为报名成功，一旦报名成功，不可退款。</view>
