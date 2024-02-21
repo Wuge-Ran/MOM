@@ -60,18 +60,22 @@
     width: 40rpx;
     height: 40rpx;
 }
+.course-content{
+  position: relative;
+  margin-top: -80rpx;
+  border-radius: 32rpx 32rpx 0 0;
+  overflow-y:scroll;
+  z-index: 2;
+  height: calc(100vh - 496rpx - env(safe-area-inset-bottom));
 
+}
 .course-detail {
     display: flex;
     padding: 40rpx 32rpx;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    border-radius: 32rpx 32rpx 0 0;
     background: #FFF;
-    margin-top: -80rpx;
-    position: relative;
-    z-index: 2;
 }
 
 .title {
@@ -185,6 +189,7 @@
     padding: 0 32rpx;
     justify-content: space-between;
     width: calc(100% - 64rpx);
+    z-index: 20;
 }
 
 .display-absolute {

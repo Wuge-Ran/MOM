@@ -8,38 +8,40 @@
     <image class="notification-icon" src="/assets/icons/message.png" />
     <span class="message">{{cancelBookDisabledStr}}</span>
   </view>
+  <view class="course-content">
+    <view class="course-detail">
+      <span class="title">{{course.display_name}}</span>
+      <span wx:if="{{showBookStr}}" class="book-info">{{bookStr}}</span>
+      <view class="coach-info" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
+        <image class="coach-avatar" src="{{course.coach_avatar_url || avatarUrl}}" shape="round"></image>
+        <view class="coach-info-right" data-id="{{course.coach_id}}">
+          <span class="coach-name">{{course.coach_nickname}}</span>
+          <span class="ohter-coach">点击查看教练其他课程</span>
+          <image class="arrow-right" src="/assets/icons/arrow-right.png"></image>
+        </view>
+      </view>
+      <view class="time-info flex-row">
+        <image class="icon-time icon" src="/assets/icons/clock.png"></image>
+        <span wx:if="{{type!=='special'}}" class="time">{{timeRangeStr}}</span>
+      </view>
+      <view class="address-info flex-row">
+        <view class="flex-row">
+          <image class="icon-address icon" src="/assets/icons/address.png"></image>
+          <span class="address">{{course.address}}</span>
+        </view>
+        <view wx:if="{{course.address_lat!=0 && course.address_long!=0}}"  class="map-info flex-row" bind:tap="onMapTap">
+          <image class="icon-map icon" src="/assets/icons/address1.png"></image>
+          <span class="map-title" >导航</span>
+        </view>
+      </view>
+      <view class="course-desc">
+        <view class="course-desc-title">课程介绍</view>
+        <text class="course-desc-detail">{{course.description}}</text>
 
-  <view class="course-detail">
-    <span class="title">{{course.display_name}}</span>
-    <span wx:if="{{showBookStr}}" class="book-info">{{bookStr}}</span>
-    <view class="coach-info" bind:tap="onCoachTap" data-id="{{course.coach_id}}">
-      <image class="coach-avatar" src="{{course.coach_avatar_url || avatarUrl}}" shape="round"></image>
-      <view class="coach-info-right" data-id="{{course.coach_id}}">
-        <span class="coach-name">{{course.coach_nickname}}</span>
-        <span class="ohter-coach">点击查看教练其他课程</span>
-        <image class="arrow-right" src="/assets/icons/arrow-right.png"></image>
+        <view wx:if="{{type==='special'}}" class="course-desc-detail">课时：2h/节*2节</view>
+        <view wx:if="{{type==='special'}}" class="course-desc-detail">费用：600/人</view>
+        <view wx:if="{{type==='special'}}" class="course-desc-detail">此课程付款成功即为报名成功，一旦报名成功，不可退款。</view>
       </view>
-    </view>
-    <view class="time-info flex-row">
-      <image class="icon-time icon" src="/assets/icons/clock.png"></image>
-      <span wx:if="{{type!=='special'}}" class="time">{{timeRangeStr}}</span>
-    </view>
-    <view class="address-info flex-row">
-      <view class="flex-row">
-        <image class="icon-address icon" src="/assets/icons/address.png"></image>
-        <span class="address">{{course.address}}</span>
-      </view>
-      <view wx:if="{{course.address_lat!=0 && course.address_long!=0}}"  class="map-info flex-row" bind:tap="onMapTap">
-        <image class="icon-map icon" src="/assets/icons/address1.png"></image>
-        <span class="map-title" >导航</span>
-      </view>
-    </view>
-    <view class="course-desc">
-      <view class="course-desc-title">课程介绍</view>
-      <text class="course-desc-detail">{{course.description}}</text>
-       <view wx:if="{{type==='special'}}" class="course-desc-detail">课时：2h/节*2节</view>
-       <view wx:if="{{type==='special'}}" class="course-desc-detail">费用：600/人</view>
-       <view wx:if="{{type==='special'}}" class="course-desc-detail">此课程付款成功即为报名成功，一旦报名成功，不可退款。</view>
     </view>
   </view>
 
